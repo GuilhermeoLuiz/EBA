@@ -9,12 +9,20 @@
 get_header();
 ?>
 
+
+
+<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/style.css">
+
+
+<title> <?php echo wp_title('');  ?> </title>
+
 <main id="main-content" class="site-main">
 <nav class="nav-menu">
   <?php
   wp_nav_menu( array(
-    'theme_location' => 'primary',
-    'container' => false,
+    'theme_location' => 'menu-principal',
+  'container' => 'nav',
+  'container_class' => 'menu-principal'
   ) );
   ?>
 </nav>
@@ -39,4 +47,4 @@ get_header();
 
 <?php //get_sidebar(); ?>
 
-<?php //get_footer(); ?>
+<?php get_footer(); ?>
