@@ -9,7 +9,6 @@ h2, h1:not(.titulo){
 	justify-content: center;
 	align-items: center;
 	background-color: #ffd700;
-	max-width: 20%;
 }
 
 .titulo {
@@ -39,7 +38,7 @@ h2, h1:not(.titulo){
 	background-color: #add8e6;
 	font-size: 1rem;
 	color: gray;
-	left: -250px;
+	left: -350px;
 	transition: left 0.3s ease;
 	padding-right: 10px;
 }
@@ -111,6 +110,7 @@ footer {
 	left: 0;
 	width: 100%;
 }
+
 
 
 
