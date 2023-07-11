@@ -9,6 +9,8 @@ h2, h1:not(.titulo){
 	justify-content: center;
 	align-items: center;
 	background-color: #ffd700;
+	display: inline;
+	padding: 3px;
 }
 
 .titulo {
@@ -111,8 +113,19 @@ footer {
 	width: 100%;
 }
 
+main {
+	float: left;
+}
 
+.sidebar {
+	float: right;
+	max-width: 25%;
+	background-color: #C8FFC8;
+}
 
+.sidebar li {
+	margin: 10px auto;
+}
 
 
 
