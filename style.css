@@ -5,9 +5,16 @@ Theme Name: EBA
  *
  */
 
-html {
-	background-color: white;
+body {
+  background-image: url('<?php echo esc_url(get_background_image()); ?>');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: <?php echo get_theme_mod( 'meu_tema_background_color', '#ffffff' ); ?>;
 }
+
+
 
 h2, h1:not(.titulo){
 	justify-content: center;
@@ -43,6 +50,7 @@ p::first-letter{
 .titulo h1{
 	align-items: center;
 	margin-right: 20px;
+	float: left;
 }
 
 .menu-principal{
@@ -167,7 +175,29 @@ button:hover, input[type="submit"] {
   background-color: #45a049;
 }
 
+.dark {
+	float: right;
+}
 
+.dark-mode {
+    background-color: #222222;
+    color: #fff;
+}
 
+.dark-mode main{
+	background-color: gray;
+}
+
+.dark-mode h2, h1:not(.titulo){
+	color: #222222;
+}
+
+.dark-mode .sidebar{
+	background-color: #992211;
+}
+
+.dark-mode .sidebar a{
+	color: white;
+}
 
 
