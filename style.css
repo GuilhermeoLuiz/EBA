@@ -5,12 +5,25 @@ Theme Name: EBA
  *
  */
 
+html {
+	background-color: white;
+}
+
 h2, h1:not(.titulo){
 	justify-content: center;
 	align-items: center;
 	background-color: #ffd700;
 	display: inline;
 	padding: 3px;
+	text-transform: capitalize;
+}
+
+p {
+	margin: 1px auto;
+}
+
+p::first-letter{
+	text-transform: uppercase;
 }
 
 .titulo {
@@ -114,7 +127,9 @@ footer {
 }
 
 main {
+	background-color: #e2e2e2;
 	float: left;
+	width: 72%;
 }
 
 .sidebar {
@@ -127,6 +142,30 @@ main {
 	margin: 10px auto;
 }
 
+.sidebar input[type="text"]{
+	max-width: 170px;
+}
+
+button, input[type="submit"] {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:active, input[type="submit"]{
+  background-color: #45a049;
+}
+
+button:hover, input[type="submit"] {
+  background-color: #45a049;
+}
 
 
 
