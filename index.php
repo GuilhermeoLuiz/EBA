@@ -8,7 +8,8 @@
                          * @since 1.0
                          */
 
-                        get_header();
+get_header();
+$cor_subtitulo = get_theme_mode("cor_subtitulo", "#ffd700");
                 ?>
 
                 <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/style.css">
@@ -47,7 +48,7 @@
                                                         if($category->name == "Administrativo") :
                                                          ?>
                                                                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                                                                        <h1 class="entry-title"><?php the_title(); ?></h1>
+									<h1 class="entry-title" style="background-color: <?php echo $cor_subtitulo;?>;"><?php the_title(); ?></h1>
                                                                         <div class="entry-content">
                                                                                 <?php the_content();?>
                                                                                 <ul class="post-categories">
