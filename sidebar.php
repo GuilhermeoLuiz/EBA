@@ -1,7 +1,4 @@
 <div class="sidebar">
-	<button class="dark" id="dark-mode-toggle">
-		Dark
-	</button>
 	<?php
 
         	dynamic_sidebar('sidebar-1');

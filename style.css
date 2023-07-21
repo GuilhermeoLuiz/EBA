@@ -18,11 +18,11 @@ body {
 h2, h1:not(.titulo){
 	justify-content: center;
 	align-items: center;
-	background-color: "<?php get_theme_mod('cor_subtitulo', '#ffd700')";
 	display: inline;
 	padding: 3px;
 	text-transform: capitalize;
-	margin-left: 10px auto; 
+	margin: 10px;
+       margin-top: 10px;	
 }
 
 p {
@@ -184,6 +184,7 @@ button:hover, input[type="submit"] {
 
 .dark {
 	float: right;
+	margin-right: 10px;
 }
 
 .dark-mode {
@@ -215,6 +216,10 @@ button:hover, input[type="submit"] {
 	text-align: center;	
 }
 
-
-
+header{
+	display: flex;
+	align-items: center;
+	max-height: 70px;
+	margin: 15px auto;
+}
 

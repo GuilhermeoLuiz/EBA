@@ -33,6 +33,10 @@ echo $descricao_site;
 ?>
 </div>
 </h1>
+<button class="dark" id="dark-mode-toggle">
+	Dark
+</button>
+
 </header>
 
 
