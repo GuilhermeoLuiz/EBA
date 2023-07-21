@@ -1,31 +1,33 @@
 <!doctype html>
 <html>
-        <head>
-                <!-- Required meta tags -->
-            <meta charset="<?php bloginfo('charset'); ?>">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	    <?php wp_head(); ?>
-		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/style.css">
-        </head>
+	<meta charset="<?php bloginfo('charset'); ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/style.css">
+<?php wp_head();
+$cor_cabecalho = get_theme_mod( 'header_background_color', '#dd0000' );
+$cor_texto = get_theme_mod('cor_texto_cabecalho', '#111111');
+?>
 <body>
-
 <link rel="icon" type="image/jpeg" href="<?php echo get_template_directory_uri(); ?>/favicon.jpeg">
 
+<div class="header-image">
+      <img src="<?php echo esc_url(get_theme_mod('header_image')); ?>">
+</div>
+<header style="background-color: <?php echo $cor_cabecalho; ?>; color: <?php echo $cor_texto;?>;">
 <h1 class="titulo">
 <div class="menu-icon">
 	:::
 </div>
 <span class="separator"></span>
+<div class"texto">
 	<?php
 $descricao_site = get_bloginfo('title');
 echo $descricao_site;
 ?>
-
-<button class="dark" id="dark-mode-toggle">
-Dark
-</button>
+</div>
 </h1>
+</header>
+
 
 <nav class="menu">
 <?php
@@ -37,48 +39,5 @@ Dark
   ?>
 </nav>
 
-
-
-<script>
-var icon = document.querySelector('.menu-icon');
-document.querySelector('.menu-icon').addEventListener('click', function() {
-        if(icon.textContent == "X"){
-                document.querySelector('.menu-principal').style.left = '-250px'; 
-                icon.textContent = ":::";
-        }else{
-                document.querySelector('.menu-principal').style.left = '0';
-                icon.textContent = "X";
-        }
-});
-
-document.querySelector('.menu-principal').addEventListener('click', function() {
-        document.querySelector('.menu-principal').style.left = '-250px'; 
-});
-
-// Seleciona o botão
-    var darkModeToggle = document.getElementById('dark-mode-toggle');
-    
-    // Verifica se o usuário já está no modo escuro
-    if (localStorage.getItem('darkModeEnabled')) {
-        document.body.classList.add('dark-mode');
-    }
-    
-    // Adiciona um ouvinte de evento para o clique no botão
-    darkModeToggle.addEventListener('click', function() {
-        // Verifica se o modo escuro está ativado ou desativado
-        if (document.body.classList.contains('dark-mode')) {
-            // Desativa o modo escuro
-            document.body.classList.remove('dark-mode');
-            localStorage.removeItem('darkModeEnabled');
-        } else {
-            // Ativa o modo escuro
-            document.body.classList.add('dark-mode');
-            localStorage.setItem('darkModeEnabled', true);
-        }
-    });
-
-
-</script>
-
-
+<script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
 

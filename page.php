@@ -1,37 +1,27 @@
-<?php
-/**
- * Theme Page Section for our theme.
- *
- * @package    ThemeGrill
- * @subpackage Accelerate
- * @since      Accelerate 1.0
- */
-get_header(); ?>
+<?php get_header();
+$cor_sub = get_theme_mod('cor_subtitulo', '#ffd700');
+?>
 
-<?php do_action( 'accelerate_before_body_content' ); ?>
+<div>
+        <div class="row">
+                <main class="col-sm-8">
+                        <?php  if( have_posts() ) : while( have_posts() ) : the_post(); ?>
+				<h1 style="background-color: <?php echo $cor_sub;?>;"><?php the_title(); ?></h1>
+                                <div>
+                                        <?php the_content(); ?>
+                                </div>
+                        <?php endwhile; endif; ?>
+		</main>
+		<?php get_sidebar(); ?>
+        </div>
+</div>
 
-	<div id="primary">
-		<div id="content" class="clearfix">
-			<?php while ( have_posts() ) : the_post(); ?>
+<footer>
+	<?php if (is_active_sidebar('footer')) : ?>
+		<div class="widget-area">
+                	<?php dynamic_sidebar('footer'); ?>
+                </div>
+        <?php endif; ?>
+</footer>
+<?php get_footer();
 
-				<?php get_template_part( 'content', 'page' ); ?>
-
-				<?php
-				do_action( 'accelerate_before_comments_template' );
-				// If comments are open or we have at least one comment, load up the comment template
-				if ( comments_open() || '0' != get_comments_number() ) {
-					comments_template();
-				}
-				do_action( 'accelerate_after_comments_template' );
-				?>
-
-			<?php endwhile; ?>
-
-		</div><!-- #content -->
-	</div><!-- #primary -->
-
-<?php accelerate_sidebar_select(); ?>
-
-<?php do_action( 'accelerate_after_body_content' ); ?>
-
-<?php get_footer(); ?>

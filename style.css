@@ -11,7 +11,6 @@ body {
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
-  background-color: <?php echo get_theme_mod( 'meu_tema_background_color', '#ffffff' ); ?>;
 }
 
 
@@ -19,14 +18,16 @@ body {
 h2, h1:not(.titulo){
 	justify-content: center;
 	align-items: center;
-	background-color: #ffd700;
+	background-color: "<?php get_theme_mod('cor_subtitulo', '#ffd700')";
 	display: inline;
 	padding: 3px;
 	text-transform: capitalize;
+	margin-left: 10px auto; 
 }
 
 p {
-	margin: 1px auto;
+	margin: 15px auto;
+	margin-left: 5px auto;
 }
 
 p::first-letter{
@@ -37,20 +38,23 @@ p::first-letter{
 	display: flex;
 	align-items: center;
 	padding-top: 0;
-	color: #fff;
-	background-color: rgba(230, 0,0, 0.7);
 	position: relative;
 	top:0;
 	left:0;
 	height:72px;
 	width:100%;
 	margin-bottom: 600px auto;
+	
 }
 
-.titulo h1{
+.titulo .texto{
 	align-items: center;
 	margin-right: 20px;
 	float: left;
+}
+
+.dark{
+	float: right;
 }
 
 .menu-principal{
@@ -99,6 +103,7 @@ li{
   margin: 0 40px;
 }
 
+
 .carousel-container {
   overflow: hidden;
   width: 300px; /* Ajuste a largura do carrossel conforme necessário */
@@ -137,14 +142,17 @@ footer {
 main {
 	background-color: #e2e2e2;
 	float: left;
-	width: 72%;
+	width: 74%;
+	min-height: 70vh;
 }
 
 .sidebar {
 	float: right;
-	max-width: 25%;
+	max-width: 23%;
 	background-color: #C8FFC8;
+	min-height: 70vh
 }
+
 
 .sidebar li {
 	margin: 10px auto;
@@ -199,5 +207,15 @@ button:hover, input[type="submit"] {
 .dark-mode .sidebar a{
 	color: white;
 }
+
+.dark-mode footer{
+	background-color: black;
+}
+
+.header-image{
+	text-align: center;	
+}
+
+
 
 
