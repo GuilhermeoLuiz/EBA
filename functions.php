@@ -115,7 +115,7 @@ $wp_customize->add_setting( 'cor_texto_cabecalho', array(
 
     // Controle para a cor do texto do cabeçalho
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_cabecalho', array(
-        'label' => __( 'Cor do Texto do Cabeçalho', 'meu_tema' ),
+        'label' => __( 'Cor do Texto do Cabeçalho', 'EBA' ),
         'section' => 'colors',
     ) ) );
 
@@ -126,10 +126,20 @@ $wp_customize->add_setting( 'cor_texto_cabecalho', array(
 
     // Controle para a cor do texto do cabeçalho
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo', array(
-        'label' => __( 'Cor do Subtitulo', 'meu_tema' ),
+        'label' => __( 'Cor do Subtitulo', 'EBA' ),
         'section' => 'colors',
     ) ) );
+    
+    $wp_customize->add_setting( 'cor_menu', array(
+	    'default' => '#add8e6',
+        'transport' => 'refresh',
+    ) );
 
+    // Controle para a cor do texto do cabeçalho
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_menu', array(
+        'label' => __( 'Cor do Menu', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
 
 }
 

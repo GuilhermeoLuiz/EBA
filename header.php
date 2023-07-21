@@ -6,7 +6,14 @@
 <?php wp_head();
 $cor_cabecalho = get_theme_mod( 'header_background_color', '#dd0000' );
 $cor_texto = get_theme_mod('cor_texto_cabecalho', '#111111');
+$cor_menu = get_theme_mod('cor_menu', '#add8e6');
 ?>
+<style>
+	.menu-principal{
+		background-color: <?php echo $cor_menu;?>;
+}
+</style>
+
 <body>
 <link rel="icon" type="image/jpeg" href="<?php echo get_template_directory_uri(); ?>/favicon.jpeg">
 
@@ -29,7 +36,7 @@ echo $descricao_site;
 </header>
 
 
-<nav class="menu">
+<nav class="menu" style="background-color: <?php echo $cor_menu;?>;">
 <?php
  wp_nav_menu( array(
     'theme_location' => 'menu-principal',
