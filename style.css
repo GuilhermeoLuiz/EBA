@@ -1,6 +1,6 @@
 /*
 *
-Theme Name: EBA
+Theme Name: Tjema
  *
  *
  */
@@ -185,6 +185,10 @@ button:hover, input[type="submit"] {
 }
 
 .dark-mode html{
+	background-color: #222222;
+}
+
+.dark-mode body{
 	background-color: #222222;
 }
 

@@ -1,10 +1,4 @@
 <?php
-function mytheme_enqueue_styles() {
-    wp_enqueue_style( 'mytheme-style', get_stylesheet_directory_uri() . 'style.css' );
-}
-add_action( 'wp_enqueue_scripts', 'mytheme_enqueue_styles' );
-
-
 function register_my_menus() {
   register_nav_menus( array(
     'menu-principal' => 'menu-principal'
@@ -20,7 +14,7 @@ function adicionar_titulo_site($title, $sep) {
     }
     return $title . ' ' . $sep . ' ' . get_bloginfo('description');
 }
-add_filter('wp_title', 'adicionar_titulo_site', 10, 2);
+//add_filter('wp_title', 'adicionar_titulo_site', 10, 2);
 
 
 function theme_register_sidebar() {
@@ -50,13 +44,7 @@ function theme_custom_404() {
     }
 }
 
-// Chamar a função theme_setup()
 //add_action('after_setup_theme', 'theme_setup');
-
-function enqueue_custom_scripts() {
-    wp_enqueue_script( 'custom-script', get_template_directory_uri() . 'script.js', array(), '1.0', true );
-}
-add_action( 'wp_enqueue_scripts', 'enqueue_custom_scripts' );
 
 function sidebar_widget() {
   register_sidebar(array(
@@ -80,8 +68,6 @@ function custom_redirect_404() {
     }
 }
 add_action( 'template_redirect', 'custom_redirect_404' );
-// Adicionar suporte à imagem de fundo personalizada
-
 
 function EBA_customize_register( $wp_customize ) {
 
@@ -156,21 +142,6 @@ function meu_tema_definir_capa() {
 }
 add_action('after_setup_theme', 'meu_tema_definir_capa');
 
-
-add_action('widgets_init', 'my_theme_sidebars');
-function my_theme_sidebars() {
-
-        register_sidebar(array(
-                'id' => 'primary-sidebar',
-                'name' => 'Primary Sidebar',
-                'description' => 'Sidebar that appears across the entire website',
-                'before_widget' => '<div id="%1$s" class="widget %2$s">',
-                'after_widget' => '</div>',
-                'before_title' => '<h3 class="widget-title">',
-                'after_title' => '</h3>'
-        ));
-
-}
 
 function theme_customize_register($wp_customize) {
   // Adicionar uma seção para a imagem do cabeçalho
