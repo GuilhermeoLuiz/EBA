@@ -2,7 +2,7 @@
 $cor_back = get_theme_mod('EBA_background_color', '#add8e6');
 ?>
 <!doctype html>
-<html style="background-color: <?php echo $cor_back;?>;" id="html">
+<html style="background-color: <?php echo $cor_back;?>;" id="me">
 	<meta charset="<?php bloginfo('charset'); ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/style.css">
@@ -54,4 +54,30 @@ echo $descricao_site;
 </nav>
 
 <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/dark.js"></script>
+<!--script src="<?php echo get_template_directory_uri(); ?>/dark.js"></script-->
+
+
+<script>
+var darkModeToggle = document.getElementById('dark-mode-toggle');
+
+// Verifica se o usuário já está no modo escuro
+if (localStorage.getItem('darkModeEnabled')) {
+    document.body.classList.add('dark-mode');
+}
+
+darkModeToggle.addEventListener('click', function() {
+    if (document.body.classList.contains('dark-mode')) {
+        document.body.classList.remove('dark-mode');
+        localStorage.removeItem('darkModeEnabled');
+        darkModeToggle.textContent = "Dark";
+        document.getElementById("me").style.backgroundColor = <?php echo $cor_back;?>;
+    } else {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('darkModeEnabled', true);
+        darkModeToggle.textContent = "Clear";
+        document.getElementById("me").style.backgroundColor = "black";
+        
+    }
+});
+</script>
+
