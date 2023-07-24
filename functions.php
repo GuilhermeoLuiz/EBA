@@ -152,7 +152,7 @@ function theme_customize_register($wp_customize) {
 
   // Adicionar controle para a imagem do cabeçalho
   $wp_customize->add_setting('header_image', array(
-    'default' => '',
+    'default' => get_template_directory_uri() . '/favicon.jpeg',
     'transport' => 'refresh',
   ));
 
@@ -163,7 +163,27 @@ function theme_customize_register($wp_customize) {
   )));
 }
 
-//add_action('customize_register', 'theme_customize_register');
+add_action('customize_register', 'theme_customize_register');
+
+
+function theme_name_customizer($wp_customize) {
+    $wp_customize->add_section('background_image', array(
+        'title' => __('Imagem de Fundo', 'theme_name'),
+        'priority' => 30,
+    ));
+
+    $wp_customize->add_setting('background_image', array(
+        'default' => '',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'background_image', array(
+        'label' => __('Escolha uma imagem de fundo', 'theme_name'),
+        'section' => 'background_image',
+        'settings' => 'background_image',
+    )));
+}
+add_action('customize_register', 'theme_name_customizer');
 
 function lc_create_post_type() {
     // Configurar rótulos
@@ -256,5 +276,6 @@ function display_events_on_homepage() {
         echo 'Não há eventos disponíveis.';
     }
 }
+
 
 
