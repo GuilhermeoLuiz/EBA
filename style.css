@@ -5,16 +5,6 @@ Theme Name: EBA
  *
  */
 
-body {
-  background-image: url('<?php echo esc_url(get_background_image()); ?>');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
-
-
 h2, h1:not(.titulo){
 	justify-content: center;
 	align-items: center;
@@ -182,6 +172,8 @@ button:hover, input[type="submit"] {
   background-color: #45a049;
 }
 
+
+
 .dark {
 	float: right;
 	margin-right: 10px;
@@ -190,6 +182,10 @@ button:hover, input[type="submit"] {
 .dark-mode {
     background-color: #222222;
     color: #fff;
+}
+
+.dark-mode html{
+	background-color: #222222;
 }
 
 .dark-mode main{

@@ -1,5 +1,8 @@
+<?php
+$cor_back = get_theme_mod('EBA_background_color', '#add8e6');
+?>
 <!doctype html>
-<html>
+<html style="background-color: <?php echo $cor_back;?>;" id="html">
 	<meta charset="<?php bloginfo('charset'); ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/style.css">
@@ -51,4 +54,4 @@ echo $descricao_site;
 </nav>
 
 <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
-
+<script src="<?php echo get_template_directory_uri(); ?>/dark.js"></script>

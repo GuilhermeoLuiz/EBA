@@ -12,20 +12,6 @@ function register_my_menus() {
 }
 add_action( 'after_setup_theme', 'register_my_menus' );
 
-function custom_menu_order($menu_order) {
-  if (!$menu_order) return true;
-
-  return array(
-    'Home',
-    'Teste',
-    'TI',
-    'Tutoriais',
-    'Contato'
-  );
-}
-add_filter('custom_menu_order', '__return_true');
-add_filter('menu_order', 'custom_menu_order');
-
 function adicionar_titulo_site($title, $sep) {
     if (is_front_page() && is_home()) {
         $title = get_bloginfo('name');
@@ -35,10 +21,12 @@ function adicionar_titulo_site($title, $sep) {
     return $title . ' ' . $sep . ' ' . get_bloginfo('description');
 }
 add_filter('wp_title', 'adicionar_titulo_site', 10, 2);
+
+
 function theme_register_sidebar() {
   register_sidebar(array(
     'name'          => __('Barra Lateral', 'theme-domain'),
-    'id'            => 'sidebar-1',
+    'id'            => 'barra-lateral',
     'description'   => __('Esta é a barra lateral principal.', 'theme-domain'),
     'before_widget' => '<div id="%1$s" class="widget %2$s">',
     'after_widget'  => '</div>',
@@ -63,7 +51,7 @@ function theme_custom_404() {
 }
 
 // Chamar a função theme_setup()
-add_action('after_setup_theme', 'theme_setup');
+//add_action('after_setup_theme', 'theme_setup');
 
 function enqueue_custom_scripts() {
     wp_enqueue_script( 'custom-script', get_template_directory_uri() . 'script.js', array(), '1.0', true );
@@ -93,57 +81,68 @@ function custom_redirect_404() {
 }
 add_action( 'template_redirect', 'custom_redirect_404' );
 // Adicionar suporte à imagem de fundo personalizada
-add_theme_support('custom-background');
 
 
 function EBA_customize_register( $wp_customize ) {
-   $wp_customize->add_setting( 'header_background_color', array(
-    'default'           => '#dd0000', // Define a cor padrão do cabeçalho
-    'sanitize_callback' => 'sanitize_hex_color', // Valida a cor hexadecimal
-) );
 
-$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
-    'label'    => __( 'Cor do Cabeçalho', 'EBA' ),
-    'section'  => 'colors',
-    'settings' => 'header_background_color',
-) ) );
-
-$wp_customize->add_setting( 'cor_texto_cabecalho', array(
-        'default' => '#ffffff',
-        'transport' => 'refresh',
+    $wp_customize->add_setting( 'EBA_background_color', array(
+        'default'           => '#ffffff', // Define a cor padrão do cabeçalho
+        'sanitize_callback' => 'sanitize_hex_color', // Valida a cor hexadecimal
     ) );
-
-    // Controle para a cor do texto do cabeçalho
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_cabecalho', array(
-        'label' => __( 'Cor do Texto do Cabeçalho', 'EBA' ),
-        'section' => 'colors',
-    ) ) );
-
-	$wp_customize->add_setting( 'cor_subtitulo', array(
-        'default' => '#ffd700',
-        'transport' => 'refresh',
-    ) );
-
-    // Controle para a cor do texto do cabeçalho
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo', array(
-        'label' => __( 'Cor do Subtitulo', 'EBA' ),
-        'section' => 'colors',
-    ) ) );
     
-    $wp_customize->add_setting( 'cor_menu', array(
-	    'default' => '#add8e6',
-        'transport' => 'refresh',
-    ) );
-
-    // Controle para a cor do texto do cabeçalho
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_menu', array(
-        'label' => __( 'Cor do Menu', 'EBA' ),
-        'section' => 'colors',
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'EBA_background_color', array(
+        'label'    => __('Cor de Fundo', 'EBA' ),
+        'section'  => 'colors',
+        'settings' => 'EBA_background_color',
     ) ) );
 
-}
-
-add_action( 'customize_register', 'EBA_customize_register' );
+    $wp_customize->add_setting( 'header_background_color', array(
+     'default'           => '#dd0000', // Define a cor padrão do cabeçalho
+     'sanitize_callback' => 'sanitize_hex_color', // Valida a cor hexadecimal
+ ) );
+ 
+ $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
+     'label'    => __( 'Cor do Cabeçalho', 'EBA' ),
+     'section'  => 'colors',
+     'settings' => 'header_background_color',
+ ) ) );
+ 
+ $wp_customize->add_setting( 'cor_texto_cabecalho', array(
+         'default' => '#ffffff',
+         'transport' => 'refresh',
+     ) );
+ 
+     // Controle para a cor do texto do cabeçalho
+     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_cabecalho', array(
+         'label' => __( 'Cor do Texto do Cabeçalho', 'EBA' ),
+         'section' => 'colors',
+     ) ) );
+ 
+     $wp_customize->add_setting( 'cor_subtitulo', array(
+         'default' => '#ffd700',
+         'transport' => 'refresh',
+     ) );
+ 
+     // Controle para a cor do texto do cabeçalho
+     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo', array(
+         'label' => __( 'Cor do Subtitulo', 'EBA' ),
+         'section' => 'colors',
+     ) ) );
+     
+     $wp_customize->add_setting( 'cor_menu', array(
+         'default' => '#add8e6',
+         'transport' => 'refresh',
+     ) );
+ 
+     // Controle para a cor do texto do cabeçalho
+     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_menu', array(
+         'label' => __( 'Cor do Menu', 'EBA' ),
+         'section' => 'colors',
+     ) ) );
+ 
+ }
+ 
+ add_action( 'customize_register', 'EBA_customize_register' );
 
 function meu_tema_definir_capa() {
     $capa_url = get_template_directory_uri() . '/screenshot.jpg';
@@ -193,7 +192,7 @@ function theme_customize_register($wp_customize) {
   )));
 }
 
-add_action('customize_register', 'theme_customize_register');
+//add_action('customize_register', 'theme_customize_register');
 
 function lc_create_post_type() {
     // Configurar rótulos
