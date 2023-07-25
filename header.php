@@ -33,11 +33,36 @@ $cor_texto_footer = get_theme_mod('cor_texto_footer', '#222222');
     background-color: <?php echo $cor_cabecalho; ?>;
     color: <?php echo $cor_texto;?>;
   }
+  .dark-mode {
+    background-color:<?php echo get_theme_mod('EBA_background_color_dark', '#111111');?>;
+    color: <?php echo get_theme_mod('cor_texto_dark', '#111111');?>;
+}
 
   .dark-mode header{
     background-color: <?php echo get_theme_mod('header_background_color_dark', '#dd0000');?>;
     color: <?php echo get_theme_mod('cor_texto_cabecalho_dark', '#ffffff');?>;
   }
+
+  .dark-mode html{
+	background-color: <?php echo get_theme_mod('EBA_background_color_dark', '#111111');?>;
+}
+
+.dark-mode body{
+	background-color: <?php echo get_theme_mod('EBA_background_color_dark', '#111111');?>;;
+}
+
+.dark-mode main{
+	background-color: gray;
+}
+
+.dark-mode h2, h1:not(.titulo){
+	background-color: <?php echo get_theme_mod('cor_subtitulo_dark', '#ffd700');?>;;
+}
+
+.dark-mode footer{
+	background-color: <?php echo get_theme_mod('cor_footer_dark', '#111111');?>;
+  color: <?php echo get_theme_mod('cor_texto_footer_dark', '#ffffff');?>;
+}
   
 </style>
 
