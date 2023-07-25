@@ -10,10 +10,13 @@ $cor_back = get_theme_mod('EBA_background_color', '#add8e6');
 $cor_cabecalho = get_theme_mod( 'header_background_color', '#dd0000' );
 $cor_texto = get_theme_mod('cor_texto_cabecalho', '#111111');
 $cor_menu = get_theme_mod('cor_menu', '#add8e6');
+$cor_footer = get_theme_mod('cor_footer', '#ffffff');
+$cor_texto_footer = get_theme_mod('cor_texto_footer', '#222222');
 ?>
 <style>
   html{
     background-color: <?php echo $cor_back;?>;
+    color: <?php echo get_theme_mod('cor_texto', '#222222');?>;
   }
 	.menu-principal{
 		background-color: <?php echo $cor_menu;?>;
@@ -21,7 +24,16 @@ $cor_menu = get_theme_mod('cor_menu', '#add8e6');
   .dark-mode html{
     background-color: black;
   }
+  footer{
+    background-color: <?php echo $cor_footer;?>;
+    color: <?php echo $cor_texto_footer;?>;
+  }
 
+  .dark-mode .titulo{
+    background-color: <?php echo get_theme_mod('header_background_color_dark', '#dd0000');?>;
+    color: <?php echo get_theme_mod('cor_texto_cabecalho_dark', '#ffffff');?>;
+  }
+  
 </style>
 
 <body>
