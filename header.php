@@ -29,7 +29,12 @@ $cor_texto_footer = get_theme_mod('cor_texto_footer', '#222222');
     color: <?php echo $cor_texto_footer;?>;
   }
 
-  .dark-mode .titulo{
+  header{
+    background-color: <?php echo $cor_cabecalho; ?>;
+    color: <?php echo $cor_texto;?>;
+  }
+
+  .dark-mode header{
     background-color: <?php echo get_theme_mod('header_background_color_dark', '#dd0000');?>;
     color: <?php echo get_theme_mod('cor_texto_cabecalho_dark', '#ffffff');?>;
   }
@@ -42,7 +47,7 @@ $cor_texto_footer = get_theme_mod('cor_texto_footer', '#222222');
 <div class="header-image">
       <img src="<?php echo esc_url(get_theme_mod('header_image')); ?>">
 </div>
-<header style="background-color: <?php echo $cor_cabecalho; ?>; color: <?php echo $cor_texto;?>;">
+<header>
 <h1 class="titulo">
 <div class="menu-icon">
 	:::
