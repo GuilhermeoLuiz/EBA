@@ -321,6 +321,7 @@ function theme_name_customizer($wp_customize) {
 }
 add_action('customize_register', 'theme_name_customizer');
 
+//Adiciona o campo eventos no WordPress
 function lc_create_post_type() {
     // Configurar rótulos
     $labels = array(
@@ -373,7 +374,7 @@ function event_dates_callback($post) {
     ?>
 
     <p>
-        <label for="event_date">Event Date:</label>
+        <label for="event_date">Data do evento:</label>
         <input type="date" id="event_date" name="event_date" value="<?php echo esc_attr($event_date); ?>">
     </p>
 
@@ -389,7 +390,7 @@ function save_event_meta($post_id) {
 add_action('save_post_event', 'save_event_meta');
 
 // Função para exibir os eventos na página principal
-function display_events_on_homepage() {
+function display_events() {
     $args = array(
         'post_type' => 'event',
         'posts_per_page' => 5,
@@ -413,5 +414,51 @@ function display_events_on_homepage() {
     }
 }
 
+//Função para exibir os posts
+function display_posts() {
+    if (have_posts()) :
+        while (have_posts()) : the_post();
 
+            $categories = get_the_category();
+            if ($categories) {
+                foreach ($categories as $category) {
+                    if ($category->name == "Academico") :
+            ?>
+                        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                            <h1 class="entry-title"><?php the_title(); ?></h1>
+                            <div class="entry-content">
+                                <?php the_content(); ?>
+                                <ul class="post-categories">
+                                    <li><a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"><?php echo esc_html($category->name); ?></a></li>
+                                </ul>
+                            </div>
+                        </article>
+            <?php
+                    endif;
+                }
+            }
 
+            $categories = get_the_category();
+            if ($categories) {
+                foreach ($categories as $category) {
+                    if ($category->name == "Administrativo") :
+            ?>
+                        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                            <h1 class="entry-title" style="background-color: <?php echo $cor_subtitulo; ?>;"><?php the_title(); ?></h1>
+                            <div class="entry-content">
+                                <?php the_content(); ?>
+                                <ul class="post-categories">
+                                    <li><a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"><?php echo esc_html($category->name); ?></a></li>
+                                </ul>
+                            </div>
+                        </article>
+            <?php
+                    endif;
+                }
+            }
+
+        endwhile;
+    else:
+        echo "<p>Não há posts</p>";
+    endif;
+}
