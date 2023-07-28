@@ -105,7 +105,7 @@ function EBA_customize_register( $wp_customize ) {
      ) ) );
  
      $wp_customize->add_setting( 'cor_subtitulo', array(
-         'default' => '#ffd700',
+         'default' => '#11d700',
          'transport' => 'refresh',
      ) );
  
