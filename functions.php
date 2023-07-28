@@ -396,78 +396,54 @@ function display_events() {
 
 //Função para exibir os posts
 function display_posts() {
-    if (have_posts()) :
-        while (have_posts()) : the_post();
+    // Obtém todas as categorias existentes
+    $categories = get_categories();
 
-            $categories = get_the_category();
-            if ($categories) {
-                foreach ($categories as $category) {
-                    if ($category->name == "Academico") :
-            ?>
-                        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                            <h1 class="entry-title"><?php the_title(); ?></h1>
-                            <div class="entry-content">
-                                <?php the_content(); ?>
-                                <ul class="post-categories">
-                                    <li><a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"><?php echo esc_html($category->name); ?></a></li>
-                                </ul>
-                            </div>
-                        </article>
-            <?php
-                    endif;
+    // Verifica se existem categorias
+    if ($categories) {
+        // Loop pelas categorias
+        foreach ($categories as $category) {
+            // Obtém as postagens da categoria atual
+            $args = array(
+                'post_type' => 'post', // Pode ser alterado para o tipo de post desejado
+                'posts_per_page' => -1,
+                'category__in' => $category->term_id,
+            );
+
+            $query = new WP_Query($args);
+
+            // Verifica se existem postagens na categoria atual
+            if ($query->have_posts()) {
+                // Exibe o nome da categoria como título
+                echo '<h2>Categoria: ' . $category->name . '</h2>';
+
+                // Loop pelas postagens da categoria atual
+                while ($query->have_posts()) {
+                    $query->the_post();
+                    ?>
+                    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                        <h1 class="entry-title"><?php the_title(); ?></h1>
+                        <div class="entry-meta">
+                            <p>Categoria: <?php the_category(', '); ?></p>
+                            <p>Autor: <?php the_author(); ?></p>
+                        </div>
+                        <div class="entry-content">
+                            <?php the_content(); ?>
+                        </div>
+                    </article>
+                    <?php
                 }
+            } else {
+                // Se não houver postagens na categoria atual, exibe uma mensagem
+                echo '<p>Não há posts nesta categoria.</p>';
             }
 
-            $categories = get_the_category();
-            if ($categories) {
-                foreach ($categories as $category) {
-                    if ($category->name == "Administrativo") :
-            ?>
-                        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                            <h1 class="entry-title" style="background-color: <?php echo $cor_subtitulo; ?>;"><?php the_title(); ?></h1>
-                            <div class="entry-content">
-                                <?php the_content(); ?>
-                                <ul class="post-categories">
-                                    <li><a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"><?php echo esc_html($category->name); ?></a></li>
-                                </ul>
-                            </div>
-                        </article>
-            <?php
-                    endif;
-                }
-            }
-
-        endwhile;
-    else:
-        echo "<p>Não há posts</p>";
-    endif;
-}
-
-function meu_tema_suporte_imagem_de_fundo() {
-    add_theme_support( 'custom-background', array(
-        'default-color' => 'ffffff', // Cor de fundo padrão (substitua pela cor que desejar)
-        'default-image' => '', // Imagem de fundo padrão (substitua pela URL da imagem que desejar)
-        'wp-head-callback' => 'meu_tema_imagem_de_fundo_estilo',
-    ) );
-}
-add_action( 'after_setup_theme', 'meu_tema_suporte_imagem_de_fundo' );
-
-/**
- * Estilo da imagem de fundo
- */
-function meu_tema_imagem_de_fundo_estilo() {
-    $background = get_background_image();
-    $style = '';
-
-    if ( $background ) {
-        $style .= 'body { background-image: url("' . esc_url( $background ) . '");';
-
-        // Verifica se a imagem deve se repetir ou não
-        $background_repeat = get_theme_mod( 'background_repeat', 'repeat' );
-        $style .= ' background-repeat: ' . esc_attr( $background_repeat ) . ';';
-
-        $style .= '}';
+            // Restaura os dados da postagem principal da página
+            wp_reset_postdata();
+        }
+    } else {
+        // Se não houver categorias, exibe uma mensagem
+        echo 'Não há categorias disponíveis.';
     }
-
-    echo '<style type="text/css">' . $style . '</style>';
 }
+
