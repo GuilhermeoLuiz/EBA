@@ -301,26 +301,6 @@ function theme_customize_register($wp_customize) {
 
 add_action('customize_register', 'theme_customize_register');
 
-
-function theme_name_customizer($wp_customize) {
-    $wp_customize->add_section('background_image', array(
-        'title' => __('Imagem de Fundo', 'theme_name'),
-        'priority' => 30,
-    ));
-
-    $wp_customize->add_setting('background_image', array(
-        'default' => '',
-        'transport' => 'refresh',
-    ));
-
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'background_image', array(
-        'label' => __('Escolha uma imagem de fundo', 'theme_name'),
-        'section' => 'background_image',
-        'settings' => 'background_image',
-    )));
-}
-add_action('customize_register', 'theme_name_customizer');
-
 //Adiciona o campo eventos no WordPress
 function lc_create_post_type() {
     // Configurar rótulos
@@ -461,4 +441,33 @@ function display_posts() {
     else:
         echo "<p>Não há posts</p>";
     endif;
+}
+
+function meu_tema_suporte_imagem_de_fundo() {
+    add_theme_support( 'custom-background', array(
+        'default-color' => 'ffffff', // Cor de fundo padrão (substitua pela cor que desejar)
+        'default-image' => '', // Imagem de fundo padrão (substitua pela URL da imagem que desejar)
+        'wp-head-callback' => 'meu_tema_imagem_de_fundo_estilo',
+    ) );
+}
+add_action( 'after_setup_theme', 'meu_tema_suporte_imagem_de_fundo' );
+
+/**
+ * Estilo da imagem de fundo
+ */
+function meu_tema_imagem_de_fundo_estilo() {
+    $background = get_background_image();
+    $style = '';
+
+    if ( $background ) {
+        $style .= 'body { background-image: url("' . esc_url( $background ) . '");';
+
+        // Verifica se a imagem deve se repetir ou não
+        $background_repeat = get_theme_mod( 'background_repeat', 'repeat' );
+        $style .= ' background-repeat: ' . esc_attr( $background_repeat ) . ';';
+
+        $style .= '}';
+    }
+
+    echo '<style type="text/css">' . $style . '</style>';
 }

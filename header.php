@@ -21,7 +21,7 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
   }
 
   body{
-    background-image: url('<?php echo get_theme_mod('background_image');?>');
+    background-image: url('<?php echo get_background_image()?>');
     //background-size: cover;
     //background-repeat: no-repeat; 
   }
