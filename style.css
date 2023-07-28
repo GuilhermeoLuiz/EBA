@@ -67,6 +67,12 @@ p::first-letter{
 	color: gray;
 }
 
+.menu-principal a:hover{
+	color: red;
+	transform: scale(1.2);
+	font-size: 1.5rem;
+}
+
 ul{
 	list-style: none;
 }
@@ -188,6 +194,10 @@ button:hover, input[type="submit"] {
 	margin-right: 10px;
 }
 
+.dark:hover {
+	transform: scale(1.2);
+}
+
 .header-image{
 	text-align: center;	
 }
@@ -223,3 +233,10 @@ header{
 .voltar-ao-topo:hover {
 	background-color: #0056b3;
 }
+
+.carousel-inner img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover; /* Para manter a proporção da imagem */
+}
+

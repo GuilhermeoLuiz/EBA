@@ -369,63 +369,37 @@ function save_event_meta($post_id) {
 }
 add_action('save_post_event', 'save_event_meta');
 
-// Função para exibir os eventos como uma agenda
+// Função para exibir os eventos
 function display_events() {
-    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
     $args = array(
         'post_type' => 'event',
         'posts_per_page' => 5,
-        'paged' => $paged,
         'meta_key' => 'event_date', // Campo personalizado para a data de acontecimento
         'orderby' => 'meta_value', // Ordenar pela meta_value (data de acontecimento)
         'order' => 'ASC', // Ordem ascendente
-        'meta_query' => array(
-            array(
-                'key' => 'event_date',
-                'value' => date('Y-m-d'), // Somente eventos com data igual ou superior à atual
-                'compare' => '>=',
-                'type' => 'DATE',
-            ),
-        ),
     );
-
     $query = new WP_Query($args);
 
     if ($query->have_posts()) {
-        $current_date = '';
-        while ($query->have_posts()) {
+	    while ($query->have_posts()) {
             $query->the_post();
+            echo '<h2><a href="' . get_permalink() . '">' . get_the_title() . '</a></h2>';
+	    
+	    // Obtendo e exibindo o nome do autor
+            $author_name = get_the_author();
+	    echo '<p>Autor: ' . $author_name . '</p>';
+
+	    echo '<p>Date de Publicação: ' . get_the_date() . '</p>';
+            
+            // Formatando a data do evento no modelo brasileiro
             $event_date = get_post_meta(get_the_ID(), 'event_date', true);
-
-            // Formatando a data do evento no padrão "6 de julho de 2023"
-            $formatted_event_date = date_i18n('j \d\e F \d\e Y', strtotime($event_date));
-
-            // Verifica se a data atual é diferente da data do evento para criar um novo cabeçalho
-            if ($formatted_event_date !== $current_date) {
-                // Imprime a data como cabeçalho da agenda
-                echo '<h2>' . $formatted_event_date . '</h2>';
-                $current_date = $formatted_event_date;
+            if ($event_date) {
+		$formatted_event_date = date_i18n('j \d\e F \d\e Y', strtotime($event_date));
+                echo '<p>Data do Evento: ' . $formatted_event_date . '</p>';
             }
 
-            // Imprime os detalhes do evento
-            echo '<h3><a href="' . get_permalink() . '">' . get_the_title() . '</a></h3>';
-            echo '<p>Autor: ' . get_the_author() . '</p>';
             the_content();
         }
-
-        // Exibir links de paginação (caso necessário)
-        if ($query->max_num_pages > 1) {
-            echo '<div class="pagination">';
-            echo paginate_links(array(
-                'base' => get_pagenum_link(1) . '%_%',
-                'format' => 'page/%#%',
-                'current' => max(1, $paged),
-                'total' => $query->max_num_pages,
-            ));
-            echo '</div>';
-        }
-
         wp_reset_postdata();
     } else {
         echo 'Não há eventos disponíveis.';
