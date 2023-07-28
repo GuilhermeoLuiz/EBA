@@ -394,84 +394,40 @@ function display_events() {
     }
 }
 
-//Função para exibir os posts
+// Função para exibir os posts agrupados por categoria
 function display_posts() {
-    // Obtém todas as categorias existentes
-    $categories = get_categories();
+    // Obtém todas as postagens
+    $args = array(
+        'post_type' => 'post', // Pode ser alterado para o tipo de post desejado
+        'posts_per_page' => -1,
+    );
 
-    // Verifica se existem categorias
-    if ($categories) {
-        // Loop pelas categorias
-        foreach ($categories as $category) {
-            // Obtém as postagens da categoria atual
-            $args = array(
-                'post_type' => 'post', // Pode ser alterado para o tipo de post desejado
-                'posts_per_page' => -1,
-                'category__in' => $category->term_id,
-            );
+    $query = new WP_Query($args);
 
-            $query = new WP_Query($args);
-
-            // Verifica se existem postagens na categoria atual
-            if ($query->have_posts()) {
-                // Exibe o nome da categoria como título
-                echo '<h2>Categoria: ' . $category->name . '</h2>';
-
-                // Loop pelas postagens da categoria atual
-                while ($query->have_posts()) {
-                    $query->the_post();
-                    ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                        <h1 class="entry-title"><?php the_title(); ?></h1>
-                        <div class="entry-meta">
-                            <p>Categoria: <?php the_category(', '); ?></p>
-                            <p>Autor: <?php the_author(); ?></p>
-                        </div>
-                        <div class="entry-content">
-                            <?php the_content(); ?>
-                        </div>
-                    </article>
-                    <?php
-                }
-            } else {
-                // Se não houver postagens na categoria atual, exibe uma mensagem
-                echo '<p>Não há posts nesta categoria.</p>';
-            }
-
-            // Restaura os dados da postagem principal da página
-            wp_reset_postdata();
+    // Verifica se existem postagens
+    if ($query->have_posts()) {
+        // Loop pelas postagens
+        while ($query->have_posts()) {
+            $query->the_post();
+            ?>
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <h1 class="entry-title"><?php the_title(); ?></h1>
+                <div class="entry-meta">
+                    <p>Categoria: <?php the_category(', '); ?></p>
+                    <p>Autor: <?php the_author(); ?></p>
+                </div>
+                <div class="entry-content">
+                    <?php the_content(); ?>
+                </div>
+            </article>
+            <?php
         }
+
+        // Restaura os dados da postagem principal da página
+        wp_reset_postdata();
     } else {
-        // Se não houver categorias, exibe uma mensagem
-        echo 'Não há categorias disponíveis.';
+        // Se não houver postagens, exibe uma mensagem
+        echo 'Não há postagens disponíveis.';
     }
 }
 
-function meu_tema_suporte_imagem_de_fundo() {
-    add_theme_support( 'custom-background', array(
-        'default-color' => 'ffffff', // Cor de fundo padrão (substitua pela cor que desejar)
-        'default-image' => '', // Imagem de fundo padrão (substitua pela URL da imagem que desejar)
-        'wp-head-callback' => 'meu_tema_imagem_de_fundo_estilo',
-    ) );
-}
-add_action( 'after_setup_theme', 'meu_tema_suporte_imagem_de_fundo' );
-
-/**
- * Estilo da imagem de fundo
- */ 
-function meu_tema_imagem_de_fundo_estilo() {
-    $background = get_background_image();
-    $style = '';
-
-    if ( $background ) {
-        $style .= 'body { background-image: url("' . esc_url( $background ) . '");';
-
-        // Verifica se a imagem deve se repetir ou não
-        $background_repeat = get_theme_mod( 'background_repeat', 'repeat' );
-        $style .= ' background-repeat: ' . esc_attr( $background_repeat ) . ';';
-
-        $style .= '}';
-    }
-
-    echo '<style type="text/css">' . $style . '</style>';
-}
