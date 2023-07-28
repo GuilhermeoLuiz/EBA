@@ -431,3 +431,31 @@ function display_posts() {
     }
 }
 
+function meu_tema_suporte_imagem_de_fundo() {
+    add_theme_support( 'custom-background', array(
+        'default-color' => 'ffffff', // Cor de fundo padrão (substitua pela cor que desejar)
+        'default-image' => '', // Imagem de fundo padrão (substitua pela URL da imagem que desejar)
+        'wp-head-callback' => 'meu_tema_imagem_de_fundo_estilo',
+    ) );
+}
+add_action( 'after_setup_theme', 'meu_tema_suporte_imagem_de_fundo' );
+
+/**
+ * Estilo da imagem de fundo
+ */ 
+function meu_tema_imagem_de_fundo_estilo() {
+    $background = get_background_image();
+    $style = '';
+
+    if ( $background ) {
+        $style .= 'body { background-image: url("' . esc_url( $background ) . '");';
+
+        // Verifica se a imagem deve se repetir ou não
+        $background_repeat = get_theme_mod( 'background_repeat', 'repeat' );
+        $style .= ' background-repeat: ' . esc_attr( $background_repeat ) . ';';
+
+        $style .= '}';
+    }
+
+    echo '<style type="text/css">' . $style . '</style>';
+}
