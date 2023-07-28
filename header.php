@@ -19,6 +19,13 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
     background-color: <?php echo $cor_back;?>;
     color: <?php echo get_theme_mod('cor_texto', '#222222');?>;
   }
+
+  body{
+    background-image: url('<?php echo get_theme_mod('background_image');?>');
+    background-size: cover;
+    background-repeat: no-repeat; 
+  }
+
   h2, h1:not(.titulo){
     background-color: <?php echo $cor_sub;?>;
   }
