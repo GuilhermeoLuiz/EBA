@@ -369,7 +369,7 @@ function save_event_meta($post_id) {
 }
 add_action('save_post_event', 'save_event_meta');
 
-// Função para exibir os eventos na página principal
+// Função para exibir os eventos
 function display_events() {
     $args = array(
         'post_type' => 'event',
@@ -381,11 +381,23 @@ function display_events() {
     $query = new WP_Query($args);
 
     if ($query->have_posts()) {
-        while ($query->have_posts()) {
+	    while ($query->have_posts()) {
             $query->the_post();
             echo '<h2><a href="' . get_permalink() . '">' . get_the_title() . '</a></h2>';
-            echo '<p>Date de Publicação: ' . get_the_date() . '</p>';
-            echo '<p>Date do Evento: ' . get_post_meta(get_the_ID(), 'event_date', true) . '</p>';
+	    
+	    // Obtendo e exibindo o nome do autor
+            $author_name = get_the_author();
+	    echo '<p>Autor: ' . $author_name . '</p>';
+
+	    echo '<p>Date de Publicação: ' . get_the_date() . '</p>';
+            
+            // Formatando a data do evento no modelo brasileiro
+            $event_date = get_post_meta(get_the_ID(), 'event_date', true);
+            if ($event_date) {
+		$formatted_event_date = date_i18n('j \d\e F \d\e Y', strtotime($event_date));
+                echo '<p>Data do Evento: ' . $formatted_event_date . '</p>';
+            }
+
             the_content();
         }
         wp_reset_postdata();
@@ -431,31 +443,3 @@ function display_posts() {
     }
 }
 
-function meu_tema_suporte_imagem_de_fundo() {
-    add_theme_support( 'custom-background', array(
-        'default-color' => 'ffffff', // Cor de fundo padrão (substitua pela cor que desejar)
-        'default-image' => '', // Imagem de fundo padrão (substitua pela URL da imagem que desejar)
-        'wp-head-callback' => 'meu_tema_imagem_de_fundo_estilo',
-    ) );
-}
-add_action( 'after_setup_theme', 'meu_tema_suporte_imagem_de_fundo' );
-
-/**
- * Estilo da imagem de fundo
- */ 
-function meu_tema_imagem_de_fundo_estilo() {
-    $background = get_background_image();
-    $style = '';
-
-    if ( $background ) {
-        $style .= 'body { background-image: url("' . esc_url( $background ) . '");';
-
-        // Verifica se a imagem deve se repetir ou não
-        $background_repeat = get_theme_mod( 'background_repeat', 'repeat' );
-        $style .= ' background-repeat: ' . esc_attr( $background_repeat ) . ';';
-
-        $style .= '}';
-    }
-
-    echo '<style type="text/css">' . $style . '</style>';
-}
