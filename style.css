@@ -206,3 +206,20 @@ header{
 .dark-mode .sidebar{
 	background-color: #992211;
 }
+
+
+.voltar-ao-topo {
+	display: block;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	color: #fff;
+	padding: 10px 15px;
+	border-radius: 5px;
+	text-decoration: none;
+	float:bottom;
+}
+
+.voltar-ao-topo:hover {
+	background-color: #0056b3;
+}

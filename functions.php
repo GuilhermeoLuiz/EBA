@@ -458,7 +458,7 @@ add_action( 'after_setup_theme', 'meu_tema_suporte_imagem_de_fundo' );
 
 /**
  * Estilo da imagem de fundo
- */
+ */ 
 function meu_tema_imagem_de_fundo_estilo() {
     $background = get_background_image();
     $style = '';
