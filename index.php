@@ -18,8 +18,14 @@
 		<?php display_posts(); ?>   
 		<?php display_events(); ?>
         </main>
+        <?php get_sidebar(); ?>
 
         <footer>
+        <?php if (is_active_sidebar('footer')) : ?>
+		<div class="widget-area">
+                	<?php dynamic_sidebar('footer'); ?>
+                </div>
+        <?php endif; ?>
             <?php get_footer(); ?>
         </footer>
 </body>
