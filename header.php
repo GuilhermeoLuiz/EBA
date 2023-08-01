@@ -10,7 +10,16 @@ include 'style.php';
 ?>
 </head>
 <body>
-<link rel="icon" type="image/jpeg" href="<?php echo get_template_directory_uri(); ?>/favicon.jpeg">
+<?php
+// Verifica se o favicon está definido
+if (has_site_icon()) {
+    // Obtém a URL do favicon
+    $favicon_url = get_site_icon_url();
+    // Use a URL do favicon como desejar (por exemplo, para exibir o ícone no cabeçalho)
+}
+?>
+    <link rel="icon" href="<?php echo esc_url($favicon_url); ?>" type="image/x-icon">
+    <link rel="apple-touch-icon" href="<?php echo esc_url($favicon_url); ?>">
 
 <div class="header-image">
       <img src="<?php echo esc_url(get_theme_mod('header_image')); ?>">
