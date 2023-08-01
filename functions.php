@@ -479,3 +479,27 @@ function custom_page_title($title) {
     return $title;
 }
 add_filter('pre_get_document_title', 'custom_page_title');
+
+
+function gallery(){
+    ?>
+     <div class="carousel-container">
+    <div class="carousel">
+    <?php
+    
+    $uploads_dir = get_template_directory() . '/uploads/*';
+    $images = glob($uploads_dir . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+    foreach ($images as $image) {
+        $imageName = basename($image);
+        echo '<img src="' . get_template_directory_uri() . '/uploads/'. $imageName . '" alt="Imagem">';
+    }
+    ?>
+    </div>
+    <div class="carousel-controls">
+      <button class="prev-button">Anterior</button>
+      <button class="next-button">Próximo</button>
+    </div>
+  </div>
+  <a href="<?php echo get_template_directory_uri(); ?>/indexload.php">Upload</a>
+
+<?php }

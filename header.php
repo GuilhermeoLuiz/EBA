@@ -11,11 +11,8 @@ include 'style.php';
 </head>
 <body>
 <?php
-// Verifica se o favicon está definido
 if (has_site_icon()) {
-    // Obtém a URL do favicon
     $favicon_url = get_site_icon_url();
-    // Use a URL do favicon como desejar (por exemplo, para exibir o ícone no cabeçalho)
 }
 ?>
     <link rel="icon" href="<?php echo esc_url($favicon_url); ?>" type="image/x-icon">

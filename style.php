@@ -22,6 +22,7 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
 
   h2, h1:not(.titulo){
     background-color: <?php echo $cor_sub;?>;
+    
   }
 	.menu-principal{
 		background-color: <?php echo $cor_menu;?>;
