@@ -1,22 +1,14 @@
-<?php
-$cor_back = get_theme_mod('EBA_background_color', '#add8e6');
-?>
 <!doctype html>
 <html id="me">
+  <head>
 	<meta charset="<?php bloginfo('charset'); ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/style.css">
+  <title><?php echo get_bloginfo('title');?></title>
 <?php wp_head();
-$cor_cabecalho = get_theme_mod( 'header_background_color', '#dd0000' );
-$cor_texto = get_theme_mod('cor_texto_cabecalho', '#111111');
-$cor_menu = get_theme_mod('cor_menu', '#add8e6');
-$cor_footer = get_theme_mod('cor_footer', '#ffffff');
-$cor_texto_footer = get_theme_mod('cor_texto_footer', '#222222');
-$cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
-
-
 include 'style.php';
 ?>
+</head>
 <body>
 <link rel="icon" type="image/jpeg" href="<?php echo get_template_directory_uri(); ?>/favicon.jpeg">
 

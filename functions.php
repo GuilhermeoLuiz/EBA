@@ -471,3 +471,11 @@ function meu_tema_imagem_de_fundo_estilo() {
 
     echo '<style type="text/css">' . $style . '</style>';
 }
+
+function custom_page_title($title) {
+    if (is_page()) {
+        $title = get_the_title();
+    }
+    return $title;
+}
+add_filter('pre_get_document_title', 'custom_page_title');
