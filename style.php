@@ -57,9 +57,7 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
 	background-color: <?php echo get_theme_mod('EBA_background_color_dark', '#111111');?>;;
 }
 
-.dark-mode main{
-	background-color: gray;
-}
+
 
 .dark-mode h1:not(.titulo){
 	background-color: <?php echo get_theme_mod('cor_subtitulo_dark', '#ffd700');?>;

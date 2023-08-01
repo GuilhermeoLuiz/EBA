@@ -27,12 +27,14 @@ if (has_site_icon()) {
 	:::
 </div>
 <span class="separator"></span>
+<a href="/" class="texto">
 <div class"texto">
 	<?php
 $descricao_site = get_bloginfo('title');
 echo $descricao_site;
 ?>
 </div>
+</a>
 </h1>
 <button class="dark" id="dark-mode-toggle">
 	Dark
@@ -40,13 +42,12 @@ echo $descricao_site;
 
 </header>
 
-
 <nav class="menu">
 <?php
  wp_nav_menu( array(
     'theme_location' => 'menu-principal',
-  'container' => 'nav',
-  'container_class' => 'menu-principal'
+    'container' => 'nav',
+    'container_class' => 'menu-principal'
   ) );
   ?>
 </nav>

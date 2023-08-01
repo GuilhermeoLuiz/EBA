@@ -73,6 +73,11 @@ p::first-letter{
 	font-size: 1.5rem;
 }
 
+.texto{
+	color: inherit;
+	text-decoration: none;
+}
+
 ul{
 	list-style: none;
 }
@@ -207,5 +212,9 @@ header{
 
 .voltar-ao-topo:hover {
 	background-color: #0056b3;
+}
+
+.dark-mode main{
+	background-color: gray;
 }
 
