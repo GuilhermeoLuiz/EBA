@@ -1,8 +1,14 @@
+<?php
+/*
+ * Template Name: Galeria
+ */
+get_header(); ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php get_header(); ?>
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/gallerystyle.css">
 </head>
 
