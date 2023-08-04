@@ -59,6 +59,7 @@ p::first-letter{
 	left: -350px;
 	transition: left 0.3s ease;
 	padding-right: 10px;
+	z-index: 1;
 }
 
 .menu-principal a{
