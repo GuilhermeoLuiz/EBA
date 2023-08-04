@@ -56,6 +56,8 @@ echo $descricao_site;
 <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/dark.js"></script>
 
+<audio id="meuAudio" src="<?php echo get_template_directory_uri(); ?>/click.wav"></audio>
+<script src="<?php echo get_template_directory_uri(); ?>/audio.js"></script>
 
 
 
