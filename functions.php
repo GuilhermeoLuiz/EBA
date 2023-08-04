@@ -500,6 +500,13 @@ function gallery(){
       <button class="next-button">Próximo</button>
     </div>
   </div>
-  <a href="<?php echo get_template_directory_uri(); ?>/indexload.php">Upload</a>
+  <?php
+    // Verificar se o usuário está logado
+    if (is_user_logged_in()) {
+        // O usuário está logado
+        echo '<a href="' . esc_url(get_stylesheet_directory_uri() . '/indexload.php') . '">Upload</a>';
+    } 
+    ?>
+  
 
 <?php }

@@ -17,10 +17,11 @@ if (has_site_icon()) {
 ?>
     <link rel="icon" href="<?php echo esc_url($favicon_url); ?>" type="image/x-icon">
     <link rel="apple-touch-icon" href="<?php echo esc_url($favicon_url); ?>">
-
-<div class="header-image">
-      <img src="<?php echo esc_url(get_theme_mod('header_image')); ?>">
-</div>
+<a href="/">
+  <div class="header-image">
+        <img src="<?php echo esc_url(get_theme_mod('header_image')); ?>">
+  </div>
+</a>
 <header>
 <h1 class="titulo">
 <div class="menu-icon">
