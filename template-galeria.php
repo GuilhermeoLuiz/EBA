@@ -4,11 +4,8 @@
  */
 get_header(); ?>
 
-<head>
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/gallerystyle.css">
-</head>
 
-<body>
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/gallerystyle.css">
     <main>
         <h1> Galeria </h1>
         <?php gallery();?>
