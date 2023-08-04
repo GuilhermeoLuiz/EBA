@@ -16,6 +16,11 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
         </div>
 </div>
 
+<?php
+    comments_template();
+?>
+
+
 <footer>
 	<?php if (is_active_sidebar('footer')) : ?>
 		<div class="widget-area">
