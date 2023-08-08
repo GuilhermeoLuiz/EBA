@@ -26,6 +26,9 @@
                 	<?php dynamic_sidebar('footer'); ?>
                 </div>
         <?php endif; ?>
+        <?php
+        comments_template();
+        ?>
             <?php get_footer(); ?>
         </footer>
 </body>

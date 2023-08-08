@@ -134,6 +134,7 @@ main {
 .sidebar {
 	float: right;
 	max-width: 23%;
+	width: 23hv;
 	background-color: #C8FFC8;
 	min-height: 70vh
 }

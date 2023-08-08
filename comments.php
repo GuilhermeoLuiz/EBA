@@ -2,7 +2,7 @@
 <?php
 $args = array(
     'title_reply' => 'Deixe um Comentário',
-    'comment_notes_before' => '',
+    'comment_notes_before' => 'Escreva o cometário',
     'comment_notes_after' => '',
     'class_submit' => 'custom-submit-class',
     'label_submit' => 'Enviar Comentário',
