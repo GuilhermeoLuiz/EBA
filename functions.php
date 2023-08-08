@@ -92,6 +92,17 @@ function EBA_customize_register( $wp_customize ) {
      'section'  => 'colors',
      'settings' => 'header_background_color',
  ) ) );
+
+ $wp_customize->add_setting( 'cor_titulo', array(
+    'default' => '#ffffff',
+    'transport' => 'refresh',
+) );
+
+// Controle para a cor do texto do cabeçalho
+$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_titulo', array(
+    'label' => __( 'Cor do Titulo', 'EBA' ),
+    'section' => 'colors',
+) ) );
  
  $wp_customize->add_setting( 'cor_texto_cabecalho', array(
          'default' => '#ffffff',
@@ -371,7 +382,7 @@ add_action('save_post_event', 'save_event_meta');
 
 // Função para exibir os eventos
 function display_events() {
-    echo '<h1>Eventos</h1>'; // Título "Eventos"
+    echo '<h1 class="titulo">Eventos</h1>'; // Título "Eventos"
     echo '<br>'; // Quebra de linha
 
     $args = array(
@@ -405,14 +416,14 @@ function display_events() {
         }
         wp_reset_postdata();
     } else {
-        echo '<div>Não há eventos disponíveis.</div>';
+        echo '<div>Não há eventos disponíveis.</div><br>';
     }
 }
 
 // Função para exibir os posts agrupados por categoria
 function display_posts() {
 
-    echo '<h1>Posts</h1>'; // Título "Posts"
+    echo '<h1 class="titulo">Posts</h1>'; // Título "Posts"
     echo '<br>'; // Quebra de linha     
 
     // Obtém todas as postagens
@@ -491,6 +502,7 @@ add_filter('pre_get_document_title', 'custom_page_title');
 
 function gallery(){
     ?>
+    <h1 class="titulo"> Galeria </h1>
      <div class="carousel-container">
     <div class="carousel">
     <?php

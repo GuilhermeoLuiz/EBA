@@ -18,7 +18,6 @@
         <main id="main-content" class="site-main">
 		<?php display_posts(); ?>   
 		<?php display_events(); ?>
-                <h1> Galeria </h1>
                 <?php gallery();?>
         </main>
         <?php get_sidebar(); ?>
@@ -30,7 +29,7 @@
                 </div>
         <?php endif; ?>
         <?php
-        comments_template();
+                comments_template();
         ?>
             <?php get_footer(); ?>
         </footer>

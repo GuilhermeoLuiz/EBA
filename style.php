@@ -20,10 +20,15 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
     //background-repeat: no-repeat; 
   }
 
-  h2, h1:not(.titulo){
+  h2, h1:not(.title, .titulo){
     background-color: <?php echo $cor_sub;?>;
     
   }
+
+  .titulo{
+    background-color: <?php echo get_theme_mod('cor_titulo', '#555555');?>;
+  }
+
 	.menu-principal{
 		background-color: <?php echo $cor_menu;?>;
 }
@@ -59,7 +64,7 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
 
 
 
-.dark-mode h1:not(.titulo){
+.dark-mode h1:not(.title){
 	background-color: <?php echo get_theme_mod('cor_subtitulo_dark', '#ffd700');?>;
 }
 

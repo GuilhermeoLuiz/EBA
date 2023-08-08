@@ -2,6 +2,7 @@
   position: relative;
   min-height: 310px;
   z-index: 0;
+  text-align: center;
 }
 
 .carousel {
@@ -21,7 +22,7 @@
 .carousel-controls {
   position: absolute;
   bottom: 10px;
-  left: 50%;
+  left: 22%;
   transform: translateX(-50%);
   display: flex;
 }
@@ -34,11 +35,11 @@
 }
 
 .prev-button {
-  margin-right: 0px;
+  margin-right: 160px;
 }
 
 .next-button {
-  margin-left: 0px;
+  margin-left: 160px;
 }
 
 h1{

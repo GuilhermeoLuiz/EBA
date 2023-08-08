@@ -23,7 +23,7 @@ if (has_site_icon()) {
   </div>
 </a>
 <header>
-<h1 class="titulo">
+<h1 class="title">
 <div class="menu-icon">
 	:::
 </div>

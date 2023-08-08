@@ -6,7 +6,11 @@
 	Tags: two-columns, education
  */
 
-h2, h1:not(.titulo){
+html{
+	float: center;
+}
+
+h2, h1:not(.title, .titulo){
 	justify-content: center;
 	align-items: center;
 	display: inline;
@@ -26,7 +30,7 @@ p::first-letter{
 	text-transform: uppercase;
 }
 
-.titulo {
+.title {
 	display: flex;
 	align-items: center;
 	padding-top: 0;
