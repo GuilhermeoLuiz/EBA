@@ -6,9 +6,6 @@
 	Tags: two-columns, education
  */
 
-html{
-	float: center;
-}
 
 h2, h1:not(.title, .titulo){
 	justify-content: center;
@@ -22,6 +19,7 @@ h2, h1:not(.title, .titulo){
 }
 
 p {
+	text-align: justify;
 	margin: 15px auto;
 	margin-left: 5px auto;
 }
@@ -43,10 +41,14 @@ p::first-letter{
 	
 }
 
-.titulo .texto{
+.title .texto{
 	align-items: center;
 	margin-right: 20px;
 	float: left;
+}
+
+.titulo{
+	margin: 10px;
 }
 
 .dark{

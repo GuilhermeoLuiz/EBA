@@ -64,7 +64,7 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
 
 
 
-.dark-mode h1:not(.title){
+.dark-mode h1:not(.title, .titulo){
 	background-color: <?php echo get_theme_mod('cor_subtitulo_dark', '#ffd700');?>;
 }
 

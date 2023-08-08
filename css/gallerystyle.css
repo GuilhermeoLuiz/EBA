@@ -1,47 +1,39 @@
+
 .carousel-container {
   position: relative;
   min-height: 310px;
   z-index: 0;
-  text-align: center;
 }
 
 .carousel {
+  display: flex;
   overflow: hidden;
 }
-
 .carousel img {
   width: auto;
   max-height: 300px;
   display: block; 
   margin: 0 auto;
-  float: left;
 }
-
-
-
 .carousel-controls {
   position: absolute;
   bottom: 10px;
-  left: 22%;
+  left: 50%;
   transform: translateX(-50%);
   display: flex;
 }
-
 .prev-button,
 .next-button {
   padding: 8px 16px;
   font-size: 16px;
   cursor: pointer;
 }
-
 .prev-button {
   margin-right: 160px;
 }
-
 .next-button {
   margin-left: 160px;
 }
-
 h1{
   text-align: center;
   margin: 0 auto;
