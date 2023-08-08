@@ -371,6 +371,9 @@ add_action('save_post_event', 'save_event_meta');
 
 // Função para exibir os eventos
 function display_events() {
+    echo '<h1>Eventos</h1>'; // Título "Eventos"
+    echo '<br>'; // Quebra de linha
+
     $args = array(
         'post_type' => 'event',
         'posts_per_page' => 5,
@@ -381,20 +384,20 @@ function display_events() {
     $query = new WP_Query($args);
 
     if ($query->have_posts()) {
-	    while ($query->have_posts()) {
+        while ($query->have_posts()) {
             $query->the_post();
-            echo '<h2><a href="' . get_permalink() . '">' . get_the_title() . '</a></h2>';
-	    
-	    // Obtendo e exibindo o nome do autor
-            $author_name = get_the_author();
-	    echo '<p>Autor: ' . $author_name . '</p>';
+            echo '<h2>' . get_the_title() . '</h2>';
 
-	    echo '<p>Date de Publicação: ' . get_the_date() . '</p>';
-            
+            // Obtendo e exibindo o nome do autor
+            $author_name = get_the_author();
+            echo '<p>Autor: ' . $author_name . '</p>';
+
+            echo '<p>Data de Publicação: ' . get_the_date() . '</p>';
+
             // Formatando a data do evento no modelo brasileiro
             $event_date = get_post_meta(get_the_ID(), 'event_date', true);
             if ($event_date) {
-		$formatted_event_date = date_i18n('j \d\e F \d\e Y', strtotime($event_date));
+                $formatted_event_date = date_i18n('j \d\e F \d\e Y', strtotime($event_date));
                 echo '<p>Data do Evento: ' . $formatted_event_date . '</p>';
             }
 
@@ -408,6 +411,10 @@ function display_events() {
 
 // Função para exibir os posts agrupados por categoria
 function display_posts() {
+
+    echo '<h1>Posts</h1>'; // Título "Posts"
+    echo '<br>'; // Quebra de linha     
+
     // Obtém todas as postagens
     $args = array(
         'post_type' => 'post', // Pode ser alterado para o tipo de post desejado
@@ -427,6 +434,7 @@ function display_posts() {
                 <div class="entry-meta">
                     <p>Categoria: <?php the_category(', '); ?></p>
                     <p>Autor: <?php the_author(); ?></p>
+                    <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p> <!-- Exibe a data de publicação no formato português -->
                 </div>
                 <div class="entry-content">
                     <?php the_content(); ?>
@@ -510,7 +518,3 @@ function gallery(){
   
 
 <?php }
-
-
-
-
