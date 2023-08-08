@@ -530,3 +530,85 @@ function gallery(){
   
 
 <?php }
+
+function register_servico_post_type() {
+    $labels = array(
+        'name' => 'Serviços',
+        'singular_name' => 'Serviço',
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => true,
+    	 'supports' => array('title', 'editor', 'thumbnail'),
+    );
+
+    register_post_type('servico', $args);
+}
+add_action('init', 'register_servico_post_type');
+
+function add_servico_metabox() {
+    add_meta_box(
+        'servico-link',
+        'Link do Serviço',
+        'display_servico_metabox',
+        'servico',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'add_servico_metabox');
+
+function display_servico_metabox($post) {
+    $servico_link = get_post_meta($post->ID, 'servico_link', true);
+    ?>
+    <label for="servico_link">Link do Serviço:</label>
+    <input type="text" name="servico_link" id="servico_link" value="<?php echo esc_url($servico_link); ?>" style="width: 100%;">
+    <?php
+}
+
+function save_servico_metabox($post_id) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    if (isset($_POST['servico_link'])) {
+        update_post_meta($post_id, 'servico_link', sanitize_text_field($_POST['servico_link']));
+    }
+}
+add_action('save_post_servico', 'save_servico_metabox');
+
+function display_services() {
+    $args = array(
+        'post_type' => 'servico',
+        'posts_per_page' => -1,
+    );
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        echo '<div class="service-section">';
+        echo '<h1 class="titulo">Serviços</h1>';
+        echo '<ul class="service-list">';
+        while ($query->have_posts()) {
+            $query->the_post();
+            $servico_link = get_post_meta(get_the_ID(), 'servico_link', true);
+            echo '<li class="service-item">';
+            echo '<a href="' . esc_url($servico_link) . '">';
+	    echo '<span class="service-title">' . get_the_title() . '</span>';
+	    echo "<br>";
+            if (has_post_thumbnail()) {
+                the_post_thumbnail('thumbnail', array('class' => 'service-image'));
+            }
+            echo '</a>';
+            echo '</li>';
+        }
+        echo '</ul>';
+        echo '</div>';
+        wp_reset_postdata();
+    } else {
+        echo '<p>Nenhum serviço disponível.</p>';
+    }
+}
+add_shortcode('display_services', 'display_services');
+
+add_theme_support('post-thumbnails');
+
