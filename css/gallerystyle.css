@@ -5,7 +5,6 @@
 }
 
 .carousel {
-  display: flex;
   overflow: hidden;
 }
 
@@ -14,6 +13,7 @@
   max-height: 300px;
   display: block; 
   margin: 0 auto;
+  float: left;
 }
 
 
@@ -34,11 +34,11 @@
 }
 
 .prev-button {
-  margin-right: 160px;
+  margin-right: 0px;
 }
 
 .next-button {
-  margin-left: 160px;
+  margin-left: 0px;
 }
 
 h1{

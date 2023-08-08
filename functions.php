@@ -402,7 +402,7 @@ function display_events() {
         }
         wp_reset_postdata();
     } else {
-        echo 'Não há eventos disponíveis.';
+        echo '<div>Não há eventos disponíveis.</div>';
     }
 }
 
@@ -510,7 +510,6 @@ function gallery(){
   
 
 <?php }
-
 
 
 
