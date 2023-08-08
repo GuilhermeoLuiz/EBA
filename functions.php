@@ -511,33 +511,7 @@ function gallery(){
 
 <?php }
 
-function criar_galeria_imagens_custom_post_type() {
-    register_post_type('galeria_imagens', array(
-        'labels' => array(
-            'name' => 'Galeria de Imagens',
-            'singular_name' => 'Imagem da Galeria',
-        ),
-        'public' => true,
-        'has_archive' => true,
-        'supports' => array('title', 'editor', 'thumbnail'),
-    ));
-}
-add_action('init', 'criar_galeria_imagens_custom_post_type');
 
 
-function adicionar_meta_box_galeria_imagens() {
-    add_meta_box(
-        'galeria_imagens_meta_box',
-        'Galeria de Imagens',
-        'mostrar_galeria_imagens_meta_box',
-        'page', // Pode ser 'post' se quiser também adicionar galeria a postagens
-        'normal',
-        'high'
-    );
-}
-add_action('add_meta_boxes', 'adicionar_meta_box_galeria_imagens');
 
-function mostrar_galeria_imagens_meta_box($post) {
-    // Adicione aqui o código para mostrar os campos personalizados de galeria
-}
 
