@@ -68,6 +68,10 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
 	background-color: <?php echo get_theme_mod('cor_subtitulo_dark', '#ffd700');?>;
 }
 
+.dark-mode .titulo{
+  color: black;
+}
+
 .dark-mode h2{
   background-color: <?php echo get_theme_mod('cor_subtitulo_dark', '#ffd700');?>;
 }
