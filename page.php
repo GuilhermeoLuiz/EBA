@@ -12,7 +12,7 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
                                 </div>
                         <?php endwhile; endif; ?>
 		</main>
-		<?php get_sidebar(); ?>
+		<?php //get_sidebar(); ?>
         </div>
 </div>
 
@@ -24,7 +24,7 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
 <footer>
 	<?php if (is_active_sidebar('footer')) : ?>
 		<div class="widget-area">
-                	<?php dynamic_sidebar('footer'); ?>
+                	<?php //dynamic_sidebar('footer'); ?>
                 </div>
         <?php endif; ?>
 </footer>

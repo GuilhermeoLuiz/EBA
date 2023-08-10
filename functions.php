@@ -500,18 +500,20 @@ function custom_page_title($title) {
 add_filter('pre_get_document_title', 'custom_page_title');
 
 
-function gallery(){
+function gallery($pasta){
     ?>
     <h1 class="titulo"> Galeria </h1>
      <div class="carousel-container">
     <div class="carousel">
     <?php
+    $pasta = "/" . $pasta . "/";
+    //echo '<h1>'. $pasta. '</h1>';
     
-    $uploads_dir = get_template_directory() . '/uploads/*';
+    $uploads_dir = get_template_directory() . $pasta . '*';
     $images = glob($uploads_dir . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
     foreach ($images as $image) {
         $imageName = basename($image);
-        echo '<img src="' . get_template_directory_uri() . '/uploads/'. $imageName . '" alt="Imagem">';
+        echo '<img src="' . get_template_directory_uri() . $pasta . $imageName . '" alt="Imagem">';
     }
     ?>
     </div>
