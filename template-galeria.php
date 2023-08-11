@@ -40,7 +40,6 @@ get_header(); ?>
         // O usuário está logado
         ?> 
     <a href="<?php echo esc_url(get_stylesheet_directory_uri() . '/novagaleria.php')?>"> Adicionar nova Galeria</a>
-    <br>
     <a href="<?php echo esc_url(get_stylesheet_directory_uri() . '/removergaleria.php')?>"> Remover Galeria</a>
     <?php 
     }?>

@@ -414,14 +414,6 @@ function display_events() {
 
             the_content();
         }
-
-        // Verifica se existem mais de 5 eventos
-        if ($query->found_posts > 5) {
-            ?>
-            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais eventos</a></p>
-            <?php
-        }
-
         wp_reset_postdata();
     } else {
         echo '<div>Não há eventos disponíveis.</div><br>';
@@ -434,10 +426,10 @@ function display_posts() {
     echo '<h1 class="titulo">Posts</h1>'; // Título "Posts"
     echo '<br>'; // Quebra de linha     
 
-    // Obtém até 5 postagens mais recentes
+    // Obtém todas as postagens
     $args = array(
         'post_type' => 'post', // Pode ser alterado para o tipo de post desejado
-        'posts_per_page' => 5,  // Mostra no máximo 5 posts
+        'posts_per_page' => -1,
     );
 
     $query = new WP_Query($args);
@@ -459,13 +451,6 @@ function display_posts() {
                     <?php the_content(); ?>
                 </div>
             </article>
-            <?php
-        }
-
-        // Verifica se existem mais de 5 postagens
-        if ($query->found_posts > 5) {
-            ?>
-            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais posts</a></p>
             <?php
         }
 
@@ -517,7 +502,7 @@ add_filter('pre_get_document_title', 'custom_page_title');
 
 function gallery($folder){
     ?>
-    <h1 class="titulo"> <?php echo $folder ?> </h1>
+    <h1> <?php echo $folder ?> </h1>
      <div class="carousel-container">
     <div class="carousel">
     <?php
@@ -601,10 +586,10 @@ function save_servico_metabox($post_id) {
 add_action('save_post_servico', 'save_servico_metabox');
 
 function display_services() {
-    echo '<h1 class="titulo">Serviços</h1><br>';
+    echo '<h1 class="titulo">Serviços</h1><br>'; 
     $args = array(
         'post_type' => 'servico',
-        'posts_per_page' => 5,
+        'posts_per_page' => -1,
     );
     $query = new WP_Query($args);
 
@@ -615,25 +600,14 @@ function display_services() {
             $query->the_post();
             $servico_link = get_post_meta(get_the_ID(), 'servico_link', true);
             echo '<li class="service-item">';
-            
+            echo '<a href="' . esc_url($servico_link) . '">';
+	    echo "<br>";
             if (has_post_thumbnail()) {
                 the_post_thumbnail('thumbnail', array('class' => 'service-image'));
-            } else {
-                echo '<a href="' . esc_url($servico_link) . '">';
-                the_title(); // Imprime o título como link quando não há imagem
-                echo '</a>';
             }
-
+            echo '</a>';
             echo '</li>';
         }
-
-        // Verifica se existem mais de 5 serviços
-        if ($query->found_posts > 5) {
-            ?>
-            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais serviços</a></p>
-            <?php
-        }
-
         echo '</ul>';
         echo '</div>';
         wp_reset_postdata();
@@ -644,79 +618,4 @@ function display_services() {
 add_shortcode('display_services', 'display_services');
 
 add_theme_support('post-thumbnails');
-
-function register_informacoes_post_type() {
-    $labels = array(
-        'name' => 'Informações',
-        'singular_name' => 'Informação',
-    );
-
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'has_archive' => true,
-        'supports' => array('title', 'editor'),
-    );
-
-    register_post_type('informacao', $args);
-}
-add_action('init', 'register_informacoes_post_type');
-
-function add_informacao_metabox() {
-    add_meta_box(
-        'informacao-link',
-        'Link da Informação',
-        'display_informacao_metabox',
-        'informacao',
-        'normal',
-        'default'
-    );
-}
-add_action('add_meta_boxes', 'add_informacao_metabox');
-
-function display_informacao_metabox($post) {
-    $informacao_link = get_post_meta($post->ID, 'informacao_link', true);
-    ?>
-    <label for="informacao_link">Link da Informação:</label>
-    <input type="text" name="informacao_link" id="informacao_link" value="<?php echo esc_url($informacao_link); ?>" style="width: 100%;">
-    <?php
-}
-
-function save_informacao_metabox($post_id) {
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-
-    if (isset($_POST['informacao_link'])) {
-        update_post_meta($post_id, 'informacao_link', sanitize_text_field($_POST['informacao_link']));
-    }
-}
-add_action('save_post_informacao', 'save_informacao_metabox');
-
-function display_informacoes() {
-    echo '<h1 class="titulo">Informações</h1><br>';
-    $args = array(
-        'post_type' => 'informacao',
-        'posts_per_page' => -1,
-    );
-    $query = new WP_Query($args);
-
-    if ($query->have_posts()) {
-        echo '<div class="informacao-section">';
-        echo '<ul class="informacao-list">';
-        while ($query->have_posts()) {
-            $query->the_post();
-            $informacao_link = get_post_meta(get_the_ID(), 'informacao_link', true);
-            echo '<li class="informacao-item">';
-            echo '<a href="' . esc_url($informacao_link) . '">';
-            the_title();
-            echo '</a>';
-            echo '</li>';
-        }
-        echo '</ul>';
-        echo '</div>';
-        wp_reset_postdata();
-    } else {
-        echo '<p>Nenhuma informação disponível.</p>';
-    }
-}
-add_shortcode('display_informacoes', 'display_informacoes');
 
