@@ -19,7 +19,7 @@
 		<?php display_posts(); ?>   
 		<?php display_events(); ?>
 		<?php gallery("principal");?>
-                <a href="/index.php/galeria">Ir para o Template</a>
+                <a href="/index.php/galeria">Página de Galerias</a>
 		<?php display_services(); ?>
         </main>
         <?php get_sidebar(); ?>
