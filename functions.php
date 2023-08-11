@@ -502,7 +502,7 @@ add_filter('pre_get_document_title', 'custom_page_title');
 
 function gallery($folder){
     ?>
-    <h1 class="titulo"> <?php echo $folder ?> </h1>
+    <h1> <?php echo $folder ?> </h1>
      <div class="carousel-container">
     <div class="carousel">
     <?php
