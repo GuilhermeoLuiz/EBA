@@ -48,6 +48,7 @@ h1{
   color: blue; /* Ou a cor que você preferir para links */
   text-decoration: underline;
   cursor: pointer;
+  margin-bottom: 10px;
 
 }
 

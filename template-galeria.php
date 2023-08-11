@@ -35,7 +35,13 @@ get_header(); ?>
     }
     echo "</ul>";
     ?>
-    <a> Adicionar nova Galeria</a>
+    <?php
+    if (is_user_logged_in()) {
+        // O usuário está logado
+        ?> 
+    <a href="<?php echo esc_url(get_stylesheet_directory_uri() . '/novagaleria.php')?>"> Adicionar nova Galeria</a>
+    <?php 
+    }?>
     </main>
     <script src="<?php echo get_template_directory_uri(); ?>/gallery.js"></script>
     

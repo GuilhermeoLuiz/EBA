@@ -502,7 +502,7 @@ add_filter('pre_get_document_title', 'custom_page_title');
 
 function gallery($folder){
     ?>
-    <h1 class="titulo"> <?php echo $pasta ?> </h1>
+    <h1 class="titulo"> <?php echo $folder ?> </h1>
      <div class="carousel-container">
     <div class="carousel">
     <?php
@@ -529,7 +529,7 @@ function gallery($folder){
         ?> 
         <form action="<?php echo esc_url(get_stylesheet_directory_uri() . '/indexload.php')?>" method="POST">
             <input type="hidden" name="pasta" value="<?php echo $folder?>">
-            <input type="submit">
+            <input type="submit" class="myButton" value="Upload de Imagem">
         </form>
         <?php
         //echo '<a href="' . esc_url(get_stylesheet_directory_uri() . '/indexload.php') . '">Upload de Imagens</a>';
