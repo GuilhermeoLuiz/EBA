@@ -7,6 +7,7 @@ get_header(); ?>
 
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/gallerystyle.css">
     <main>
+        <h1 class="titulo">Galeria</h1>
         <?php 
         $folder = $_POST["pasta"];
         if($folder == NULL){
