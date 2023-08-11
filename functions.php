@@ -414,6 +414,14 @@ function display_events() {
 
             the_content();
         }
+
+        // Verifica se existem mais de 5 eventos
+        if ($query->found_posts > 5) {
+            ?>
+            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais eventos</a></p>
+            <?php
+        }
+
         wp_reset_postdata();
     } else {
         echo '<div>Não há eventos disponíveis.</div><br>';
@@ -426,10 +434,10 @@ function display_posts() {
     echo '<h1 class="titulo">Posts</h1>'; // Título "Posts"
     echo '<br>'; // Quebra de linha     
 
-    // Obtém todas as postagens
+    // Obtém até 5 postagens mais recentes
     $args = array(
         'post_type' => 'post', // Pode ser alterado para o tipo de post desejado
-        'posts_per_page' => -1,
+        'posts_per_page' => 5,  // Mostra no máximo 5 posts
     );
 
     $query = new WP_Query($args);
@@ -451,6 +459,13 @@ function display_posts() {
                     <?php the_content(); ?>
                 </div>
             </article>
+            <?php
+        }
+
+        // Verifica se existem mais de 5 postagens
+        if ($query->found_posts > 5) {
+            ?>
+            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais posts</a></p>
             <?php
         }
 
@@ -531,11 +546,8 @@ function gallery($folder){
             <input type="hidden" name="pasta" value="<?php echo $folder?>">
             <input type="submit" class="myButton" value="Upload de Imagem">
         </form>
-        <form action="<?php echo esc_url(get_stylesheet_directory_uri() . '/removeimg.php')?>" method="POST">
-            <input type="hidden" name="pasta" value="<?php echo $folder?>">
-            <input type="submit" class="myButton" value="Remover Imagem">
-        </form>
         <?php
+        //echo '<a href="' . esc_url(get_stylesheet_directory_uri() . '/indexload.php') . '">Upload de Imagens</a>';
     } 
     ?>
   
@@ -589,10 +601,10 @@ function save_servico_metabox($post_id) {
 add_action('save_post_servico', 'save_servico_metabox');
 
 function display_services() {
-    echo '<h1 class="titulo">Serviços</h1><br>'; 
+    echo '<h1 class="titulo">Serviços</h1><br>';
     $args = array(
         'post_type' => 'servico',
-        'posts_per_page' => -1,
+        'posts_per_page' => 5,
     );
     $query = new WP_Query($args);
 
@@ -603,14 +615,25 @@ function display_services() {
             $query->the_post();
             $servico_link = get_post_meta(get_the_ID(), 'servico_link', true);
             echo '<li class="service-item">';
-            echo '<a href="' . esc_url($servico_link) . '">';
-	    echo "<br>";
+            
             if (has_post_thumbnail()) {
                 the_post_thumbnail('thumbnail', array('class' => 'service-image'));
+            } else {
+                echo '<a href="' . esc_url($servico_link) . '">';
+                the_title(); // Imprime o título como link quando não há imagem
+                echo '</a>';
             }
-            echo '</a>';
+
             echo '</li>';
         }
+
+        // Verifica se existem mais de 5 serviços
+        if ($query->found_posts > 5) {
+            ?>
+            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais serviços</a></p>
+            <?php
+        }
+
         echo '</ul>';
         echo '</div>';
         wp_reset_postdata();
@@ -619,8 +642,6 @@ function display_services() {
     }
 }
 add_shortcode('display_services', 'display_services');
-
-add_theme_support('post-thumbnails');
 
 add_theme_support('post-thumbnails');
 
