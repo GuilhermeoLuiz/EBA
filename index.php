@@ -19,7 +19,6 @@
 		<?php display_posts(); ?>   
 		<?php display_events(); ?>
 		<?php gallery("uploads");?>
-                <?php gallery("uploads");?>
 		<?php display_services(); ?>
         </main>
         <?php get_sidebar(); ?>
@@ -30,7 +29,7 @@
         <footer>
         <?php if (is_active_sidebar('footer')) : ?>
 		<div class="widget-area">
-                	<?php //dynamic_sidebar('footer'); ?>
+                	<?php dynamic_sidebar('footer'); ?>
                 </div>
         <?php endif; ?>
         
