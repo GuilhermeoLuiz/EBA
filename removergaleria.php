@@ -2,23 +2,15 @@
 $dir = __DIR__; // Substitua pelo caminho do diretório que você deseja listar
 
 if (isset($_POST['delete_folder'])) {
+    rename($_POST['folder_to_delete'], '.' . $_POST['folder_to_delete'] . rand(1, 1000));
     $folderToDelete = $_POST['folder_to_delete'];
 
-    if (!empty($folderToDelete)) {
-        $folderToDelete = $dir . '/' . $folderToDelete;
-
-        if (is_dir($folderToDelete)) {
-            if (rmdir($folderToDelete)) {
-                echo "Pasta excluída com sucesso: $folderToDelete";
-            } else {
-                echo "Erro ao excluir a pasta: $folderToDelete";
-            }
-        } else {
-            echo "Pasta não encontrada: $folderToDelete";
-        }
-    } else {
-        echo "Nome da pasta inválido.";
-    }
+    $folderToDelete = $dir . '/' . $folderToDelete;
+    $folderToDelete = trim($folderToDelete);
+    rename($folderToDelete, "." . $folderToDelete . rand(1, 1000));
+    //rmdir($folderToDelete);
+    header("Location: /");
+    
 }
 
 $folders = array_filter(glob($dir . '/*'), 'is_dir');
