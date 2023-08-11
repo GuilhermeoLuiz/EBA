@@ -13,6 +13,7 @@
         <div class="form-group">
             <label for="fileToUpload">Escolha uma imagem:</label>
             <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="hidden" name="pasta" value="<?php echo $_POST["pasta"]?> ">
         </div>
         <div class="form-group">
             <input type="submit" value="Enviar Imagem" name="submit">

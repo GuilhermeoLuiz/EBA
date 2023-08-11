@@ -159,7 +159,7 @@ main {
 	max-width: 170px;
 }
 
-button, input[type="submit"] {
+button, input[type="submit"]:not(.myButton) {
   display: inline-block;
   padding: 5px 10px;
   background-color: #4CAF50;
@@ -172,11 +172,11 @@ button, input[type="submit"] {
   border-radius: 4px;
 }
 
-button:active, input[type="submit"]{
+button:active, input[type="submit"]:not(.myButton){
   background-color: #45a049;
 }
 
-button:hover, input[type="submit"] {
+button:hover, input[type="submit"]:not(.myButton) {
   background-color: #45a049;
 }
 
@@ -230,6 +230,7 @@ header{
 .dark-mode main{
 	background-color: gray;
 }
+
 
 @media (max-width: 576px) {
 	main{

@@ -7,7 +7,6 @@ get_header(); ?>
 
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/gallerystyle.css">
     <main>
-        <h1> Galeria </h1>
         <?php 
         $folder = $_POST["pasta"];
         if($folder == NULL){
@@ -25,20 +24,18 @@ get_header(); ?>
     $pastas = array_filter($conteudoTema, function($item) use ($temaDir) {
         return is_dir($temaDir . '/' . $item) && $item !== '.' && $item !== '..' && strpos($item, '.') !== 0;
     });
-
-    echo "<ul>";
+    echo "<div><h1> Galerias </h1></div>";
+    echo "<ul>"; 
     foreach ($pastas as $pasta) {
         ?>
         <form id="forms" action="<?php get_template_directory_uri();?>" method="POST">
-        <li> <a><?php echo esc_html($pasta) ?></a> </li>
-        <input type="hidden" name="pasta" value="<?php echo esc_html($pasta)?>">
-        <input type="submit" class="myButton">
+            <input type="submit" name="pasta" class="myButton" value="<?php echo esc_html($pasta)?>">
         </form>
         <?php
     }
     echo "</ul>";
     ?>
-
+    <a> Adicionar nova Galeria</a>
     </main>
     <script src="<?php echo get_template_directory_uri(); ?>/gallery.js"></script>
     

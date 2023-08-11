@@ -500,13 +500,13 @@ function custom_page_title($title) {
 add_filter('pre_get_document_title', 'custom_page_title');
 
 
-function gallery($pasta){
+function gallery($folder){
     ?>
-    <h1 class="titulo"> Galeria </h1>
+    <h1 class="titulo"> <?php echo $pasta ?> </h1>
      <div class="carousel-container">
     <div class="carousel">
     <?php
-    $pasta = "/" . $pasta . "/";
+    $pasta = "/" . $folder . "/";
     //echo '<h1>'. $pasta. '</h1>';
     
     $uploads_dir = get_template_directory() . $pasta . '*';
@@ -526,7 +526,13 @@ function gallery($pasta){
     // Verificar se o usuário está logado
     if (is_user_logged_in()) {
         // O usuário está logado
-        echo '<a href="' . esc_url(get_stylesheet_directory_uri() . '/indexload.php') . '">Upload</a>';
+        ?> 
+        <form action="<?php echo esc_url(get_stylesheet_directory_uri() . '/indexload.php')?>" method="POST">
+            <input type="hidden" name="pasta" value="<?php echo $folder?>">
+            <input type="submit">
+        </form>
+        <?php
+        //echo '<a href="' . esc_url(get_stylesheet_directory_uri() . '/indexload.php') . '">Upload de Imagens</a>';
     } 
     ?>
   
