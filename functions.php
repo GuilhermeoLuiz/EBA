@@ -595,14 +595,12 @@ function display_services() {
 
     if ($query->have_posts()) {
         echo '<div class="service-section">';
-        echo '<h1 class="titulo">Serviços</h1>';
         echo '<ul class="service-list">';
         while ($query->have_posts()) {
             $query->the_post();
             $servico_link = get_post_meta(get_the_ID(), 'servico_link', true);
             echo '<li class="service-item">';
             echo '<a href="' . esc_url($servico_link) . '">';
-	    echo '<span class="service-title">' . get_the_title() . '</span>';
 	    echo "<br>";
             if (has_post_thumbnail()) {
                 the_post_thumbnail('thumbnail', array('class' => 'service-image'));

@@ -231,6 +231,28 @@ header{
 	background-color: gray;
 }
 
+.service-list {
+    width: 100%;
+}
+
+.service-item {
+    display: inline-block;
+    margin: 0 auto; /* Adicione margens para espaçamento entre os itens */
+}
+
+.service-item img{
+	width: 50%;
+	height: auto;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 7px solid #ccc;
+}
+
+.service-item img:hover {
+	transform: scale(1.2);
+}
+
+
 
 @media (max-width: 576px) {
 	main{
