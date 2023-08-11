@@ -22,6 +22,7 @@
 		<?php gallery("principal");?>
                 <a href="/index.php/galeria">Página de Galerias</a>
 		<?php display_services(); ?>
+		<?php display_cursos(); ?>
         </main>
         <?php get_sidebar(); ?>
         <?php

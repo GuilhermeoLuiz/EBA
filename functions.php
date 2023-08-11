@@ -590,10 +590,10 @@ function save_servico_metabox($post_id) {
 add_action('save_post_servico', 'save_servico_metabox');
 
 function display_services() {
-    echo '<h1 class="titulo">Serviços</h1><br>'; 
+    echo '<h1 class="titulo">Serviços</h1><br>';
     $args = array(
         'post_type' => 'servico',
-        'posts_per_page' => -1,
+        'posts_per_page' => 5,
     );
     $query = new WP_Query($args);
 
@@ -604,14 +604,25 @@ function display_services() {
             $query->the_post();
             $servico_link = get_post_meta(get_the_ID(), 'servico_link', true);
             echo '<li class="service-item">';
-            echo '<a href="' . esc_url($servico_link) . '">';
-	    echo "<br>";
+            
             if (has_post_thumbnail()) {
                 the_post_thumbnail('thumbnail', array('class' => 'service-image'));
+            } else {
+                echo '<a href="' . esc_url($servico_link) . '">';
+                the_title(); // Imprime o título como link quando não há imagem
+                echo '</a>';
             }
-            echo '</a>';
+
             echo '</li>';
         }
+
+        // Verifica se existem mais de 5 serviços
+        if ($query->found_posts > 5) {
+            ?>
+            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais serviços</a></p>
+            <?php
+        }
+
         echo '</ul>';
         echo '</div>';
         wp_reset_postdata();
@@ -622,4 +633,97 @@ function display_services() {
 add_shortcode('display_services', 'display_services');
 
 add_theme_support('post-thumbnails');
+
+// Registrar um Tipo de Postagem Personalizado (Curso)
+function register_curso_post_type() {
+    $labels = array(
+        'name' => 'Cursos',
+        'singular_name' => 'Curso',
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => true,
+        'supports' => array('title', 'editor', 'thumbnail'),
+    );
+
+    register_post_type('curso', $args);
+}
+add_action('init', 'register_curso_post_type');
+
+// Adicionar Meta Box para Tipo de Curso
+function add_curso_metabox() {
+    add_meta_box(
+        'curso-tipo',
+        'Tipo de Curso',
+        'display_curso_metabox',
+        'curso',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'add_curso_metabox');
+
+// Exibir Meta Box para Tipo de Curso
+function display_curso_metabox($post) {
+    $curso_tipo = get_post_meta($post->ID, 'curso_tipo', true);
+    ?>
+    <label for="curso_tipo">Tipo de Curso:</label>
+    <select name="curso_tipo" id="curso_tipo">
+        <option value="graduacao" <?php selected($curso_tipo, 'graduacao'); ?>>Graduação</option>
+        <option value="posgraduacao" <?php selected($curso_tipo, 'posgraduacao'); ?>>Pós-Graduação</option>
+        <option value="extensao" <?php selected($curso_tipo, 'extensao'); ?>>Extensão</option>
+        <option value="pesquisa" <?php selected($curso_tipo, 'pesquisa'); ?>>Pesquisa</option>
+    </select>
+    <?php
+}
+
+// Salvar Tipo de Curso no Meta Box
+function save_curso_metabox($post_id) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    if (isset($_POST['curso_tipo'])) {
+        update_post_meta($post_id, 'curso_tipo', sanitize_text_field($_POST['curso_tipo']));
+    }
+}
+add_action('save_post_curso', 'save_curso_metabox');
+
+// Exibir Cursos por Tipo
+function display_cursos() {
+    $tipos_cursos = array('graduacao', 'posgraduacao', 'extensao', 'pesquisa');
+
+    foreach ($tipos_cursos as $tipo) {
+        echo '<h1 class="titulo">' . ucfirst($tipo) . 's</h1><br>';
+        $args = array(
+            'post_type' => 'curso',
+            'posts_per_page' => -1,
+            'meta_key' => 'curso_tipo',
+            'meta_value' => $tipo,
+        );
+        $query = new WP_Query($args);
+
+        if ($query->have_posts()) {
+            echo '<div class="curso-section">';
+            echo '<ul class="curso-list">';
+            while ($query->have_posts()) {
+                $query->the_post();
+                echo '<li class="curso-item">';
+                echo '<h2>' . get_the_title() . '</h2>';
+
+                if (has_post_thumbnail()) {
+                    the_post_thumbnail('thumbnail', array('class' => 'curso-image'));
+                }
+
+                the_content();
+                echo '</li>';
+            }
+            echo '</ul>';
+            echo '</div>';
+            wp_reset_postdata();
+        } else {
+            echo '<p>Nenhum curso de ' . $tipo . ' disponível.</p>';
+        }
+    }
+}
 
