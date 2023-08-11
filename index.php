@@ -18,10 +18,10 @@
         <main id="main-content" class="site-main">
 		<?php display_posts(); ?>   
 		<?php display_events(); ?>
-                <h1 class="titulo">Galerias</h1>
 		<?php gallery("principal");?>
                 <a href="/index.php/galeria">Página de Galerias</a>
 		<?php display_services(); ?>
+		<?php display_informacoes(); ?>
         </main>
         <?php get_sidebar(); ?>
         <?php

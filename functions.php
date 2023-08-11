@@ -502,7 +502,7 @@ add_filter('pre_get_document_title', 'custom_page_title');
 
 function gallery($folder){
     ?>
-    <h1> <?php echo $folder ?> </h1>
+    <h1 class="titulo"> <?php echo $folder ?> </h1>
      <div class="carousel-container">
     <div class="carousel">
     <?php
@@ -618,4 +618,81 @@ function display_services() {
 add_shortcode('display_services', 'display_services');
 
 add_theme_support('post-thumbnails');
+
+add_theme_support('post-thumbnails');
+
+function register_informacoes_post_type() {
+    $labels = array(
+        'name' => 'Informações',
+        'singular_name' => 'Informação',
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => true,
+        'supports' => array('title', 'editor'),
+    );
+
+    register_post_type('informacao', $args);
+}
+add_action('init', 'register_informacoes_post_type');
+
+function add_informacao_metabox() {
+    add_meta_box(
+        'informacao-link',
+        'Link da Informação',
+        'display_informacao_metabox',
+        'informacao',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'add_informacao_metabox');
+
+function display_informacao_metabox($post) {
+    $informacao_link = get_post_meta($post->ID, 'informacao_link', true);
+    ?>
+    <label for="informacao_link">Link da Informação:</label>
+    <input type="text" name="informacao_link" id="informacao_link" value="<?php echo esc_url($informacao_link); ?>" style="width: 100%;">
+    <?php
+}
+
+function save_informacao_metabox($post_id) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    if (isset($_POST['informacao_link'])) {
+        update_post_meta($post_id, 'informacao_link', sanitize_text_field($_POST['informacao_link']));
+    }
+}
+add_action('save_post_informacao', 'save_informacao_metabox');
+
+function display_informacoes() {
+    echo '<h1 class="titulo">Informações</h1><br>';
+    $args = array(
+        'post_type' => 'informacao',
+        'posts_per_page' => -1,
+    );
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        echo '<div class="informacao-section">';
+        echo '<ul class="informacao-list">';
+        while ($query->have_posts()) {
+            $query->the_post();
+            $informacao_link = get_post_meta(get_the_ID(), 'informacao_link', true);
+            echo '<li class="informacao-item">';
+            echo '<a href="' . esc_url($informacao_link) . '">';
+            the_title();
+            echo '</a>';
+            echo '</li>';
+        }
+        echo '</ul>';
+        echo '</div>';
+        wp_reset_postdata();
+    } else {
+        echo '<p>Nenhuma informação disponível.</p>';
+    }
+}
+add_shortcode('display_informacoes', 'display_informacoes');
 
