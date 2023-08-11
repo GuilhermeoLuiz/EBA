@@ -20,13 +20,5 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
     comments_template();
 ?>
 
-
-<footer>
-	<?php if (is_active_sidebar('footer')) : ?>
-		<div class="widget-area">
-                	<?php //dynamic_sidebar('footer'); ?>
-                </div>
-        <?php endif; ?>
-</footer>
 <?php get_footer();
 

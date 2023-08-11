@@ -28,12 +28,6 @@
         ?>
 
         <footer>
-        <?php if (is_active_sidebar('footer')) : ?>
-		<div class="widget-area">
-                	<?php dynamic_sidebar('footer'); ?>
-                </div>
-        <?php endif; ?>
-        
             <?php get_footer(); ?>
         </footer>
         <script src="<?php echo get_template_directory_uri(); ?>/gallery.js"></script>
