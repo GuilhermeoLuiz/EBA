@@ -23,6 +23,12 @@ $conteudoPasta = scandir($dir);
 <html>
 <head>
     <title>Excluir Arquivos</title>
+    <style>
+        li{
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
     <h2>Lista de Arquivos na Pasta</h2>
@@ -33,7 +39,8 @@ $conteudoPasta = scandir($dir);
                 if ($item != '.' && $item != '..') {
                     echo '<li>';
                     echo '<input type="radio" name="arquivo" value="' . $dir . DIRECTORY_SEPARATOR . $item . '">';
-                    echo $item;
+                    //echo $item;
+                    echo '<br><img src="' . $_POST['pasta'] . '/' . $item . '" alt="imagem" style="width: 100px; height: 100px;">';
                     echo '</li>';
                 }
             } ?>
