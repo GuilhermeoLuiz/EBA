@@ -531,8 +531,11 @@ function gallery($folder){
             <input type="hidden" name="pasta" value="<?php echo $folder?>">
             <input type="submit" class="myButton" value="Upload de Imagem">
         </form>
+        <form action="<?php echo esc_url(get_stylesheet_directory_uri() . '/removeimg.php')?>" method="POST">
+            <input type="hidden" name="pasta" value="<?php echo $folder?>">
+            <input type="submit" class="myButton" value="Remover Imagem">
+        </form>
         <?php
-        //echo '<a href="' . esc_url(get_stylesheet_directory_uri() . '/indexload.php') . '">Upload de Imagens</a>';
     } 
     ?>
   
