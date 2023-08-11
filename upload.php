@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="styleupload.css">
 <?php
-$target_dir = "/var/www/html/wp-content/themes/EBA/uploads/";
+$target_dir = __DIR__ . "/uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 $uploadOk = 1;
