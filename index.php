@@ -18,7 +18,8 @@
         <main id="main-content" class="site-main">
 		<?php display_posts(); ?>   
 		<?php display_events(); ?>
-		<?php gallery("uploads");?>
+		<?php gallery("principal");?>
+                <a href="/index.php/galeria">Ir para o Template</a>
 		<?php display_services(); ?>
         </main>
         <?php get_sidebar(); ?>

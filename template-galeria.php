@@ -10,7 +10,7 @@ get_header(); ?>
         <?php 
         $folder = $_POST["pasta"];
         if($folder == NULL){
-            $folder = "uploads";
+            $folder = "principal";
         }
         gallery($folder);?>
 
