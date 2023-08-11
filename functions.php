@@ -586,6 +586,7 @@ function save_servico_metabox($post_id) {
 add_action('save_post_servico', 'save_servico_metabox');
 
 function display_services() {
+    echo '<h1 class="titulo">Serviços</h1><br>'; 
     $args = array(
         'post_type' => 'servico',
         'posts_per_page' => -1,
