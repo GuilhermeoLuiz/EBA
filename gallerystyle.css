@@ -10,6 +10,7 @@
   overflow: hidden;
 }
 .carousel img {
+  height: 300px;
   width: auto;
   max-height: 300px;
   display: block; 
