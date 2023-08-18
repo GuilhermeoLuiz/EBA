@@ -7,4 +7,5 @@ if (!file_exists($nomePasta)) {
 } else {
     echo 'A Galeria já existe.';
 }
+header("Location: /");
 ?>

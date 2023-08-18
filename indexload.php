@@ -20,6 +20,7 @@
         </div>
     </form>
     </div>
+    <a href="javascript:history.back()" class="back-button">Voltar para Página Anterior</a>
 
 </body>
 </html>

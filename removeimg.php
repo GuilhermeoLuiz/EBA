@@ -47,5 +47,6 @@ $conteudoPasta = scandir($dir);
         </ul>
         <input type="submit" name="excluir_arquivo" value="Excluir Arquivo">
     </form>
+    <a href="javascript:history.back()" class="back-button">Voltar para Página Anterior</a>
 </body>
 </html>

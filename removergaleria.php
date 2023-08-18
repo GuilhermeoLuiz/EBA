@@ -33,7 +33,9 @@ $folders = array_filter(glob($dir . '/*'), 'is_dir');
             <input type="hidden" name="folder_to_delete" value="<?php echo $folderToDelete; ?>">
             <input type="submit" name="delete_folder" value="Excluir">
         </form>
+        
     <?php } ?>
+    <a href="javascript:history.back()" class="back-button">Voltar para Página Anterior</a>
 </body>
 </html>
 
