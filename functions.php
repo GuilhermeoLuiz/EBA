@@ -455,61 +455,53 @@ function display_events() {
 }
 
 function display_posts() {
-
     echo '<h1 class="titulo">Posts</h1>';
     echo '<br>';
 
-    // Obtém as 5 primeiras postagens
-    $args = array(
-        'post_type' => 'post',
-        'posts_per_page' => 5, // Mostrar apenas 5 postagens
-    );
+    // Obtém todas as categorias
+    $categories = get_categories();
 
-    $query = new WP_Query($args);
+    foreach ($categories as $category) {
+        echo "<h2>{$category->name}</h2>";
 
-    // Verifica se existem postagens
-    if ($query->have_posts()) {
-        // Loop pelas postagens
-        while ($query->have_posts()) {
-            $query->the_post();
-            ?>
-            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <h1 class="entry-title"><?php the_title(); ?></h1>
-                <div class="entry-meta">
-                    <p>Categoria: <?php the_category(', '); ?></p>
-                    <p>Autor: <?php the_author(); ?></p>
-                    <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p>
-                </div>
-                <div class="entry-content">
-                    <?php the_content(); ?>
-                </div>
-            </article>
-            <?php
+        // Obtém as postagens da categoria atual
+        $args = array(
+            'post_type' => 'post',
+            'posts_per_page' => 5,
+            'category__in' => array($category->term_id),
+        );
+
+        $query = new WP_Query($args);
+
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+                ?>
+                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                    <h3 class="entry-title"><?php the_title(); ?></h3>
+                    <div class="entry-meta"
+                        <p>Autor: <?php the_author(); ?></p>
+                        <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p>
+                    </div>
+                    <div class="entry-content">
+                        <?php the_content(); ?>
+                    </div>
+                </article>
+                <?php
+            }
+
+            if ($query->found_posts > 5) {
+                ?>
+                <p><a href="<?php echo get_category_link($category->term_id); ?>" class="read-more-link">Mais posts <?php echo $category->name;?></a></p>
+                <?php
+            }
+
+            wp_reset_postdata();
+        } else {
+            echo 'Não há postagens disponíveis para esta categoria.';
         }
-
-        // Verifica se existem mais de 5 postagens
-        if ($query->found_posts > 5) {
-            ?>
-            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais posts</a></p>
-            <?php
-        }
-
-        // Restaura os dados da postagem principal da página
-        wp_reset_postdata();
-    } else {
-        // Se não houver postagens, exibe uma mensagem
-        echo 'Não há postagens disponíveis.';
     }
 }
-
-function meu_tema_suporte_imagem_de_fundo() {
-    add_theme_support( 'custom-background', array(
-        'default-color' => 'ffffff', // Cor de fundo padrão (substitua pela cor que desejar)
-        'default-image' => '', // Imagem de fundo padrão (substitua pela URL da imagem que desejar)
-        'wp-head-callback' => 'meu_tema_imagem_de_fundo_estilo',
-    ) );
-}
-add_action( 'after_setup_theme', 'meu_tema_suporte_imagem_de_fundo' );
 
 /**
  * Estilo da imagem de fundo
@@ -646,14 +638,12 @@ function display_services() {
             echo '<li class="service-item">';
             
             if (has_post_thumbnail()) {
-                echo '<a href="' . esc_url($servico_link) . '">';
                 echo '<div class="item-img">';
                 the_post_thumbnail('thumbnail', array('class' => 'service-image'));
                 echo '</div>';
-                echo '<p href="' . esc_url($servico_link) . '" class="item-link">';
-                the_title();
-                echo '</p>';
-                echo "</a>";
+                echo '<a href="' . esc_url($servico_link) . '" class="item-link">';
+                the_title(); // Imprime o título como link quando não há imagem
+                echo '</a>';
             } else {
                 echo '<a href="' . esc_url($servico_link) . '"class="item-link">';
                 the_title(); // Imprime o título como link quando não há imagem
