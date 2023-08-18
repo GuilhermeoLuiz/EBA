@@ -49,5 +49,6 @@ if ($uploadOk == 0) {
         echo "Desculpe, houve um erro ao enviar a imagem.";
     }
 }
+header("Location: /");
 ?>
 
