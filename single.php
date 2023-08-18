@@ -4,13 +4,18 @@ get_header();
 ?>
 <main>
 <?php
-
-// Aqui você pode exibir os detalhes do artigo
-echo "<h1>";
-the_title();
-echo "</h1>";
-the_content();
 ?>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<h1 class="entry-title"><?php the_title(); ?></h1>
+<div class="entry-meta">
+    <p>Categoria: <?php the_category(', '); ?></p>
+    <p>Autor: <?php the_author(); ?></p>
+    <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p>
+</div>
+<div class="entry-content">
+    <?php the_content(); ?>
+</div>
+</article>
 </main>
 <?php 
 
