@@ -33,8 +33,9 @@ get_header(); ?>
         $img = get_template_directory_uri() . "/" . $pasta . "/" . reset($files);
         if($pasta != $fpasta){?>
         <form id="forms" action="<?php get_template_directory_uri();?>" method="POST">
-            <input type="image" src="<?php echo $img?>" name="pasta" alt="Enviar" class="preview" value="<?php echo esc_html($pasta)?>">
-            <input type="submit" name="pasta" class="myButton" value="<?php echo esc_html($pasta)?>">
+            <input type="hidden" name="pasta" value="<?php echo $pasta?>">
+            <input type="image" src="<?php echo $img?>" alt="Enviar" class="preview">
+            <input type="submit" name="pasta" class="myButton" value="<?php echo $pasta?>">
         </form>
         <?php
         }
