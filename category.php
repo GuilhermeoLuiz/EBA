@@ -9,7 +9,7 @@ if (have_posts()) {
     $current_category_id = get_cat_ID($current_category);
 
     // Exibe o título da categoria
-    echo '<h1 margin="10px;">' . $current_category . '</h1><br>';
+    echo '<h1 margin="10px;" class="titulo">' . $current_category . '</h1><br>';
 
     // Loop para exibir os posts da categoria atual
     while (have_posts()) {
