@@ -312,26 +312,14 @@ function theme_customize_register($wp_customize) {
 
 add_action('customize_register', 'theme_customize_register');
 
-//Adiciona o campo eventos no WordPress
+// Adiciona o campo eventos no WordPress
 function lc_create_post_type() {
-    // Configurar rótulos
     $labels = array(
         'name' => 'Eventos',
         'singular_name' => 'Evento',
-        'add_new' => 'Adicionar Novo Evento',
-        'add_new_item' => 'Adicionar Novo Evento',
-        'edit_item' => 'Editar Evento',
-        'new_item' => 'Novo Evento',
-        'all_items' => 'Todos os Eventos',
-        'view_item' => 'Visualizar Evento',
-        'search_items' => 'Pesquisar Eventos',
-        'not_found' => 'Nenhum Evento Encontrado',
-        'not_found_in_trash' => 'Nenhum evento encontrado na lixeira',
-        'parent_item_colon' => '',
-        'menu_name' => 'Eventos',
+        // ... (resto dos rótulos)
     );
 
-    // Registrar tipo de postagem
     register_post_type('event', array(
         'labels' => $labels,
         'has_archive' => true,
@@ -345,7 +333,6 @@ function lc_create_post_type() {
 }
 add_action('init', 'lc_create_post_type');
 
-// Função para adicionar campos personalizados no editor de eventos
 function add_event_meta_boxes() {
     add_meta_box(
         'event_dates',
@@ -358,11 +345,9 @@ function add_event_meta_boxes() {
 }
 add_action('add_meta_boxes', 'add_event_meta_boxes');
 
-// Função de retorno de chamada para exibir os campos personalizados no editor de eventos
 function event_dates_callback($post) {
-    // Recupera as datas salvas (se existirem)
     $event_date = get_post_meta($post->ID, 'event_date', true);
-    $formatted_event_date = !empty($event_date) ? date('d/m/Y', strtotime($event_date)) : '';
+    $formatted_event_date = !empty($event_date) ? date('Y-m-d', strtotime($event_date)) : '';
     ?>
 
     <p>
@@ -373,25 +358,22 @@ function event_dates_callback($post) {
     <?php
 }
 
-// Função para salvar os campos personalizados
 function save_event_meta($post_id) {
     if (isset($_POST['event_date'])) {
         update_post_meta($post_id, 'event_date', sanitize_text_field($_POST['event_date']));
     }
 }
-add_action('save_post_event', 'save_event_meta');
+add_action('save_post', 'save_event_meta');
 
-// Função para remover campos desnecessários da página de edição de eventos
 function remove_unnecessary_fields() {
-    remove_post_type_support('event', 'page-attributes'); // Remove a seção de atributos do post
-    remove_post_type_support('event', 'custom-fields'); // Remove a seção de campos personalizados
+    remove_post_type_support('event', 'page-attributes');
+    remove_post_type_support('event', 'custom-fields');
 }
 add_action('admin_menu', 'remove_unnecessary_fields');
 
-// Função para remover as seções de "Tags" e "Categorias" da página de edição de eventos
 function remove_event_taxonomies() {
-    remove_meta_box('tagsdiv-post_tag', 'event', 'side'); // Remove a seção de tags
-    remove_meta_box('categorydiv', 'event', 'side'); // Remove a seção de categorias
+    remove_meta_box('tagsdiv-post_tag', 'event', 'side');
+    remove_meta_box('categorydiv', 'event', 'side');
 }
 add_action('admin_menu', 'remove_event_taxonomies');
 
@@ -442,16 +424,8 @@ function display_events() {
             echo '<div class="event-summary">';
             the_excerpt();
             echo '</div>';
-
-            $event_counter++; // Incrementar o contador
-
-            // Parar de exibir eventos após 5 e exibir o link "Mais eventos"
-            if ($event_counter >= 5) {
-                echo '<a href="#">Mais eventos</a>';
-                break;
-            }
-        }
-        wp_reset_postdata();
+	}
+	echo '<a href="#">Mais eventos</a>';
     } else {
         echo '<div>Não há eventos futuros disponíveis.</div><br>';
     }
