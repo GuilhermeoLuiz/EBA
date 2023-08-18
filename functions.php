@@ -415,11 +415,18 @@ function display_events() {
         ),
     );
     $query = new WP_Query($args);
+    $event_counter = 0; // Inicializar o contador de eventos
 
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
             echo '<h2>' . get_the_title() . '</h2>';
+
+            // Exibir nome do autor
+            echo '<p>Autor: ' . get_the_author() . '</p>';
+
+            // Exibir a data do evento
+            echo '<p>Data do evento: ' . get_post_meta(get_the_ID(), 'event_date', true) . '</p>';
 
             // Exibir a imagem destacada (thumbnail) do evento
             if (has_post_thumbnail()) {
@@ -432,6 +439,14 @@ function display_events() {
             echo '<div class="event-summary">';
             the_excerpt();
             echo '</div>';
+
+            $event_counter++; // Incrementar o contador
+
+            // Parar de exibir eventos após 5 e exibir o link "Mais eventos"
+            if ($event_counter >= 5) {
+                echo '<a href="#">Mais eventos</a>';
+                break;
+            }
         }
         wp_reset_postdata();
     } else {
