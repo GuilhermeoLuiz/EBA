@@ -456,22 +456,13 @@ function display_posts() {
             while ($query->have_posts()) {
                 $query->the_post();
                 ?>
-                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <a href="<?php the_permalink(); ?>" class="link"><h3 class="entry-title"><?php the_title(); ?></h3></a>
-                    <div class="entry-meta"
-                        <p>Autor: <?php the_author(); ?></p>
-                        <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p>
-                    </div>
-                    <div class="entry-content">
-                        <?php the_content(); ?>
-                    </div>
-                </article>
+                <!-- Seu loop de postagem -->
                 <?php
             }
-                ?>
-                <p><a href="<?php echo get_category_link($category->term_id); ?>" class="read-more-link">Mais posts <?php echo $category->name;?></a></p>
-                <?php
-            wp_reset_postdata();
+            ?>
+            <p><a href="<?php echo get_category_link($category->term_id); ?>" class="read-more-link">Mais posts <?php echo $category->name;?></a></p>
+            <?php
+            wp_reset_postdata(); // Redefinir o contexto da postagem
         } else {
             echo 'Não há postagens disponíveis para esta categoria.';
         }
@@ -629,14 +620,9 @@ function display_services() {
 
             echo '</li>';
         }
-
-        // Verifica se existem mais de 5 serviços
-        if ($query->found_posts > 5) {
             ?>
             <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais serviços</a></p>
             <?php
-        }
-
         echo '</ul>';
         echo '</div>';
         wp_reset_postdata();
