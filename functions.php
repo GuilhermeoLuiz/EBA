@@ -380,9 +380,23 @@ function save_event_meta($post_id) {
 }
 add_action('save_post_event', 'save_event_meta');
 
-// Função para exibir os eventos
+// Função para remover campos desnecessários da página de edição de eventos
+function remove_unnecessary_fields() {
+    remove_post_type_support('event', 'page-attributes'); // Remove a seção de atributos do post
+    remove_post_type_support('event', 'custom-fields'); // Remove a seção de campos personalizados
+}
+add_action('admin_menu', 'remove_unnecessary_fields');
+
+// Função para remover as seções de "Tags" e "Categorias" da página de edição de eventos
+function remove_event_taxonomies() {
+    remove_meta_box('tagsdiv-post_tag', 'event', 'side'); // Remove a seção de tags
+    remove_meta_box('categorydiv', 'event', 'side'); // Remove a seção de categorias
+}
+add_action('admin_menu', 'remove_event_taxonomies');
+
+// Função para exibir os eventos com datas futuras
 function display_events() {
-    echo '<h1 class="titulo">Eventos</h1>';
+    echo '<h1 class="titulo">Eventos Futuros</h1>';
     echo '<br>';
 
     $args = array(
@@ -391,44 +405,37 @@ function display_events() {
         'meta_key' => 'event_date', // Campo personalizado para a data de acontecimento
         'orderby' => 'meta_value', // Ordenar pela meta_value (data de acontecimento)
         'order' => 'ASC', // Ordem ascendente
+        'meta_query' => array(
+            array(
+                'key' => 'event_date',
+                'value' => date('Y-m-d'), // Apenas datas futuras
+                'compare' => '>=',
+                'type' => 'DATE',
+            ),
+        ),
     );
     $query = new WP_Query($args);
 
     if ($query->have_posts()) {
-        $event_count = $query->found_posts; // Total de eventos encontrados
-
-        $current_event = 0; // Contador para acompanhar o número de eventos exibidos
-
         while ($query->have_posts()) {
             $query->the_post();
             echo '<h2>' . get_the_title() . '</h2>';
 
-            // Obtendo e exibindo o nome do autor
-            $author_name = get_the_author();
-            echo '<p>Autor: ' . $author_name . '</p>';
-
-            echo '<p>Data de Publicação: ' . get_the_date() . '</p>';
-
-            // Formatando a data do evento no modelo brasileiro
-            $event_date = get_post_meta(get_the_ID(), 'event_date', true);
-            if ($event_date) {
-                $formatted_event_date = date_i18n('j \d\e F \d\e Y', strtotime($event_date));
-                echo '<p>Data do Evento: ' . $formatted_event_date . '</p>';
+            // Exibir a imagem destacada (thumbnail) do evento
+            if (has_post_thumbnail()) {
+                echo '<div class="event-thumbnail">';
+                the_post_thumbnail('medium'); // Pode ajustar o tamanho conforme necessário
+                echo '</div>';
             }
 
-            the_content();
-
-            $current_event++;
-
-            if ($current_event === 5 && $event_count > 5) {
-                ?>
-                <p><a href="<?php echo esc_url(get_post_type_archive_link('event')); ?>" class="read-more-link">Mais eventos</a></p>
-                <?php
-            }
+            // Exibir o resumo do evento
+            echo '<div class="event-summary">';
+            the_excerpt();
+            echo '</div>';
         }
         wp_reset_postdata();
     } else {
-        echo '<div>Não há eventos disponíveis.</div><br>';
+        echo '<div>Não há eventos futuros disponíveis.</div><br>';
     }
 }
 
