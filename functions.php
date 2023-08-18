@@ -624,9 +624,14 @@ function display_services() {
             echo '<li class="service-item">';
             
             if (has_post_thumbnail()) {
+                echo '<div class="item-img">';
                 the_post_thumbnail('thumbnail', array('class' => 'service-image'));
+                echo '</div>';
+                echo '<a href="' . esc_url($servico_link) . '" class="item-link">';
+                the_title(); // Imprime o título como link quando não há imagem
+                echo '</a>';
             } else {
-                echo '<a href="' . esc_url($servico_link) . '">';
+                echo '<a href="' . esc_url($servico_link) . '"class="item-link">';
                 the_title(); // Imprime o título como link quando não há imagem
                 echo '</a>';
             }
