@@ -455,7 +455,9 @@ function display_events() {
 }
 
 function display_posts() {
-    echo '<h1 class="titulo">Posts</h1>';
+    ?>
+    <h1 class="titulo">Posts</h1>
+    <?php
     echo '<br>';
 
     // Obtém todas as categorias
@@ -478,7 +480,7 @@ function display_posts() {
                 $query->the_post();
                 ?>
                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                    <h3 class="entry-title"><?php the_title(); ?></h3>
+                <a href="<?php the_permalink(); ?>" class="link"><h3 class="entry-title"><?php the_title(); ?></h3></a>
                     <div class="entry-meta"
                         <p>Autor: <?php the_author(); ?></p>
                         <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p>
