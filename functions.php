@@ -382,8 +382,8 @@ add_action('save_post_event', 'save_event_meta');
 
 // Função para exibir os eventos
 function display_events() {
-    echo '<h1 class="titulo">Eventos</h1>'; // Título "Eventos"
-    echo '<br>'; // Quebra de linha
+    echo '<h1 class="titulo">Eventos</h1>';
+    echo '<br>';
 
     $args = array(
         'post_type' => 'event',
@@ -395,6 +395,10 @@ function display_events() {
     $query = new WP_Query($args);
 
     if ($query->have_posts()) {
+        $event_count = $query->found_posts; // Total de eventos encontrados
+
+        $current_event = 0; // Contador para acompanhar o número de eventos exibidos
+
         while ($query->have_posts()) {
             $query->the_post();
             echo '<h2>' . get_the_title() . '</h2>';
@@ -413,6 +417,14 @@ function display_events() {
             }
 
             the_content();
+
+            $current_event++;
+
+            if ($current_event === 5 && $event_count > 5) {
+                ?>
+                <p><a href="<?php echo esc_url(get_post_type_archive_link('event')); ?>" class="read-more-link">Mais eventos</a></p>
+                <?php
+            }
         }
         wp_reset_postdata();
     } else {
@@ -420,16 +432,15 @@ function display_events() {
     }
 }
 
-// Função para exibir os posts agrupados por categoria
 function display_posts() {
 
-    echo '<h1 class="titulo">Posts</h1>'; // Título "Posts"
-    echo '<br>'; // Quebra de linha     
+    echo '<h1 class="titulo">Posts</h1>';
+    echo '<br>';
 
-    // Obtém todas as postagens
+    // Obtém as 5 primeiras postagens
     $args = array(
-        'post_type' => 'post', // Pode ser alterado para o tipo de post desejado
-        'posts_per_page' => -1,
+        'post_type' => 'post',
+        'posts_per_page' => 5, // Mostrar apenas 5 postagens
     );
 
     $query = new WP_Query($args);
@@ -445,12 +456,19 @@ function display_posts() {
                 <div class="entry-meta">
                     <p>Categoria: <?php the_category(', '); ?></p>
                     <p>Autor: <?php the_author(); ?></p>
-                    <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p> <!-- Exibe a data de publicação no formato português -->
+                    <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p>
                 </div>
                 <div class="entry-content">
                     <?php the_content(); ?>
                 </div>
             </article>
+            <?php
+        }
+
+        // Verifica se existem mais de 5 postagens
+        if ($query->found_posts > 5) {
+            ?>
+            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais posts</a></p>
             <?php
         }
 
