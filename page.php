@@ -12,7 +12,7 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
                                 </div>
                         <?php endwhile; endif; ?>
 		</main>
-		<?php //get_sidebar(); ?>
+		<?php get_sidebar(); ?>
         </div>
 </div>
 

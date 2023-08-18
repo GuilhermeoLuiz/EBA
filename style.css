@@ -298,6 +298,11 @@ header{
 	text-decoration: none;
 }
 
+.link:hover{
+	transform: scale(1.1);
+	color: red;
+}
+
 @media (max-width: 576px) {
 	main{
 		max-width: 100%;
