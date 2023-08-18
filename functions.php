@@ -362,11 +362,12 @@ add_action('add_meta_boxes', 'add_event_meta_boxes');
 function event_dates_callback($post) {
     // Recupera as datas salvas (se existirem)
     $event_date = get_post_meta($post->ID, 'event_date', true);
+    $formatted_event_date = !empty($event_date) ? date('d/m/Y', strtotime($event_date)) : '';
     ?>
 
     <p>
         <label for="event_date">Data do evento:</label>
-        <input type="date" id="event_date" name="event_date" value="<?php echo esc_attr($event_date); ?>">
+        <input type="date" id="event_date" name="event_date" value="<?php echo esc_attr($formatted_event_date); ?>">
     </p>
 
     <?php
@@ -426,7 +427,9 @@ function display_events() {
             echo '<p>Autor: ' . get_the_author() . '</p>';
 
             // Exibir a data do evento
-            echo '<p>Data do evento: ' . get_post_meta(get_the_ID(), 'event_date', true) . '</p>';
+            $event_date = get_post_meta(get_the_ID(), 'event_date', true);
+            $formatted_event_date = !empty($event_date) ? date('d/m/Y', strtotime($event_date)) : '';
+            echo '<p>Data do evento: ' . $formatted_event_date . '</p>';
 
             // Exibir a imagem destacada (thumbnail) do evento
             if (has_post_thumbnail()) {
@@ -491,13 +494,9 @@ function display_posts() {
                 </article>
                 <?php
             }
-
-            if ($query->found_posts > 5) {
                 ?>
                 <p><a href="<?php echo get_category_link($category->term_id); ?>" class="read-more-link">Mais posts <?php echo $category->name;?></a></p>
                 <?php
-            }
-
             wp_reset_postdata();
         } else {
             echo 'Não há postagens disponíveis para esta categoria.';
