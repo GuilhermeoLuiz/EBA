@@ -14,7 +14,6 @@ get_header(); ?>
             $folder = "principal";
         }
         gallery($folder);?>
-
     <?php
     $temaDir = get_template_directory(); // Diretório do tema
 
@@ -25,17 +24,23 @@ get_header(); ?>
     $pastas = array_filter($conteudoTema, function($item) use ($temaDir) {
         return is_dir($temaDir . '/' . $item) && $item !== '.' && $item !== '..' && strpos($item, '.') !== 0;
     });
-    echo "<div><h1> Galerias </h1></div>";
-    echo "<ul>"; 
+    echo "<div><h1> Galerias </h1></div><br>";
+    echo '<div class="previews">'; 
     foreach ($pastas as $pasta) {
+        $folder = get_template_directory() . '/' . $pasta;
+        $files = scandir($folder);
+        $files = array_diff($files, array('..', '.'));
+        $img = get_template_directory_uri() . "/" . $pasta . "/" . reset($files);
         ?>
         <form id="forms" action="<?php get_template_directory_uri();?>" method="POST">
+            <input type="image" src="<?php echo $img?>" name="pasta" alt="Enviar" class="preview" value="<?php echo esc_html($pasta)?>">
             <input type="submit" name="pasta" class="myButton" value="<?php echo esc_html($pasta)?>">
         </form>
         <?php
     }
-    echo "</ul>";
+    //echo "</ul>";
     ?>
+    </div>
     <?php
     if (is_user_logged_in()) {
         // O usuário está logado

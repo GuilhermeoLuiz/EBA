@@ -52,6 +52,32 @@ h1{
   margin-bottom: 10px;
 
 }
+.previews{
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.preview{
+  display: flex;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+	object-fit: cover;
+	border: 7px solid #ccc;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  text-align: center;
+	flex-grow: 1;
+}
+
+.preview:hover{
+  transform: scale(1.2);
+  transition: 0.3s ease;
+}
 
 @media (max-width: 576px) {
   .carousel-container {

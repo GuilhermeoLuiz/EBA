@@ -245,7 +245,7 @@ header{
 
 .service-item img{
 	width: 120px;
-	height: auto;
+	height: 120px;
 	border-radius: 50%;
 	object-fit: cover;
 	border: 7px solid #ccc;
