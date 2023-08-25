@@ -456,19 +456,27 @@ function display_posts() {
             while ($query->have_posts()) {
                 $query->the_post();
                 ?>
-                <!-- Seu loop de postagem -->
+                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <a href="<?php the_permalink(); ?>" class="link"><h3 class="entry-title"><?php the_title(); ?></h3></a>
+                    <div class="entry-meta"
+                        <p>Autor: <?php the_author(); ?></p>
+                        <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p>
+                    </div>
+                    <div class="entry-content">
+                        <?php the_content(); ?>
+                    </div>
+                </article>
                 <?php
             }
-            ?>
-            <p><a href="<?php echo get_category_link($category->term_id); ?>" class="read-more-link">Mais posts <?php echo $category->name;?></a></p>
-            <?php
-            wp_reset_postdata(); // Redefinir o contexto da postagem
+                ?>
+                <p><a href="<?php echo get_category_link($category->term_id); ?>" class="read-more-link">Mais posts <?php echo $category->name;?></a></p>
+                <?php
+            wp_reset_postdata();
         } else {
             echo 'Não há postagens disponíveis para esta categoria.';
         }
     }
 }
-
 /**
  * Estilo da imagem de fundo
  */
