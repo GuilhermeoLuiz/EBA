@@ -68,112 +68,114 @@ function custom_redirect_404() {
     }
 }
 add_action( 'template_redirect', 'custom_redirect_404' );
-
 function EBA_customize_register( $wp_customize ) {
-
-    $wp_customize->add_setting( 'EBA_background_color', array(
-        'default'           => '#ffffff', // Define a cor padrão do cabeçalho
-        'sanitize_callback' => 'sanitize_hex_color', // Valida a cor hexadecimal
-    ) );
     
+    // Configurações e controles para as cores personalizadas
+    
+    // Cor de Fundo
+    $wp_customize->add_setting( 'EBA_background_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'EBA_background_color', array(
-        'label'    => __('Cor de Fundo', 'EBA' ),
+        'label'    => __( 'Cor de Fundo', 'EBA' ),
         'section'  => 'colors',
         'settings' => 'EBA_background_color',
     ) ) );
 
+    // Cor do Cabeçalho
     $wp_customize->add_setting( 'header_background_color', array(
-     'default'           => '#dd0000', // Define a cor padrão do cabeçalho
-     'sanitize_callback' => 'sanitize_hex_color', // Valida a cor hexadecimal
- ) );
- 
- $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
-     'label'    => __( 'Cor do Cabeçalho', 'EBA' ),
-     'section'  => 'colors',
-     'settings' => 'header_background_color',
- ) ) );
+        'default'           => '#dd0000',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
+        'label'    => __( 'Cor do Cabeçalho', 'EBA' ),
+        'section'  => 'colors',
+        'settings' => 'header_background_color',
+    ) ) );
 
- $wp_customize->add_setting( 'cor_titulo', array(
-    'default' => '#ffffff',
-    'transport' => 'refresh',
-) );
-
-// Controle para a cor do texto do cabeçalho
-$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_titulo', array(
-    'label' => __( 'Cor do Titulo', 'EBA' ),
-    'section' => 'colors',
-) ) );
- 
- $wp_customize->add_setting( 'cor_texto_cabecalho', array(
-         'default' => '#ffffff',
-         'transport' => 'refresh',
-     ) );
- 
-     // Controle para a cor do texto do cabeçalho
-     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_cabecalho', array(
-         'label' => __( 'Cor do Texto do Cabeçalho', 'EBA' ),
-         'section' => 'colors',
-     ) ) );
- 
-     $wp_customize->add_setting( 'cor_subtitulo', array(
-         'default' => '#11d700',
-         'transport' => 'refresh',
-     ) );
- 
-     // Controle para a cor do texto do cabeçalho
-     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo', array(
-         'label' => __( 'Cor do Subtitulo', 'EBA' ),
-         'section' => 'colors',
-     ) ) );
-     
-     $wp_customize->add_setting( 'cor_menu', array(
-         'default' => '#add8e6',
-         'transport' => 'refresh',
-     ) );
- 
-     // Controle para a cor do texto do cabeçalho
-     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_menu', array(
-         'label' => __( 'Cor do Menu', 'EBA' ),
-         'section' => 'colors',
-     ) ) );
-
-     $wp_customize->add_setting( 'cor_texto', array(
-        'default' => '#222222',
+    // Cor do Título
+    $wp_customize->add_setting( 'cor_titulo', array(
+        'default'   => '#ffffff',
         'transport' => 'refresh',
     ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_titulo', array(
+        'label'   => __( 'Cor do Título', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
 
-    // Controle para a cor do texto do cabeçalho
+    // Cor do Texto do Cabeçalho
+    $wp_customize->add_setting( 'cor_texto_cabecalho', array(
+        'default'   => '#ffffff',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_cabecalho', array(
+        'label'   => __( 'Cor do Texto do Cabeçalho', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
+    // Cor do Subtítulo
+    $wp_customize->add_setting( 'cor_subtitulo_fundo', array(
+        'default'   => '#11d700',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo_fundo', array(
+        'label'   => __( 'Cor do Subtítulo', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
+    // Cor do Subtítulo
+    $wp_customize->add_setting( 'cor_subtitulo_texto', array(
+        'default'   => '#11d700',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo_texto', array(
+        'label'   => __( 'Cor do Subtítulo(Texto)', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
+    // Cor do Menu
+    $wp_customize->add_setting( 'cor_menu', array(
+        'default'   => '#add8e6',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_menu', array(
+        'label'   => __( 'Cor do Menu', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
+    // Cor do Texto
+    $wp_customize->add_setting( 'cor_texto', array(
+        'default'   => '#222222',
+        'transport' => 'refresh',
+    ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto', array(
-        'label' => __( 'Cor do Texto', 'EBA' ),
+        'label'   => __( 'Cor do Texto', 'EBA' ),
         'section' => 'colors',
     ) ) );
 
-
-     $wp_customize->add_setting( 'cor_footer', array(
-        'default' => '#ffffff',
+    // Cor do Footer
+    $wp_customize->add_setting( 'cor_footer', array(
+        'default'   => '#ffffff',
         'transport' => 'refresh',
     ) );
-
-    // Controle para a cor do texto do cabeçalho
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_footer', array(
-        'label' => __( 'Cor do Footer', 'EBA' ),
+        'label'   => __( 'Cor do Footer', 'EBA' ),
         'section' => 'colors',
     ) ) );
 
+    // Cor do Texto do Footer
     $wp_customize->add_setting( 'cor_texto_footer', array(
-        'default' => '#222222',
+        'default'   => '#222222',
         'transport' => 'refresh',
     ) );
-
-    // Controle para a cor do texto do cabeçalho
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_footer', array(
-        'label' => __( 'Cor do Texto do Footer', 'EBA' ),
+        'label'   => __( 'Cor do Texto do Footer', 'EBA' ),
         'section' => 'colors',
     ) ) );
- 
- }
- 
- add_action( 'customize_register', 'EBA_customize_register' );
+}
+
+add_action( 'customize_register', 'EBA_customize_register' );
 
 
  function EBA_customize_register_dark( $wp_customize ) {
