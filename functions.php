@@ -431,6 +431,68 @@ function display_events() {
     }
 }
 
+function add_post_summary_meta_box() {
+    add_meta_box(
+        'post_summary',
+        'Post Summary',
+        'post_summary_callback',
+        'post',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'add_post_summary_meta_box');
+
+function post_summary_callback($post) {
+    $post_summary = get_post_meta($post->ID, 'post_summary', true);
+    ?>
+
+    <p>
+        <label for="post_summary">Resumo do post:</label>
+        <textarea id="post_summary" name="post_summary" rows="4"><?php echo esc_textarea($post_summary); ?></textarea>
+    </p>
+
+    <?php
+}
+
+function save_post_summary_meta($post_id) {
+    if (isset($_POST['post_summary'])) {
+        update_post_meta($post_id, 'post_summary', sanitize_textarea_field($_POST['post_summary']));
+    }
+}
+add_action('save_post', 'save_post_summary_meta');
+
+function add_post_deadline_meta_box() {
+    add_meta_box(
+        'post_deadline',
+        'Post Deadline',
+        'post_deadline_callback',
+        'post',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'add_post_deadline_meta_box');
+
+function post_deadline_callback($post) {
+    $post_deadline = get_post_meta($post->ID, 'post_deadline', true);
+    ?>
+
+    <p>
+        <label for="post_deadline">Data limite do post:</label>
+        <input type="date" id="post_deadline" name="post_deadline" value="<?php echo esc_attr($post_deadline); ?>">
+    </p>
+
+    <?php
+}
+
+function save_post_deadline_meta($post_id) {
+    if (isset($_POST['post_deadline'])) {
+        update_post_meta($post_id, 'post_deadline', sanitize_text_field($_POST['post_deadline']));
+    }
+}
+add_action('save_post', 'save_post_deadline_meta');
+
 function display_posts() {
     ?>
     <h1 class="titulo">Posts</h1>
@@ -454,7 +516,10 @@ function display_posts() {
 
         if ($query->have_posts()) {
             while ($query->have_posts()) {
-                $query->the_post();
+		$query->the_post();
+		$post_deadline = get_post_meta(get_the_ID(), 'post_deadline', true);
+            	// Verificar a data limite do post
+            	if (empty($post_deadline) || strtotime($post_deadline) >= current_time('timestamp')) {
                 ?>
                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                 <a href="<?php the_permalink(); ?>" class="link"><h3 class="entry-title"><?php the_title(); ?></h3></a>
@@ -463,10 +528,18 @@ function display_posts() {
                         <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p>
                     </div>
                     <div class="entry-content">
-                        <?php the_content(); ?>
-                    </div>
+                    	<?php
+                    	$post_summary = get_post_meta(get_the_ID(), 'post_summary', true);
+                    	if (!empty($post_summary)) {
+                        	echo '<p>' . esc_html($post_summary) . '</p>';
+                    	} else {
+			    the_content();
+			}
+	    		?>		
+		     </div>
                 </article>
-                <?php
+		<?php
+		}
             }
                 ?>
                 <p><a href="<?php echo get_category_link($category->term_id); ?>" class="read-more-link">Mais posts <?php echo $category->name;?></a></p>
