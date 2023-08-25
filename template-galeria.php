@@ -5,11 +5,11 @@
 get_header(); ?>
 
 
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/gallerystyle.css">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/gallerystyle2.css">
     <main>
         <h1 class="titulo">Galeria</h1>
         <?php 
-        $fpasta = isset($_POST["pasta"]) ? $_POST["pasta"] : "principal";
+        $fpasta = $_POST["pasta"];
         if($fpasta == NULL){
             $fpasta = "principal";
         }
@@ -52,7 +52,7 @@ get_header(); ?>
     <?php 
     }?>
     </main>
-    <script src="<?php echo get_template_directory_uri(); ?>/gallery.js"></script>
+    <script src="<?php echo get_template_directory_uri(); ?>/gallery2.js"></script>
     
 
 
