@@ -11,7 +11,7 @@
 	<?php get_header(); ?>
 
         <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/style.css">
-        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/gallerystyle.css">
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/gallerystyle2.css">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
         <footer>
             <?php get_footer(); ?>
         </footer>
-        <script src="<?php echo get_template_directory_uri(); ?>/gallery.js"></script>
+        <script src="<?php echo get_template_directory_uri(); ?>/gallery2.js"></script>
 </body>
 </html>
 
