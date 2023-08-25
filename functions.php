@@ -523,7 +523,7 @@ function display_posts() {
                 ?>
                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                 <a href="<?php the_permalink(); ?>" class="link"><h3 class="entry-title"><?php the_title(); ?></h3></a>
-                    <div class="entry-meta"
+                    <div class="entry-meta">
                         <p>Autor: <?php the_author(); ?></p>
                         <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p>
                     </div>
@@ -553,6 +553,12 @@ function display_posts() {
 /**
  * Estilo da imagem de fundo
  */
+function meu_tema_adicionar_suporte_imagem_de_fundo() {
+    add_theme_support( 'custom-background' );
+}
+add_action( 'after_setup_theme', 'meu_tema_adicionar_suporte_imagem_de_fundo' );
+
+
 function meu_tema_imagem_de_fundo_estilo() {
     $background = get_background_image();
     $style = '';
@@ -569,6 +575,9 @@ function meu_tema_imagem_de_fundo_estilo() {
 
     echo '<style type="text/css">' . $style . '</style>';
 }
+
+//add_action( 'customize_register', 'meu_tema_imagem_de_fundo_estilo' );
+
 
 function custom_page_title($title) {
     if (is_page()) {
@@ -590,15 +599,16 @@ function gallery($folder){
     
     $uploads_dir = get_template_directory() . $pasta . '*';
     $images = glob($uploads_dir . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+    echo '<div class="gallery-container">';
+    echo '<div class="gallery">';
     foreach ($images as $image) {
         $imageName = basename($image);
-        echo '<img src="' . get_template_directory_uri() . $pasta . $imageName . '" alt="Imagem">';
+        echo '<div class="slide"><img src="' . get_template_directory_uri() . $pasta . $imageName . '" alt="Imagem"></div>';
     }
+    echo '</div>';
+    echo '</div>';
     ?>
-    </div>
-    <div class="carousel-controls">
-      <button class="prev-button">Anterior</button>
-      <button class="next-button">Próximo</button>
+
     </div>
   </div>
   <?php
@@ -864,4 +874,7 @@ function display_cursos2() {
         }
     }
 }
+
+
+
 
