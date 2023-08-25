@@ -1,11 +1,13 @@
 <?php
 $cor_back = get_theme_mod('EBA_background_color', '#add8e6');
+echo "Cor de Fundo: " . $cor_back;
 $cor_cabecalho = get_theme_mod( 'header_background_color', '#dd0000' );
 $cor_texto = get_theme_mod('cor_texto_cabecalho', '#111111');
 $cor_menu = get_theme_mod('cor_menu', '#add8e6');
 $cor_footer = get_theme_mod('cor_footer', '#ffffff');
 $cor_texto_footer = get_theme_mod('cor_texto_footer', '#222222');
-$cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
+$cor_sub = get_theme_mod('cor_subtitulo_fundo', '#11d700');
+$cor_subtitulo_texto = get_theme_mod('cor_subtitulo_texto', '#11d700');
 ?>
 
 <style>
@@ -20,9 +22,9 @@ $cor_sub = get_theme_mod('cor_subtitulo', '#11d700');
     //background-repeat: no-repeat; 
   }
 
-  h2, h1:not(.title, .titulo){
-    background-color: <?php echo $cor_sub;?>;
-    
+  h2 {
+    background-color: <?php echo $cor_sub; ?>;
+    color: <?php echo $cor_subtitulo_texto; ?>;
   }
 
   .titulo{
