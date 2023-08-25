@@ -6,7 +6,7 @@ main{
   
   .gallery-container {
     margin: 200px;
-    right: 100px;
+    right: 400px;
     justify-content: center;
     perspective: 1200px;
   }
@@ -24,7 +24,7 @@ main{
     justify-content: center;
     height: 200px;
     width: auto;
-    margin: 100px;
+    margin: 100px auto;
   }
   
   .slide {
@@ -44,12 +44,70 @@ main{
   }
   
   .slide:nth-child(2) {
-    transform: rotateY(120deg) translateZ(150px);
+    transform: rotateY(60deg) translateZ(150px);
   }
   
   .slide:nth-child(3) {
+    transform: rotateY(120deg) translateZ(150px);
+  }
+
+  .slide:nth-child(4) {
+    transform: rotateY(180deg) translateZ(150px);
+  }
+
+  .slide:nth-child(5) {
     transform: rotateY(240deg) translateZ(150px);
   }
+
+  .slide:nth-child(6) {
+    transform: rotateY(300deg) translateZ(150px);
+  }
+
+  .slide:nth-child(7) {
+    transform: rotateY(3600deg) translateZ(150px);
+  }
+
+  .myButton{
+    background: none;
+    background-color: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: blue; /* Ou a cor que você preferir para links */
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 10px;
+  
+  }
+
+  .previews{
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+  
+  .preview{
+    display: flex;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+      object-fit: cover;
+      border: 7px solid #ccc;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    text-align: center;
+      flex-grow: 1;
+  }
+  
+  .preview:hover{
+    transform: scale(1.2);
+    transition: 0.3s ease;
+  }
+  
+
   
   @keyframes rotateGallery {
     0% {
