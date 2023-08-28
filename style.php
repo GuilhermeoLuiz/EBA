@@ -1,6 +1,5 @@
 <?php
 $cor_back = get_theme_mod('EBA_background_color', '#add8e6');
-echo "Cor de Fundo: " . $cor_back;
 $cor_cabecalho = get_theme_mod( 'header_background_color', '#dd0000' );
 $cor_texto = get_theme_mod('cor_texto_cabecalho', '#111111');
 $cor_menu = get_theme_mod('cor_menu', '#add8e6');
