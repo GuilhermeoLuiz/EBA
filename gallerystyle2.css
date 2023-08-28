@@ -16,7 +16,6 @@ main{
     height: 40px;
     position: relative;
     transform-style: preserve-3d;
-    animation: rotateGallery 30s infinite linear;
   }
   
   .gallery img{
