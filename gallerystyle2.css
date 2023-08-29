@@ -3,6 +3,17 @@ main{
   justify-items: center;
 }
 
+.rodar-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left, .right {
+  width: 48%; 
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+}
+
 .gallery-container {
   margin: 200px;
   right: 100px;

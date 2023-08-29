@@ -645,6 +645,14 @@ function gallery($folder){
 
     </div>
   </div>
+  <div class="rodar-container">
+  <div class="left">
+    << Rodar Galeria
+    </div>
+    <div class="right">
+    Rodar Galeria >>
+    </div>
+    </div>
   <?php
     // Verificar se o usuário está logado
     if (is_user_logged_in()) {
