@@ -9,7 +9,7 @@ get_header(); ?>
     <main>
         <h1 class="titulo">Galeria</h1>
         <?php 
-        $fpasta = $_POST["pasta"];
+        $fpasta = isset($_POST["pasta"]) ? $_POST["pasta"] : "principal";
         if($fpasta == NULL){
             $fpasta = "principal";
         }
