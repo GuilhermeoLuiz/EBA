@@ -1,104 +1,131 @@
 <?php
-	$cor_back = get_theme_mod('EBA_background_color', '#add8e6');
-	$cor_cabecalho = get_theme_mod( 'header_background_color', '#dd0000' );
-	$cor_texto_cabecalho = get_theme_mod('cor_texto_cabecalho', '#111111');
-	$cor_titulo_texto = get_theme_mod('cor_titulo_texto', '#add8e6');
-	$cor_titulo_fundo = get_theme_mod('cor_titulo_fundo', '#add8e6');
-	$cor_topico = get_theme_mod('cor_topico', '#add8e6');
-	$cor_menu = get_theme_mod('cor_menu', '#add8e6');
-	$cor_texto = get_theme_mod('cor_texto', '#add8e6');
-	$cor_footer = get_theme_mod('cor_footer', '#ffffff');
-	$cor_texto_footer = get_theme_mod('cor_texto_footer', '#222222');
-	$cor_sub = get_theme_mod('cor_subtitulo_fundo', '#11d700');
-	$cor_subtitulo_texto = get_theme_mod('cor_subtitulo_texto', '#11d700');
+    $cor_fundo = get_theme_mod('EBA_background_color', '#add8e6');
+    $cor_fundo_dark = get_theme_mod('cor_fundo_dark', '#111111');
+    $cor_cabecalho_fundo_dark = get_theme_mod('cor_cabecalho_fundo_dark', '#dd0000');
+    $cor_cabecalho = get_theme_mod('cor_cabecalho', '#111111');
+	$cor_cabecalho_fundo = get_theme_mod('cor_cabecalho_fundo', '#111111');
+    $cor_cabecalho_dark = get_theme_mod('cor_cabecalho_dark', '#ffffff');
+    $cor_titulo = get_theme_mod('cor_titulo', '#add8e6');
+	$cor_titulo_dark = get_theme_mod('cor_titulo_dark', '#add8e6');
+    $cor_titulo_fundo = get_theme_mod('cor_titulo_fundo', '#add8e6');
+    $cor_titulo_fundo_dark = get_theme_mod('cor_titulo_fundo_dark', '#add8e6');
+    $cor_subtitulo = get_theme_mod('cor_subtitulo', '#11d700');
+    $cor_subtitulo_dark = get_theme_mod('cor_subtitulo_dark', '#ffd700');
+	$cor_subtitulo_fundo = get_theme_mod('cor_subtitulo_fundo', '#11d700');
+	$cor_subtitulo_fundo_dark = get_theme_mod('cor_subtitulo_fundo_dark', '#11d700');
+    $cor_topico = get_theme_mod('cor_topico', '#add8e6');
+	$cor_topico_dark = get_theme_mod('cor_topico_dark', '#add8e6');
+    $cor_menu = get_theme_mod('cor_menu', '#add8e6');
+    $cor_menu_dark = get_theme_mod('cor_menu_dark', '#add9e6');
+    $cor_texto = get_theme_mod('cor_texto', '#add8e6');
+    $cor_texto_dark = get_theme_mod('cor_texto_dark', '#111111');
+    $cor_footer = get_theme_mod('cor_footer', '#ffffff');
+    $cor_footer_fundo_dark = get_theme_mod('cor_footer_fundo_dark', '#111111');
+    $cor_footer_fundo = get_theme_mod('cor_footer_fundo', '#222222');
+    $cor_footer_dark = get_theme_mod('cor_footer_dark', '#ffffff');
+	$cor_sidebar = get_theme_mod('cor_sidebar', '#222222');
+    $cor_sidebar_fundo = get_theme_mod('cor_sidebar_fundo', '#ffffff');
+	$cor_sidebar_dark = get_theme_mod('cor_sidebar_dark', '#222222');
+    $cor_sidebar_fundo_dark = get_theme_mod('cor_sidebar_fundo_dark', '#ffffff');
 ?>
 
 <style>
 
-	html{
-		background-color: <?php echo $cor_back;?>;
-		color: <?php echo get_theme_mod('cor_texto', '#222222');?>;
-	}
-	
-	body{
-		background-image: url('<?php echo get_background_image()?>');
-		background-size: cover;
-		background-repeat: no-repeat; 
+    html {
+        background-color: <?php echo $cor_fundo; ?>;
+        color: <?php echo $cor_texto; ?>;
+    }
+
+    body {
+        background-image: url('<?php echo get_background_image(); ?>');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    h2 {
+        background-color: <?php echo $cor_subtitulo_fundo; ?>;
+        color: <?php echo $cor_subtitulo; ?>;
+    }
+
+    h3 {
+        color: <?php echo $cor_topico; ?>;
+    }
+
+    .titulo {
+        background-color: <?php echo $cor_titulo_fundo; ?>;
+        color: <?php echo $cor_titulo; ?>;
+    }
+
+    .menu-principal {
+        background-color: <?php echo $cor_menu; ?>;
+    }
+
+    footer {
+        background-color: <?php echo $cor_footer_fundo; ?>;
+        color: <?php echo $cor_footer; ?>;
+    }
+
+    header {
+        background-color: <?php echo $cor_cabecalho_fundo; ?>;
+        color: <?php echo $cor_cabecalho; ?>;
+    }
+
+    p:not(.entry-title) {
+        color: <?php echo $cor_texto; ?>;
+    }
+
+	.sidebar {
+		background-color: <?php echo $cor_sidebar_fundo; ?>;
+        color: <?php echo $cor_sidebar; ?>;
 	}
 
-	h2{
-		background-color: <?php echo $cor_sub; ?>;
-		color: <?php echo $cor_subtitulo_texto; ?>;
+    /* Dark Mode */
+    .dark-mode html {
+    background-color: <?php echo $cor_fundo_dark; ?>;
+    color: <?php echo $cor_texto_dark; ?>;
 	}
 
-	h3{
-		color: <?php echo $cor_topico; ?>;
+	.dark-mode body {
+		background-color: <?php echo $cor_fundo_dark; ?>;
 	}
 
-	.titulo{
-		background-color: <?php echo get_theme_mod('cor_titulo_fundo', '#555555');?>;
-		color: <?php echo $cor_titulo_texto; ?>;
-	}
-	
-	.menu-principal{
-		background-color: <?php echo $cor_menu;?>;
-	}	
-
-	.dark-mode html{
-		background-color: black;
+	.dark-mode h2 {
+		background-color: <?php echo $cor_subtitulo_fundo_dark; ?>;
+		color: <?php echo $cor_subtitulo_dark; ?>;
 	}
 
-	footer{
-		background-color: <?php echo $cor_footer;?>;
-		color: <?php echo $cor_texto_footer;?>;
+	.dark-mode h3 {
+		color: <?php echo $cor_topico_dark; ?>;
 	}
 
-	header{
-		background-color: <?php echo $cor_cabecalho; ?>;
-		color: <?php echo $cor_texto_cabecalho;?>;
+	.dark-mode .titulo {
+		background-color: <?php echo $cor_titulo_fundo_dark; ?>;
+        color: <?php echo $cor_titulo_dark; ?>;
+
 	}
 
-	p:not(.entry-title){
-		color: <?php echo $cor_texto;?>;
+	.dark-mode .menu-principal {
+		background-color: <?php echo $cor_menu_dark; ?>;
 	}
 
-	.dark-mode {
-		background-color:<?php echo get_theme_mod('EBA_background_color_dark', '#111111');?>;
-		color: <?php echo get_theme_mod('cor_texto_dark', '#111111');?>;
+	.dark-mode header {
+		background-color: <?php echo $cor_cabecalho_fundo_dark; ?>;
+		color: <?php echo $cor_cabecalho_dark; ?>;
 	}
 
-	.dark-mode header{
-		background-color: <?php echo get_theme_mod('header_background_color_dark', '#dd0000');?>;
-		color: <?php echo get_theme_mod('cor_texto_cabecalho_dark', '#ffffff');?>;
+	.dark-mode footer {
+		background-color: <?php echo $cor_footer_fundo_dark; ?>;
+		color: <?php echo $cor_footer_dark; ?>;
 	}
 
-	.dark-mode html{
-		background-color: <?php echo get_theme_mod('EBA_background_color_dark', '#111111');?>;
+	.dark-mode p:not(.entry-title) {
+        color: <?php echo $cor_texto_dark; ?>;
+    }
+
+	.dark-mode .sidebar {
+		background-color: <?php echo $cor_sidebar_fundo_dark; ?>;
+        color: <?php echo $cor_sidebar_dark; ?>;
 	}
 
-	.dark-mode body{
-		background-color: <?php echo get_theme_mod('EBA_background_color_dark', '#111111');?>;;
-	}
-
-	.dark-mode h1:not(.title, .titulo){
-		background-color: <?php echo get_theme_mod('cor_subtitulo_dark', '#ffd700');?>;
-	}
-
-	.dark-mode .titulo{
-		color: black;
-	}
-
-	.dark-mode h2{
-		background-color: <?php echo get_theme_mod('cor_subtitulo_dark', '#ffd700');?>;
-	}
-
-	.dark-mode footer{
-		background-color: <?php echo get_theme_mod('cor_footer_dark', '#111111');?>;
-		color: <?php echo get_theme_mod('cor_texto_footer_dark', '#ffffff');?>;
-	}
-
-	.dark-mode .menu-principal{
-		background-color: <?php echo get_theme_mod('cor_menu_dark', '#add9e6');?>;
-	}
 
 </style>

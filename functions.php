@@ -68,6 +68,7 @@ function custom_redirect_404() {
     }
 }
 add_action( 'template_redirect', 'custom_redirect_404' );
+
 function EBA_customize_register( $wp_customize ) {
     
     //Configurações e controles para as cores personalizadas
@@ -84,32 +85,31 @@ function EBA_customize_register( $wp_customize ) {
     )));
 
      // Cor do Cabeçalho(Texto)
-     $wp_customize->add_setting('cor_texto_cabecalho', array(
+     $wp_customize->add_setting('cor_cabecalho', array(
         'default'   => '#ffffff',
         'transport' => 'refresh',
     ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_cabecalho', array(
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_cabecalho', array(
         'label'   => __( 'Cor do Cabeçalho(Texto)', 'EBA' ),
         'section' => 'colors',
     ) ) );
 
-    //Cor do Cabeçalho(Fundo)
-    $wp_customize->add_setting( 'header_background_color', array(
-        'default'           => '#dd0000',
-        'sanitize_callback' => 'sanitize_hex_color',
-    ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
-        'label'    => __('Cor do Cabeçalho(Fundo)', 'EBA'),
-        'section'  => 'colors',
-        'settings' => 'header_background_color',
-    ) ) );
-
-    // Cor do Título(Texto)
-    $wp_customize->add_setting( 'cor_titulo_texto', array(
+    // Cor do Cabeçalho(Texto)
+    $wp_customize->add_setting('cor_cabecalho_fundo', array(
         'default'   => '#ffffff',
         'transport' => 'refresh',
     ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_titulo_texto', array(
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_cabecalho_fundo', array(
+        'label'   => __( 'Cor do Cabeçalho(Fundo)', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
+    // Cor do Título(Texto)
+    $wp_customize->add_setting( 'cor_titulo', array(
+        'default'   => '#ffffff',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_titulo', array(
         'label'   => __( 'Cor do Título(Texto)', 'EBA' ),
         'section' => 'colors',
     ) ) );
@@ -125,11 +125,11 @@ function EBA_customize_register( $wp_customize ) {
     ) ) );
 
     // Cor do Subtítulo(Texto)
-    $wp_customize->add_setting( 'cor_subtitulo_texto', array(
+    $wp_customize->add_setting( 'cor_subtitulo', array(
         'default'   => '#11d700',
         'transport' => 'refresh',
     ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo_texto', array(
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo', array(
         'label'   => __( 'Cor do Subtítulo(Texto)', 'EBA' ),
         'section' => 'colors',
     ) ) );
@@ -175,128 +175,199 @@ function EBA_customize_register( $wp_customize ) {
     ) ) );
 
      // Cor do Footer(Texto)
-     $wp_customize->add_setting( 'cor_texto_footer', array(
+     $wp_customize->add_setting( 'cor_footer', array(
         'default'   => '#222222',
         'transport' => 'refresh',
     ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_footer', array(
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_footer', array(
         'label'   => __( 'Cor do Texto do Rodapé(Texto)', 'EBA' ),
         'section' => 'colors',
     ) ) );
 
     // Cor do Footer(Fundo)
-    $wp_customize->add_setting( 'cor_footer', array(
+    $wp_customize->add_setting( 'cor_footer_fundo', array(
         'default'   => '#ffffff',
         'transport' => 'refresh',
     ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_footer', array(
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_footer_fundo', array(
         'label'   => __( 'Cor do Rodapé(Fundo)', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
+    //Cor da Barra Lateral(Texto)
+    $wp_customize->add_setting( 'cor_sidebar', array(
+        'default'   => '#222222',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_sidebar', array(
+        'label'   => __( 'Cor da Barra Lateral(Texto)', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
+    //Cor da Barra Lateral(Fundo)
+    $wp_customize->add_setting( 'cor_sidebar_fundo', array(
+        'default'   => '#ffffff',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_sidebar_fundo', array(
+        'label'   => __( 'Cor da Barra Lateral(Fundo)', 'EBA' ),
         'section' => 'colors',
     ) ) );
 }
 
 add_action( 'customize_register', 'EBA_customize_register' );
 
-
- function EBA_customize_register_dark( $wp_customize ) {
-
+function EBA_customize_register_dark($wp_customize) {
     $wp_customize->add_section('Dark-Mode', array(
         'title' => __('Dark Mode', 'EBA'),
         'priority' => 30,
     ));
 
-    $wp_customize->add_setting( 'EBA_background_color_dark', array(
-        'default'           => '#111111', // Define a cor padrão do cabeçalho
-        'sanitize_callback' => 'sanitize_hex_color', // Valida a cor hexadecimal
-    ) );
-    
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'EBA_background_color_dark', array(
-        'label'    => __('Cor de Fundo', 'EBA' ),
-        'section'  => 'Dark-Mode',
+    $wp_customize->add_setting('cor_fundo_dark', array(
+        'default' => '#111111',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_fundo_dark', array(
+        'label' => __('Cor de Fundo (Dark Mode)', 'EBA'),
+        'section' => 'Dark-Mode',
         'settings' => 'EBA_background_color_dark',
-    ) ) );
+    )));
 
-    $wp_customize->add_setting( 'header_background_color_dark', array(
-     'default'           => '#dd0000', // Define a cor padrão do cabeçalho
-     'sanitize_callback' => 'sanitize_hex_color', // Valida a cor hexadecimal
- ) );
- 
- $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color_dark', array(
-     'label'    => __( 'Cor do Cabeçalho', 'EBA' ),
-     'section'  => 'Dark-Mode',
-     'settings' => 'header_background_color_dark',
- ) ) );
- 
- $wp_customize->add_setting( 'cor_texto_cabecalho_dark', array(
-         'default' => '#ffffff',
-         'transport' => 'refresh',
-     ) );
- 
-     // Controle para a cor do texto do cabeçalho
-     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_cabecalho_dark', array(
-         'label' => __( 'Cor do Texto do Cabeçalho', 'EBA' ),
-         'section' => 'Dark-Mode',
-     ) ) );
- 
-     $wp_customize->add_setting( 'cor_subtitulo_dark', array(
-         'default' => '#ffd700',
-         'transport' => 'refresh',
-     ) );
- 
-     // Controle para a cor do texto do cabeçalho
-     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo_dark', array(
-         'label' => __( 'Cor do Subtitulo', 'EBA' ),
-         'section' => 'Dark-Mode',
-     ) ) );
-     
-     $wp_customize->add_setting( 'cor_menu_dark', array(
-         'default' => '#add8e6',
-         'transport' => 'refresh',
-     ) );
- 
-     // Controle para a cor do texto do cabeçalho
-     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_menu_dark', array(
-         'label' => __( 'Cor do Menu', 'EBA' ),
-         'section' => 'Dark-Mode',
-     ) ) );
+    $wp_customize->add_setting('cor_cabecalho_dark', array(
+        'default' => '#dd0000',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
 
-     $wp_customize->add_setting( 'cor_texto_dark', array(
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_cabecalho_dark', array(
+        'label' => __('Cor do Cabeçalho (Dark Mode)', 'EBA'),
+        'section' => 'Dark-Mode',
+        'settings' => 'header_background_color_dark',
+    )));
+
+    $wp_customize->add_setting('cor_cabecalho_fundo_dark', array(
         'default' => '#ffffff',
         'transport' => 'refresh',
-    ) );
+    ));
 
-    // Controle para a cor do texto do cabeçalho
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_dark', array(
-        'label' => __( 'Cor do Texto', 'EBA' ),
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_cabecalho_fundo_dark', array(
+        'label' => __('Cor de Fundo do Cabeçalho (Dark Mode)', 'EBA'),
         'section' => 'Dark-Mode',
-    ) ) );
+    )));
 
+    $wp_customize->add_setting('cor_titulo_dark', array(
+        'default' => '#ffd700',
+        'transport' => 'refresh',
+    ));
 
-     $wp_customize->add_setting( 'cor_footer_dark', array(
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_titulo_dark', array(
+        'label' => __('Cor do Título (Dark Mode)', 'EBA'),
+        'section' => 'Dark-Mode',
+    )));
+
+    $wp_customize->add_setting('cor_titulo_fundo_dark', array(
+        'default' => '#ffd700',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_titulo_fundo_dark', array(
+        'label' => __('Cor de Fundo do Título (Dark Mode)', 'EBA'),
+        'section' => 'Dark-Mode',
+    )));
+
+    $wp_customize->add_setting('cor_subtitulo_dark', array(
+        'default' => '#ffd700',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_subtitulo_dark', array(
+        'label' => __('Cor do Subtítulo (Dark Mode)', 'EBA'),
+        'section' => 'Dark-Mode',
+    )));
+
+    $wp_customize->add_setting('cor_subtitulo_fundo_dark', array(
+        'default' => '#ffd700',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_subtitulo_fundo_dark', array(
+        'label' => __('Cor de Fundo do Subtítulo (Dark Mode)', 'EBA'),
+        'section' => 'Dark-Mode',
+    )));
+
+    $wp_customize->add_setting('cor_topico_dark', array(
+        'default' => '#add8e6',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_topico_dark', array(
+        'label' => __('Cor do Topico (Dark Mode)', 'EBA'),
+        'section' => 'Dark-Mode',
+    )));
+
+    $wp_customize->add_setting('cor_texto_dark', array(
+        'default' => '#ffffff',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_texto_dark', array(
+        'label' => __('Cor do Texto (Dark Mode)', 'EBA'),
+        'section' => 'Dark-Mode',
+    )));
+
+    $wp_customize->add_setting('cor_menu_dark', array(
+        'default' => '#add8e6',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_menu_dark', array(
+        'label' => __('Cor do Menu (Dark Mode)', 'EBA'),
+        'section' => 'Dark-Mode',
+    )));
+
+    $wp_customize->add_setting('cor_footer_dark', array(
         'default' => '#222222',
         'transport' => 'refresh',
-    ) );
+    ));
 
-    // Controle para a cor do texto do cabeçalho
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_footer_dark', array(
-        'label' => __( 'Cor do Footer', 'EBA' ),
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_footer_dark', array(
+        'label' => __('Cor do Rodapé (Dark Mode)', 'EBA'),
         'section' => 'Dark-Mode',
-    ) ) );
+    )));
 
-    $wp_customize->add_setting( 'cor_texto_footer_dark', array(
+    $wp_customize->add_setting('cor_footer_fundo_dark', array(
         'default' => '#ffffff',
         'transport' => 'refresh',
-    ) );
+    ));
 
-    // Controle para a cor do texto do cabeçalho
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_footer_dark', array(
-        'label' => __( 'Cor do Texto do Footer', 'EBA' ),
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_footer_fundo_dark', array(
+        'label' => __('Cor de Fundo do Rodapé (Dark Mode)', 'EBA'),
+        'section' => 'Dark-Mode',
+    )));
+
+    //Cor da Barra Lateral(Texto)
+    $wp_customize->add_setting( 'cor_sidebar_dark', array(
+        'default'   => '#222222',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_sidebar_dark', array(
+        'label'   => __( 'Cor da Barra Lateral(Texto)', 'EBA' ),
         'section' => 'Dark-Mode',
     ) ) );
- 
- }
- 
- add_action( 'customize_register', 'EBA_customize_register_dark' );
+
+    //Cor da Barra Lateral(Fundo)
+    $wp_customize->add_setting( 'cor_sidebar_fundo_dark', array(
+        'default'   => '#ffffff',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_sidebar_fundo_dark', array(
+        'label'   => __( 'Cor de Fundo da Barra Lateral(Dark Mode)', 'EBA' ),
+        'section' => 'Dark-Mode',
+    ) ) );
+}
+
+add_action('customize_register', 'EBA_customize_register_dark');
+
 
 
 function meu_tema_definir_capa() {
@@ -632,11 +703,8 @@ function gallery($folder){
     echo '</div>';
     echo '</div>';
     echo '<style>';
-    if($fileCount > 5)
-    {
-        echo '.gallery img{height: ' . 1000 / $fileCount . 'px;}';
-    }
-        for ($i = 0; $i < $fileCount; $i++) {
+    echo '.gallery img{height: ' . 1000 / $fileCount . 'px;}';
+    for ($i = 0; $i < $fileCount; $i++) {
         echo ".slide:nth-child(" . ($i + 1) . ") {transform: rotateY(". $i * (360 / $fileCount) ."deg) translateZ(" . ($fileCount * 50) ."px);}";
     }
     echo "</style>";
@@ -645,14 +713,6 @@ function gallery($folder){
 
     </div>
   </div>
-  <div class="rodar-container">
-  <div class="left">
-    << Rodar Galeria
-    </div>
-    <div class="right">
-    Rodar Galeria >>
-    </div>
-    </div>
   <?php
     // Verificar se o usuário está logado
     if (is_user_logged_in()) {
