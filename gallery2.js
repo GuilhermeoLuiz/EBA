@@ -69,9 +69,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const screenWidth = window.innerWidth;
         const clickX = event.clientX;
 
-        if (clickX < screenWidth / 2 && !isDragging) {
+        if (clickX < screenWidth / 2 && !isDragging && !isImageClicked) {
             rotation += 15;
-        } else if (!isDragging) {
+        } else if (!isDragging && !isImageClicked) {
             rotation -= 15;
         }
 
