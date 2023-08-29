@@ -612,7 +612,7 @@ add_filter('pre_get_document_title', 'custom_page_title');
 
 function gallery($folder){
     ?>
-    <h1> <?php echo $folder ?> </h1>
+    <h2> <?php echo $folder ?> </h2>
      <div class="carousel-container">
     <div class="carousel">
     <?php
@@ -623,13 +623,22 @@ function gallery($folder){
     $images = glob($uploads_dir . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
     echo '<div class="gallery-container">';
     echo '<div class="gallery">';
+    $fileCount = 0;
     foreach ($images as $image) {
+        $fileCount++;
         $imageName = basename($image);
         echo '<div class="slide"><img src="' . get_template_directory_uri() . $pasta . $imageName . '" alt="Imagem"></div>';
     }
     echo '</div>';
     echo '</div>';
+    echo '<style>';
+    echo '.gallery img{height: ' . 1000 / $fileCount . 'px;}';
+    for ($i = 0; $i < $fileCount; $i++) {
+        echo ".slide:nth-child(" . ($i + 1) . ") {transform: rotateY(". $i * (360 / $fileCount) ."deg) translateZ(" . ($fileCount * 50) ."px);}";
+    }
+    echo "</style>";
     ?>
+
 
     </div>
   </div>
