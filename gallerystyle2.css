@@ -30,7 +30,7 @@ main{
   height: 40px;
   position: relative;
   transform-style: preserve-3d;
-  transform: translateX(200px);
+  transform: translateX(150px);
 }
 
 .gallery img{

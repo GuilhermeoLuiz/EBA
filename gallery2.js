@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const rotateGallery = () => {
         if (!isImageClicked) {
             gallery.style.transition = 'transform 0.5s ease-in-out';
-            gallery.style.transform = `translateX(200px) rotateY(${rotation}deg)`;
+            gallery.style.transform = `translateX(150px) rotateY(${rotation}deg)`;
         }
     };
 
