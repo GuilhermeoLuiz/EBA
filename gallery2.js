@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const rotateLeft = () => {
-        rotation += 60;
+        rotation += 15;
         rotateGallery();
     };
 
     const rotateRight = () => {
-        rotation -= 60;
+        rotation -= 15;
         rotateGallery();
     };
 
