@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('keydown', function(event) {
         if (event.key === 'ArrowLeft') {
-            rotation += 60;
+            rotation += 15;
         } else if (event.key === 'ArrowRight') {
-            rotation -= 60;
+            rotation -= 15;
         }
 
         rotateGallery();

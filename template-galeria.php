@@ -25,8 +25,9 @@ get_header(); ?>
         return is_dir($temaDir . '/' . $item) && $item !== '.' && $item !== '..' && strpos($item, '.') !== 0;
     });
     echo "<div><h1> Mais Galerias </h1></div><br>";
-    echo '<div class="previews">'; 
+    echo '<div class="previews">';
     foreach ($pastas as $pasta) {
+        
         $folder = get_template_directory() . '/' . $pasta;
         $files = scandir($folder);
         $files = array_diff($files, array('..', '.'));
@@ -44,6 +45,10 @@ get_header(); ?>
     ?>
     </div>
     <?php
+    /*echo '<style>';
+    echo '.slide:nth-child(' . $count . ') {transform: rotateY(0deg) translateZ(800px);}';
+    echo '</style>';*/
+    
     if (is_user_logged_in()) {
         // O usuário está logado
         ?> 

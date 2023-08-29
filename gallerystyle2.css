@@ -23,7 +23,7 @@ main{
 
 .gallery img{
   justify-content: center;
-  height: 200px;
+  height: 100px;
   width: auto;
   margin: 0px auto;
 }
@@ -40,33 +40,6 @@ main{
   transform-origin: center center;
 }
 
-.slide:nth-child(1) {
-  transform: rotateY(0deg) translateZ(400px);
-}
-
-.slide:nth-child(2) {
-  transform: rotateY(60deg) translateZ(400px);
-}
-
-.slide:nth-child(3) {
-  transform: rotateY(120deg) translateZ(400px);
-}
-
-.slide:nth-child(4) {
-  transform: rotateY(180deg) translateZ(400px);
-}
-
-.slide:nth-child(5) {
-  transform: rotateY(240deg) translateZ(400px);
-}
-
-.slide:nth-child(6) {
-  transform: rotateY(300deg) translateZ(400px);
-}
-
-.slide:nth-child(7) {
-  transform: rotateY(360deg) translateZ(400px);
-}
 
 .myButton{
   background: none;
