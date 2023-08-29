@@ -12,6 +12,7 @@ main{
   width: 48%; 
   font-weight: bold;
   font-family: 'Times New Roman', Times, serif;
+  cursor: pointer;
 }
 
 .gallery-container {
