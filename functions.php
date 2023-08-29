@@ -703,8 +703,11 @@ function gallery($folder){
     echo '</div>';
     echo '</div>';
     echo '<style>';
-    echo '.gallery img{height: ' . 1000 / $fileCount . 'px;}';
-    for ($i = 0; $i < $fileCount; $i++) {
+    if($fileCount > 5)
+    {
+        echo '.gallery img{height: ' . 1000 / $fileCount . 'px;}';
+    }
+        for ($i = 0; $i < $fileCount; $i++) {
         echo ".slide:nth-child(" . ($i + 1) . ") {transform: rotateY(". $i * (360 / $fileCount) ."deg) translateZ(" . ($fileCount * 50) ."px);}";
     }
     echo "</style>";
@@ -713,6 +716,14 @@ function gallery($folder){
 
     </div>
   </div>
+  <div class="rodar-container">
+  <div class="left">
+    << Rodar Galeria
+    </div>
+    <div class="right">
+    Rodar Galeria >>
+    </div>
+    </div>
   <?php
     // Verificar se o usuário está logado
     if (is_user_logged_in()) {
