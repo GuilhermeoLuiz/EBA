@@ -116,3 +116,19 @@ main{
       transform: rotateY(360deg);
   }
 }
+
+@media (max-width: 768px) {
+  .gallery img {
+    height: 100px;
+  }
+
+  .gallery-container{
+    float: left;
+    transform: translateX(0px);
+  }
+
+  .gallery{
+    float: left;
+    transform: translateX(0px);
+  }
+}

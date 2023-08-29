@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const rotateGallery = () => {
         if (!isImageClicked) {
             gallery.style.transition = 'transform 0.5s ease-in-out';
-            gallery.style.transform = `translateX(150px) rotateY(${rotation}deg)`;
+            if(window.innerWidth <= 768){
+                gallery.style.transform = `rotateY(${rotation}deg)`;
+            }else{
+                gallery.style.transform = `translateX(150px) rotateY(${rotation}deg)`;
+            }
         }
     };
 
