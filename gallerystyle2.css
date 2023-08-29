@@ -13,6 +13,15 @@ main{
   font-weight: bold;
   font-family: 'Times New Roman', Times, serif;
   cursor: pointer;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
 }
 
 .gallery-container {
