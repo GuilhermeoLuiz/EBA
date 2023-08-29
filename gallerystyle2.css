@@ -108,6 +108,7 @@ main{
 }
 
 
+
 @keyframes rotateGallery {
   0% {
       transform: rotateY(0deg);
