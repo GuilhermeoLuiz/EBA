@@ -45,9 +45,6 @@ get_header(); ?>
     ?>
     </div>
     <?php
-    /*echo '<style>';
-    echo '.slide:nth-child(' . $count . ') {transform: rotateY(0deg) translateZ(800px);}';
-    echo '</style>';*/
     
     if (is_user_logged_in()) {
         // O usuário está logado

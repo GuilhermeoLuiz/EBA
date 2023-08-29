@@ -23,7 +23,7 @@ main{
 
 .gallery img{
   justify-content: center;
-  height: 100px;
+  height: 200px;
   width: auto;
   margin: 0px auto;
 }
@@ -81,6 +81,10 @@ main{
   transition: 0.3s ease;
 }
 
+.enlarged {
+  transform: scale(2); /* ou outro valor que você preferir para a ampliação */
+  transition: transform 0.3s ease; /* Adicione uma transição suave para a ampliação */
+}
 
 
 @keyframes rotateGallery {
