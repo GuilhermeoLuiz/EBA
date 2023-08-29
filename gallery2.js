@@ -70,9 +70,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const clickX = event.clientX;
 
         if (clickX < screenWidth / 2 && !isDragging) {
-            rotation += 60;
+            rotation += 15;
         } else if (!isDragging) {
-            rotation -= 60;
+            rotation -= 15;
         }
 
         rotateGallery();
