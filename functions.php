@@ -70,61 +70,61 @@ function custom_redirect_404() {
 add_action( 'template_redirect', 'custom_redirect_404' );
 function EBA_customize_register( $wp_customize ) {
     
-    // Configurações e controles para as cores personalizadas
+    //Configurações e controles para as cores personalizadas
     
-    // Cor de Fundo
+    //Cor de Fundo
     $wp_customize->add_setting( 'EBA_background_color', array(
         'default'           => '#ffffff',
         'sanitize_callback' => 'sanitize_hex_color',
-    ) );
+    ));
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'EBA_background_color', array(
-        'label'    => __( 'Cor de Fundo', 'EBA' ),
+        'label'    => __( 'Cor do Fundo', 'EBA' ),
         'section'  => 'colors',
         'settings' => 'EBA_background_color',
+    )));
+
+     // Cor do Cabeçalho(Texto)
+     $wp_customize->add_setting('cor_texto_cabecalho', array(
+        'default'   => '#ffffff',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_cabecalho', array(
+        'label'   => __( 'Cor do Cabeçalho(Texto)', 'EBA' ),
+        'section' => 'colors',
     ) ) );
 
-    // Cor do Cabeçalho
+    //Cor do Cabeçalho(Fundo)
     $wp_customize->add_setting( 'header_background_color', array(
         'default'           => '#dd0000',
         'sanitize_callback' => 'sanitize_hex_color',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_background_color', array(
-        'label'    => __( 'Cor do Cabeçalho', 'EBA' ),
+        'label'    => __('Cor do Cabeçalho(Fundo)', 'EBA'),
         'section'  => 'colors',
         'settings' => 'header_background_color',
     ) ) );
 
-    // Cor do Título
-    $wp_customize->add_setting( 'cor_titulo', array(
+    // Cor do Título(Texto)
+    $wp_customize->add_setting( 'cor_titulo_texto', array(
         'default'   => '#ffffff',
         'transport' => 'refresh',
     ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_titulo', array(
-        'label'   => __( 'Cor do Título', 'EBA' ),
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_titulo_texto', array(
+        'label'   => __( 'Cor do Título(Texto)', 'EBA' ),
         'section' => 'colors',
     ) ) );
-
-    // Cor do Texto do Cabeçalho
-    $wp_customize->add_setting( 'cor_texto_cabecalho', array(
-        'default'   => '#ffffff',
-        'transport' => 'refresh',
-    ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_cabecalho', array(
-        'label'   => __( 'Cor do Texto do Cabeçalho', 'EBA' ),
-        'section' => 'colors',
-    ) ) );
-
-    // Cor do Subtítulo
-    $wp_customize->add_setting( 'cor_subtitulo_fundo', array(
+        
+    // Cor do Título(Fundo)
+    $wp_customize->add_setting( 'cor_titulo_fundo', array(
         'default'   => '#11d700',
         'transport' => 'refresh',
     ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo_fundo', array(
-        'label'   => __( 'Cor do Subtítulo', 'EBA' ),
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_titulo_fundo', array(
+        'label'   => __( 'Cor do Título(Fundo)', 'EBA' ),
         'section' => 'colors',
     ) ) );
 
-    // Cor do Subtítulo
+    // Cor do Subtítulo(Texto)
     $wp_customize->add_setting( 'cor_subtitulo_texto', array(
         'default'   => '#11d700',
         'transport' => 'refresh',
@@ -134,13 +134,23 @@ function EBA_customize_register( $wp_customize ) {
         'section' => 'colors',
     ) ) );
 
-    // Cor do Menu
-    $wp_customize->add_setting( 'cor_menu', array(
-        'default'   => '#add8e6',
+    // Cor do Subtítulo(Fundo)
+    $wp_customize->add_setting( 'cor_subtitulo_fundo', array(
+        'default'   => '#11d700',
         'transport' => 'refresh',
     ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_menu', array(
-        'label'   => __( 'Cor do Menu', 'EBA' ),
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo_fundo', array(
+        'label'   => __( 'Cor do Subtítulo(Fundo)', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
+    // Cor do Tópico(Texto)
+    $wp_customize->add_setting( 'cor_topico', array(
+        'default'   => '#11d700',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_topico', array(
+        'label'   => __( 'Cor do Tópico', 'EBA' ),
         'section' => 'colors',
     ) ) );
 
@@ -154,23 +164,33 @@ function EBA_customize_register( $wp_customize ) {
         'section' => 'colors',
     ) ) );
 
-    // Cor do Footer
+    // Cor do Menu
+    $wp_customize->add_setting( 'cor_menu', array(
+        'default'   => '#add8e6',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_menu', array(
+        'label'   => __( 'Cor do Menu', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
+     // Cor do Footer(Texto)
+     $wp_customize->add_setting( 'cor_texto_footer', array(
+        'default'   => '#222222',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_footer', array(
+        'label'   => __( 'Cor do Texto do Rodapé(Texto)', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
+    // Cor do Footer(Fundo)
     $wp_customize->add_setting( 'cor_footer', array(
         'default'   => '#ffffff',
         'transport' => 'refresh',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_footer', array(
-        'label'   => __( 'Cor do Footer', 'EBA' ),
-        'section' => 'colors',
-    ) ) );
-
-    // Cor do Texto do Footer
-    $wp_customize->add_setting( 'cor_texto_footer', array(
-        'default'   => '#222222',
-        'transport' => 'refresh',
-    ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_texto_footer', array(
-        'label'   => __( 'Cor do Texto do Footer', 'EBA' ),
+        'label'   => __( 'Cor do Rodapé(Fundo)', 'EBA' ),
         'section' => 'colors',
     ) ) );
 }
@@ -793,7 +813,7 @@ function display_cursos() {
     );
 
     foreach ($tipos_cursos as $tipo => $tipo_display) {
-        echo '<h2 class="titulo">' . $tipo_display . '</h2><br>';
+        echo '<h2 class="titulo_cursos">' . $tipo_display . '</h2><br>';
         $args = array(
             'post_type' => 'curso',
             'posts_per_page' => -1,
@@ -813,7 +833,7 @@ function display_cursos() {
             while ($query->have_posts()) {
                 $query->the_post();
                 echo '<li class="curso-item">';
-                echo '<h2>' . get_the_title() . '</h2>';
+                echo '<h3>' . get_the_title() . '</h3>';
 
                 if (has_post_thumbnail()) {
                     the_post_thumbnail('thumbnail', array('class' => 'curso-image'));
