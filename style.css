@@ -207,7 +207,6 @@ header{
 	background-color: #992211;
 }
 
-
 .voltar-ao-topo {
 	display: block;
 	position: fixed;
@@ -273,8 +272,16 @@ header{
 	flex-grow: 1;
 }
 
+a:not(.event-title) {
+    color: red; /* Altera a cor para vermelho */
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+a:hover {
+    color: blue; /* Altera a cor ao passar o mouse de volta para azul */
+}
+
 .item-link {
-	color: green;
 	right: 10px;
 	display: flex;
     flex-direction: column;

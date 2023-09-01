@@ -497,8 +497,7 @@ function display_events() {
         while ($query->have_posts()) {
             $query->the_post();
             $event_permalink = get_permalink(); // Obter o link para o evento
-            echo '<h2><a href="' . esc_url($event_permalink) . '">' . get_the_title() . '</a></h2>';
-
+            echo '<a href="' . esc_url(get_permalink()) . '" class="link"><h3 class="service-sub-title">' . (get_the_title() ? esc_html(get_the_title()) : 'Sem título') . '</h3></a>';
             // Exibir nome do autor
             echo '<p>Autor: ' . get_the_author() . '</p>';
 
@@ -809,20 +808,26 @@ function display_services() {
             echo '<li class="service-item">';
             
             if (has_post_thumbnail()) {
-                echo '<a href="' . esc_url($servico_link) . '">';
-                echo '<div class="item-img">';
-                the_post_thumbnail('thumbnail', array('class' => 'service-image'));
+                echo '<div class="item-servico">';
+                    echo '<a href="' . esc_url($servico_link) . '">';
+                        echo '<div class="item-img">';
+                            the_post_thumbnail('thumbnail', array('class' => 'service-image'));
+                        echo '</div>';
+                        echo '<p class="item-link">';
+                            the_title(); // Imprime o título como link quando não há imagem
+                        echo '</p>';
+                    echo '</a>';
                 echo '</div>';
-                echo '<p class="item-link">';
-                the_title(); // Imprime o título como link quando não há imagem
-                echo '</p>';
-                echo '</a>';
             } else {
-                echo '<a href="' . esc_url($servico_link) . '"class="item-link">';
-                the_title(); // Imprime o título como link quando não há imagem
-                echo '</a>';
+                echo '<div class="item-servico">';
+                    echo '<a href="' . esc_url($servico_link) . '">';
+                        echo '<p class="item-link">';
+                            the_title(); // Imprime o título como link quando não há imagem
+                        echo '</p>';
+                    echo '</a>';
+                echo '</div>';
             }
-
+            
             echo '</li>';
         }
             ?>
