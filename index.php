@@ -22,7 +22,7 @@
 		<?php display_services(); ?>
 		<h1 class="titulo">Galerias</h1>
                 <?php gallery("principal");?>
-                <a href="/index.php/galeria">Página de Galerias</a>
+                <a href="<?php echo esc_url( home_url( '/index.php/galeria/' ) ); ?>">Página de Galerias</a>
         </main>
         <?php get_sidebar(); ?>
         <?php
