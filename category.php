@@ -24,8 +24,8 @@ if (have_posts()) {
                
 ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		    <h2><a href="<?php the_permalink(); ?>" class="link"><?php the_title(); ?></a></h2>
-                    <div class="entry-meta"
+        <a href="<?php the_permalink(); ?>" class="link"><h2 class="entry-title"><?php the_title(); ?></h2></a>
+                    <div class="entry-meta">
                         <p>Autor: <?php the_author(); ?></p>
                         <p>Data de Publicação: <?php echo date_i18n('j \d\e F \d\e Y', strtotime(get_the_date())); ?></p>
                     </div>

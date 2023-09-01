@@ -28,8 +28,8 @@ if (has_site_icon()) {
 	:::
 </div>
 <span class="separator"></span>
-<a href="/" class="texto">
-<div class"texto">
+<a href="<?php echo esc_url( home_url('/')); ?>" class="texto">
+<div class="texto">
 	<?php
 $descricao_site = get_bloginfo('title');
 echo $descricao_site;

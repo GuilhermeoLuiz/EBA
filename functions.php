@@ -497,7 +497,7 @@ function display_events() {
         while ($query->have_posts()) {
             $query->the_post();
             $event_permalink = get_permalink(); // Obter o link para o evento
-            echo '<a href="' . esc_url(get_permalink()) . '" class="link"><h3 class="service-sub-title">' . (get_the_title() ? esc_html(get_the_title()) : 'Sem título') . '</h3></a>';
+            echo '<a href="' . esc_url(get_permalink()) . '" class="link"><h3 class="entry-title">' . (get_the_title() ? esc_html(get_the_title()) : 'Sem título') . '</h3></a>';
             // Exibir nome do autor
             echo '<p>Autor: ' . get_the_author() . '</p>';
 
@@ -831,7 +831,7 @@ function display_services() {
             echo '</li>';
         }
             ?>
-            <p><a href="<?php echo esc_url(home_url('/index.php/servicos/')); ?>" class="read-more-link">Mais serviços</a></p>
+            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais serviços</a></p>
             <?php
         echo '</ul>';
         echo '</div>';

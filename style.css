@@ -178,7 +178,6 @@ button:hover, input[type="submit"]:not(.myButton) {
 }
 
 
-
 .dark {
 	float: right;
 	margin-right: 10px;
@@ -237,7 +236,7 @@ header{
 .service-item {
 	flex-grow: 1;
     display: inline-block;
-    margin: 0 auto; /* Adicione margens para espaçamento entre os itens */
+    margin: 0 auto;
 }
 
 .service-item img{
@@ -272,13 +271,17 @@ header{
 	flex-grow: 1;
 }
 
-a:not(.event-title) {
-    color: red; /* Altera a cor para vermelho */
-    text-decoration: none; /* Remove o sublinhado */
+a:not(.event-title, .texto) {
+    color: red; 
+    text-decoration: none; 
 }
 
-a:hover {
-    color: blue; /* Altera a cor ao passar o mouse de volta para azul */
+a:hover:not(.texto){
+    color: blue;
+}
+
+.entry-title:hover{
+	color: blue;
 }
 
 .item-link {
