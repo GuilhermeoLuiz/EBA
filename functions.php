@@ -496,7 +496,8 @@ function display_events() {
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
-            echo '<h2>' . get_the_title() . '</h2>';
+            $event_permalink = get_permalink(); // Obter o link para o evento
+            echo '<h2><a href="' . esc_url($event_permalink) . '">' . get_the_title() . '</a></h2>';
 
             // Exibir nome do autor
             echo '<p>Autor: ' . get_the_author() . '</p>';
