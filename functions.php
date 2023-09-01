@@ -518,7 +518,7 @@ function display_events() {
             the_excerpt();
             echo '</div>';
 	}
-	echo '<a href="#">Mais eventos</a>';
+	echo '<a href="' . esc_url( home_url( '/index.php/eventos/' ) ).'">Mais eventos</a>';
     } else {
         echo '<div>Não há eventos futuros disponíveis.</div><br>';
     }
