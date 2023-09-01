@@ -831,7 +831,7 @@ function display_services() {
             echo '</li>';
         }
             ?>
-            <p><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="read-more-link">Mais serviços</a></p>
+            <p><a href="<?php echo esc_url(home_url('/index.php/servicos/')); ?>" class="read-more-link">Mais serviços</a></p>
             <?php
         echo '</ul>';
         echo '</div>';
