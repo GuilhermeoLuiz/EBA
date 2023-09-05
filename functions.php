@@ -324,6 +324,16 @@ function EBA_customize_register_dark($wp_customize) {
         'section' => 'Dark-Mode',
     )));
 
+    // Cor do link
+    $wp_customize->add_setting( 'cor_link_dark', array(
+        'default'   => '#222222',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_link_dark', array(
+        'label'   => __( 'Cor do Link(Dark Mode)', 'EBA' ),
+        'section' => 'Dark-Mode',
+    ) ) );
+
     $wp_customize->add_setting('cor_menu_dark', array(
         'default' => '#add8e6',
         'transport' => 'refresh',
@@ -360,7 +370,7 @@ function EBA_customize_register_dark($wp_customize) {
         'transport' => 'refresh',
     ));
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_sidebar_dark', array(
-        'label'   => __('Cor da Barra Lateral(Texto)', 'EBA'),
+        'label'   => __('Cor do Texto da Barra Lateral(Dark Mode)', 'EBA'),
         'section' => 'Dark-Mode',
     )));
 
@@ -482,7 +492,6 @@ add_action('admin_menu', 'remove_event_taxonomies');
 // Função para exibir os eventos com datas futuras
 function display_events() {
     echo '<h1 class="titulo">Eventos Futuros</h1>';
-    echo '<br>';
 
     $args = array(
         'post_type' => 'event',
@@ -939,7 +948,11 @@ function display_cursos() {
             while ($query->have_posts()) {
                 $query->the_post();
                 echo '<li class="curso-item">';
-                echo '<a href="' . get_permalink() . '"><h3>' . get_the_title() . '</h3></a>';
+                echo '<h3>' . get_the_title() . '</h3>';
+
+                if (has_post_thumbnail()) {
+                    the_post_thumbnail('thumbnail', array('class' => 'curso-image'));
+                }
             }
             echo '</ul>';
             echo '</div>';

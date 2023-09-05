@@ -25,6 +25,7 @@
     $cor_subtitulo_fundo_dark = get_theme_mod('cor_subtitulo_fundo_dark', '#11d700');
     $cor_topico_dark = get_theme_mod('cor_topico_dark', '#add8e6');
     $cor_texto_dark = get_theme_mod('cor_texto_dark', '#111111');
+    $cor_link_dark = get_theme_mod('cor_link_dark', '#add8e6');
     $cor_footer_dark = get_theme_mod('cor_footer_dark', '#ffffff');
     $cor_footer_fundo_dark = get_theme_mod('cor_footer_fundo_dark', '#111111');
     $cor_sidebar_dark = get_theme_mod('cor_sidebar_dark', '#222222');
@@ -143,6 +144,10 @@
 
     .menu-principal a{
         color: <?php echo $cor_texto;?>;
+    }
+
+    .dark-mode a:hover, .dark-mode .link .entry-title:hover, .dark-mode .item-link:hover, .dark-mode .myButton:hover{
+        color: <?php echo $cor_link_dark; ?>;
     }
 
 
