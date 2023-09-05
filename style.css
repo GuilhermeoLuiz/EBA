@@ -313,3 +313,7 @@ a, .myButton{
 
 }
 
+.cursos-image{
+	float:right;
+	margin: 10px;
+}
