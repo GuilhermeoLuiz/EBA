@@ -1,31 +1,33 @@
 <?php
     $cor_fundo = get_theme_mod('EBA_background_color', '#add8e6');
-    $cor_fundo_dark = get_theme_mod('cor_fundo_dark', '#111111');
-    $cor_cabecalho_fundo_dark = get_theme_mod('cor_cabecalho_fundo_dark', '#dd0000');
     $cor_cabecalho = get_theme_mod('cor_cabecalho', '#111111');
 	$cor_cabecalho_fundo = get_theme_mod('cor_cabecalho_fundo', '#111111');
-    $cor_cabecalho_dark = get_theme_mod('cor_cabecalho_dark', '#ffffff');
     $cor_titulo = get_theme_mod('cor_titulo', '#add8e6');
-	$cor_titulo_dark = get_theme_mod('cor_titulo_dark', '#add8e6');
     $cor_titulo_fundo = get_theme_mod('cor_titulo_fundo', '#add8e6');
-    $cor_titulo_fundo_dark = get_theme_mod('cor_titulo_fundo_dark', '#add8e6');
     $cor_subtitulo = get_theme_mod('cor_subtitulo', '#11d700');
-    $cor_subtitulo_dark = get_theme_mod('cor_subtitulo_dark', '#ffd700');
 	$cor_subtitulo_fundo = get_theme_mod('cor_subtitulo_fundo', '#11d700');
-	$cor_subtitulo_fundo_dark = get_theme_mod('cor_subtitulo_fundo_dark', '#11d700');
     $cor_topico = get_theme_mod('cor_topico', '#add8e6');
-	$cor_topico_dark = get_theme_mod('cor_topico_dark', '#add8e6');
     $cor_menu = get_theme_mod('cor_menu', '#add8e6');
-    $cor_menu_dark = get_theme_mod('cor_menu_dark', '#add9e6');
     $cor_texto = get_theme_mod('cor_texto', '#add8e6');
-    $cor_texto_dark = get_theme_mod('cor_texto_dark', '#111111');
+    $cor_link = get_theme_mod('cor_link', '#add8e6');
     $cor_footer = get_theme_mod('cor_footer', '#ffffff');
-    $cor_footer_fundo_dark = get_theme_mod('cor_footer_fundo_dark', '#111111');
     $cor_footer_fundo = get_theme_mod('cor_footer_fundo', '#222222');
-    $cor_footer_dark = get_theme_mod('cor_footer_dark', '#ffffff');
 	$cor_sidebar = get_theme_mod('cor_sidebar', '#222222');
     $cor_sidebar_fundo = get_theme_mod('cor_sidebar_fundo', '#ffffff');
-	$cor_sidebar_dark = get_theme_mod('cor_sidebar_dark', '#222222');
+
+    $cor_menu_dark = get_theme_mod('cor_menu_dark', '#add9e6');
+    $cor_fundo_dark = get_theme_mod('cor_fundo_dark', '#111111');
+    $cor_cabecalho_fundo_dark = get_theme_mod('cor_cabecalho_fundo_dark', '#dd0000');
+    $cor_cabecalho_dark = get_theme_mod('cor_cabecalho_dark', '#ffffff');
+    $cor_titulo_dark = get_theme_mod('cor_titulo_dark', '#add8e6');
+    $cor_titulo_fundo_dark = get_theme_mod('cor_titulo_fundo_dark', '#add8e6');
+    $cor_subtitulo_dark = get_theme_mod('cor_subtitulo_dark', '#ffd700');
+    $cor_subtitulo_fundo_dark = get_theme_mod('cor_subtitulo_fundo_dark', '#11d700');
+    $cor_topico_dark = get_theme_mod('cor_topico_dark', '#add8e6');
+    $cor_texto_dark = get_theme_mod('cor_texto_dark', '#111111');
+    $cor_footer_dark = get_theme_mod('cor_footer_dark', '#ffffff');
+    $cor_footer_fundo_dark = get_theme_mod('cor_footer_fundo_dark', '#111111');
+    $cor_sidebar_dark = get_theme_mod('cor_sidebar_dark', '#222222');
     $cor_sidebar_fundo_dark = get_theme_mod('cor_sidebar_fundo_dark', '#ffffff');
 ?>
 
@@ -67,7 +69,15 @@
 
     header {
         background-color: <?php echo $cor_cabecalho_fundo; ?>;
+    }
+
+    .texto {
         color: <?php echo $cor_cabecalho; ?>;
+    }
+
+    a:hover, .link .entry-title:hover, .item-link:hover{
+        color: <?php echo $cor_link; ?>;
+        font-size: 1.2em;
     }
 
     p:not(.entry-title) {

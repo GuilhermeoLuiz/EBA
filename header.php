@@ -13,11 +13,11 @@ include 'style.php';
 <?php
 if (has_site_icon()) {
     $favicon_url = get_site_icon_url();
-}
 ?>
     <link rel="icon" href="<?php echo esc_url($favicon_url); ?>" type="image/x-icon">
     <link rel="apple-touch-icon" href="<?php echo esc_url($favicon_url); ?>">
-<a href="/">
+<?php } ?>
+<a href="<?php echo esc_url(home_url('/')); ?>">
   <div class="header-image">
         <img src="<?php echo esc_url(get_theme_mod('header_image')); ?>">
   </div>
@@ -28,7 +28,7 @@ if (has_site_icon()) {
 	:::
 </div>
 <span class="separator"></span>
-<a href="<?php echo esc_url( home_url('/')); ?>" class="texto">
+<a href="<?php echo esc_url(home_url('/')); ?>" class="texto">
 <div class="texto">
 	<?php
 $descricao_site = get_bloginfo('title');

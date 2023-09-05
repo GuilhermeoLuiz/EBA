@@ -164,6 +164,16 @@ function EBA_customize_register( $wp_customize ) {
         'section' => 'colors',
     ) ) );
 
+    // Cor do link
+    $wp_customize->add_setting( 'cor_link', array(
+        'default'   => '#222222',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_link', array(
+        'label'   => __( 'Cor do Link', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+
     // Cor do Menu
     $wp_customize->add_setting( 'cor_menu', array(
         'default'   => '#add8e6',
@@ -242,7 +252,6 @@ function EBA_customize_register_dark($wp_customize) {
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_cabecalho_dark', array(
         'label' => __('Cor do Cabeçalho (Dark Mode)', 'EBA'),
         'section' => 'Dark-Mode',
-        'settings' => 'header_background_color_dark',
     )));
 
     $wp_customize->add_setting('cor_cabecalho_fundo_dark', array(
@@ -349,21 +358,21 @@ function EBA_customize_register_dark($wp_customize) {
     $wp_customize->add_setting( 'cor_sidebar_dark', array(
         'default'   => '#222222',
         'transport' => 'refresh',
-    ) );
+    ));
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_sidebar_dark', array(
-        'label'   => __( 'Cor da Barra Lateral(Texto)', 'EBA' ),
+        'label'   => __('Cor da Barra Lateral(Texto)', 'EBA'),
         'section' => 'Dark-Mode',
-    ) ) );
+    )));
 
     //Cor da Barra Lateral(Fundo)
-    $wp_customize->add_setting( 'cor_sidebar_fundo_dark', array(
+    $wp_customize->add_setting('cor_sidebar_fundo_dark', array(
         'default'   => '#ffffff',
         'transport' => 'refresh',
-    ) );
+    ));
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_sidebar_fundo_dark', array(
-        'label'   => __( 'Cor de Fundo da Barra Lateral(Dark Mode)', 'EBA' ),
+        'label'   => __('Cor de Fundo da Barra Lateral(Dark Mode)', 'EBA'),
         'section' => 'Dark-Mode',
-    ) ) );
+    )));
 }
 
 add_action('customize_register', 'EBA_customize_register_dark');
@@ -518,7 +527,7 @@ function display_events() {
             the_excerpt();
             echo '</div>';
 	}
-	echo '<a href="' . esc_url( home_url( '/index.php/eventos/' ) ).'">Mais eventos</a>';
+	echo '<a class="link-mais-eventos" href="' . esc_url( home_url( '/index.php/eventos/' ) ).'">Mais eventos</a>';
     } else {
         echo '<div>Não há eventos futuros disponíveis.</div><br>';
     }
@@ -635,7 +644,7 @@ function display_posts() {
 		}
             }
                 ?>
-                <p><a href="<?php echo get_category_link($category->term_id); ?>" class="read-more-link">Mais posts <?php echo $category->name;?></a></p>
+                <p><a href="<?php echo get_category_link($category->term_id); ?>" class="link-mais-post">Mais posts <?php echo $category->name;?></a></p>
                 <?php
             wp_reset_postdata();
         } else {
@@ -831,7 +840,7 @@ function display_services() {
             echo '</li>';
         }
             ?>
-            <p><a href="<?php echo esc_url(home_url('/index.php/servicos/')); ?>" class="read-more-link">Mais serviços</a></p>
+            <p><a href="<?php echo esc_url(home_url('/index.php/servicos/')); ?>" class="link-mais-servicos">Mais serviços</a></p>
             <?php
         echo '</ul>';
         echo '</div>';
