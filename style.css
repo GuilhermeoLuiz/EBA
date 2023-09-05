@@ -313,6 +313,11 @@ a, .myButton{
 
 }
 
+.search-side{
+	max-width: 20%;
+	/*float: left;*/
+}
+
 .cursos-image{
 	float:right;
 	margin: 10px;
@@ -320,12 +325,14 @@ a, .myButton{
 
 #searchform {
     margin-top: 10px;
+	
 }
 
 #s {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+	max-width: 60%;
 }
 
 #searchsubmit {

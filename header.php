@@ -10,10 +10,7 @@ include 'style.php';
 ?>
 </head>
 <body>
-<form role="search" method="get" id="searchform" action="<?php echo esc_url(home_url('/')); ?>">
-    <input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="Pesquisar">
-    <input type="submit" id="searchsubmit" value="Pesquisar">
-</form>
+
 
 
 <?php
@@ -48,6 +45,12 @@ echo $descricao_site;
 </button>
 
 </header>
+<div class="search-side">
+<form role="search" method="get" id="searchform" action="<?php echo esc_url(home_url('/')); ?>">
+    <input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="Pesquisar">
+    <input type="submit" id="searchsubmit" value="Pesquisar">
+</form>
+</div>
 
 <nav class="menu">
 <?php
