@@ -285,7 +285,7 @@ a:not(.event-title, .texto, .sidebar) {
 	transform: scale(1.2);
 }
 
-a{
+a, .myButton{
 	color: blue;
 }
 

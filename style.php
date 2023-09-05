@@ -75,7 +75,7 @@
         color: <?php echo $cor_cabecalho; ?>;
     }
 
-    a:hover, .link .entry-title:hover, .item-link:hover{
+    a:hover, .link .entry-title:hover, .item-link:hover, .myButton:hover{
         color: <?php echo $cor_link; ?>;
     }
 
