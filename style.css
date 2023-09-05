@@ -317,3 +317,21 @@ a, .myButton{
 	float:right;
 	margin: 10px;
 }
+
+#searchform {
+    margin-top: 10px;
+}
+
+#s {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#searchsubmit {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
