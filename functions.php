@@ -482,6 +482,7 @@ add_action('admin_menu', 'remove_event_taxonomies');
 // Função para exibir os eventos com datas futuras
 function display_events() {
     echo '<h1 class="titulo">Eventos Futuros</h1>';
+    echo '<br>';
 
     $args = array(
         'post_type' => 'event',
@@ -938,11 +939,7 @@ function display_cursos() {
             while ($query->have_posts()) {
                 $query->the_post();
                 echo '<li class="curso-item">';
-                echo '<h3>' . get_the_title() . '</h3>';
-
-                if (has_post_thumbnail()) {
-                    the_post_thumbnail('thumbnail', array('class' => 'curso-image'));
-                }
+                echo '<a href="' . get_permalink() . '"><h3>' . get_the_title() . '</h3></a>';
             }
             echo '</ul>';
             echo '</div>';
