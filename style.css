@@ -310,6 +310,10 @@ a:hover:not(.texto){
 	color: red;
 }
 
+.menu-principal a{
+	color: blue;
+}
+
 @media (max-width: 768px) {
 	main{
 		max-width: 100%;

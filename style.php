@@ -127,5 +127,9 @@
         color: <?php echo $cor_sidebar_dark; ?>;
 	}
 
+    .menu-principal a{
+        color: <?php echo $cor_texto;?>;
+    }
+
 
 </style>
