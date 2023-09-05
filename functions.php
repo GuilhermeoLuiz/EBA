@@ -482,7 +482,6 @@ add_action('admin_menu', 'remove_event_taxonomies');
 // Função para exibir os eventos com datas futuras
 function display_events() {
     echo '<h1 class="titulo">Eventos Futuros</h1>';
-    echo '<br>';
 
     $args = array(
         'post_type' => 'event',

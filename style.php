@@ -77,16 +77,17 @@
 
     a:hover, .link .entry-title:hover, .item-link:hover{
         color: <?php echo $cor_link; ?>;
-        font-size: 1.2em;
     }
 
     p:not(.entry-title) {
         color: <?php echo $cor_texto; ?>;
     }
 
-	.sidebar {
-		background-color: <?php echo $cor_sidebar_fundo; ?>;
+	.sidebar p{
         color: <?php echo $cor_sidebar; ?>;
+	}
+    .sidebar {
+        background-color: <?php echo $cor_sidebar_fundo; ?>;
 	}
 
     /* Dark Mode */
@@ -134,6 +135,9 @@
 
 	.dark-mode .sidebar {
 		background-color: <?php echo $cor_sidebar_fundo_dark; ?>;
+	}
+
+    .dark-mode .sidebar p{
         color: <?php echo $cor_sidebar_dark; ?>;
 	}
 

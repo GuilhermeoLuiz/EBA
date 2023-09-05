@@ -285,6 +285,10 @@ a:not(.event-title, .texto, .sidebar) {
 	transform: scale(1.2);
 }
 
+a{
+	color: blue;
+}
+
 @media (max-width: 768px) {
 	main{
 		max-width: 100%;
