@@ -698,70 +698,64 @@ function custom_page_title($title) {
 }
 add_filter('pre_get_document_title', 'custom_page_title');
 
-
 function gallery($folder){
     ?>
     <h2> <?php echo $folder ?> </h2>
-     <div class="carousel-container">
-    <div class="carousel">
+    <div class="carousel-container">
+        <div class="carousel">
+            <?php
+            $pasta = "/" . $folder . "/";
+            $uploads_dir = get_template_directory() . $pasta . '*';
+            $media = glob($uploads_dir . '*.{jpg,jpeg,png,gif,mp4,webm}', GLOB_BRACE);
+            echo '<div class="gallery-container">';
+            echo '<div class="gallery">';
+            $fileCount = 0;
+            foreach ($media as $mediaFile) {
+                $fileCount++;
+                $mediaName = basename($mediaFile);
+                if (pathinfo($mediaFile, PATHINFO_EXTENSION) === 'mp4' || pathinfo($mediaFile, PATHINFO_EXTENSION) === 'webm') {
+                    echo '<div class="slide"><video controls><source src="' . get_template_directory_uri() . $pasta . $mediaName . '" type="video/mp4">Seu navegador não suporta vídeo HTML5.</video></div>';
+                } else {
+                    echo '<div class="slide"><img src="' . get_template_directory_uri() . $pasta . $mediaName . '" alt="Mídia"></div>';
+                }
+            }
+            echo '</div>';
+            echo '</div>';
+            echo '<style>';
+            if($fileCount > 5) {
+                echo '.gallery img, .gallery video {height: ' . 1000 / $fileCount . 'px;}';
+            }
+            for ($i = 0; $i < $fileCount; $i++) {
+                echo ".slide:nth-child(" . ($i + 1) . ") {transform: rotateY(". $i * (360 / $fileCount) ."deg) translateZ(" . ($fileCount * 50) ."px);}";
+            }
+            echo "</style>";
+            ?>
+        </div>
+    </div>
+    <div class="rodar-container">
+        <div class="left">
+            << Rodar Galeria
+        </div>
+        <div class="right">
+            Rodar Galeria >>
+        </div>
+    </div>
     <?php
-    $pasta = "/" . $folder . "/";
-    //echo '<h1>'. $pasta. '</h1>';
-    
-    $uploads_dir = get_template_directory() . $pasta . '*';
-    $images = glob($uploads_dir . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
-    echo '<div class="gallery-container">';
-    echo '<div class="gallery">';
-    $fileCount = 0;
-    foreach ($images as $image) {
-        $fileCount++;
-        $imageName = basename($image);
-        echo '<div class="slide"><img src="' . get_template_directory_uri() . $pasta . $imageName . '" alt="Imagem"></div>';
-    }
-    echo '</div>';
-    echo '</div>';
-    echo '<style>';
-    if($fileCount > 5)
-    {
-        echo '.gallery img{height: ' . 1000 / $fileCount . 'px;}';
-    }
-        for ($i = 0; $i < $fileCount; $i++) {
-        echo ".slide:nth-child(" . ($i + 1) . ") {transform: rotateY(". $i * (360 / $fileCount) ."deg) translateZ(" . ($fileCount * 50) ."px);}";
-    }
-    echo "</style>";
-    ?>
-
-
-    </div>
-  </div>
-  <div class="rodar-container">
-  <div class="left">
-    << Rodar Galeria
-    </div>
-    <div class="right">
-    Rodar Galeria >>
-    </div>
-    </div>
-  <?php
-    // Verificar se o usuário está logado
     if (is_user_logged_in()) {
-        // O usuário está logado
-        ?> 
+        ?>
         <form action="<?php echo esc_url(get_stylesheet_directory_uri() . '/indexload.php')?>" method="POST">
             <input type="hidden" name="pasta" value="<?php echo $folder?>">
-            <input type="submit" class="myButton" value="Upload de Imagem">
+            <input type="submit" class="myButton" value="Upload de Mídia">
         </form>
         <form action="<?php echo esc_url(get_stylesheet_directory_uri() . '/removeimg.php')?>" method="POST">
             <input type="hidden" name="pasta" value="<?php echo $folder?>">
-            <input type="submit" class="myButton" value="Apagar imagem">
+            <input type="submit" class="myButton" value="Apagar Mídia">
         </form>
         <?php
-        //echo '<a href="' . esc_url(get_stylesheet_directory_uri() . '/indexload.php') . '">Upload de Imagens</a>';
-    } 
-    ?>
-  
+    }
+}
 
-<?php }
+
 
 function register_servico_post_type() {
     $labels = array(
