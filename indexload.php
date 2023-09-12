@@ -9,6 +9,7 @@
 
     <!-- Formulário de Upload -->
     <div class="container">
+    <p> <?php echo $_POST["pasta"]; ?> </p>
     <form action="upload.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="fileToUpload">Escolha uma imagem:</label>

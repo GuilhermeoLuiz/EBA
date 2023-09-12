@@ -40,17 +40,18 @@ echo $descricao_site;
 </div>
 </a>
 </h1>
+<form role="search" method="get" id="searchform" action="<?php echo esc_url(home_url('/')); ?>">
+    <input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="Pesquisar">
+    <input type="submit" id="searchsubmit" value="Pesquisar">
+</form>
+<img class="lupa" src="<?php echo get_template_directory_uri();?>/lupa.png">
 <button class="dark" id="dark-mode-toggle">
 	Dark
 </button>
 
 </header>
-<div class="search-side">
-<form role="search" method="get" id="searchform" action="<?php echo esc_url(home_url('/')); ?>">
-    <input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="Pesquisar">
-    <input type="submit" id="searchsubmit" value="Pesquisar">
-</form>
-</div>
+
+
 
 <nav class="menu">
 <?php
@@ -64,6 +65,7 @@ echo $descricao_site;
 
 <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/dark.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/search.js"></script>
 
 <audio id="meuAudio" src="<?php echo get_template_directory_uri(); ?>/click.wav"></audio>
 <script src="<?php echo get_template_directory_uri(); ?>/audio.js"></script>

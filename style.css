@@ -289,6 +289,48 @@ a, .myButton{
 	color: blue;
 }
 
+.lupa{
+	max-height: 32px;
+	margin: 10px;
+}
+
+.lupa:hover{
+	cursor: pointer;
+}
+
+
+.search-side{
+	max-width: 20%;
+	/*float: left;*/
+}
+
+.cursos-image{
+	float:right;
+	margin: 10px;
+}
+
+#searchform {
+    margin-top: 10px;
+	display: none;
+	
+}
+
+#s {
+    border: none; /* Remove a borda */
+    padding: 0; /* Remove o espaçamento interno */
+    border-radius: 0; /* Remove o arredondamento dos cantos */
+    max-width: 60%;
+}
+
+
+#searchsubmit {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
 @media (max-width: 768px) {
 	main{
 		max-width: 100%;
@@ -313,32 +355,3 @@ a, .myButton{
 
 }
 
-.search-side{
-	max-width: 20%;
-	/*float: left;*/
-}
-
-.cursos-image{
-	float:right;
-	margin: 10px;
-}
-
-#searchform {
-    margin-top: 10px;
-	
-}
-
-#s {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-	max-width: 60%;
-}
-
-#searchsubmit {
-    background-color: #0073e6;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-}
