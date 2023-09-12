@@ -4,7 +4,7 @@
 	Description: Tema em desenvolvimento para a Escola de Belas Artes
 	Version: 1.0
 	Tags: two-columns, education
- */
+*/
 
 
  .curso-section {
@@ -39,10 +39,6 @@
 .curso-item img:hover{
 	transform: scale(1.2);
 }
-
-
-
-
 
 h2, h1:not(.title, .titulo){
 	justify-content: center;
