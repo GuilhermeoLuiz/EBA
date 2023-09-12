@@ -930,7 +930,7 @@ function display_cursos() {
     );
 
     foreach ($tipos_cursos as $tipo => $tipo_display) {
-        echo '<h2 class="titulo_cursos">' . $tipo_display . '</h2><br>';
+        echo '<br><h2 class="titulo_cursos">' . $tipo_display . '</h2><br>';
         $args = array(
             'post_type' => 'curso',
             'posts_per_page' => -1,
@@ -947,15 +947,20 @@ function display_cursos() {
         if ($query->have_posts()) {
             echo '<div class="curso-section">';
             echo '<ul class="curso-list">';
+
             while ($query->have_posts()) {
                 $query->the_post();
                 echo '<li class="curso-item">';
-                echo '<h3>' . get_the_title() . '</h3>';
+                
 
                 if (has_post_thumbnail()) {
                     the_post_thumbnail('thumbnail', array('class' => 'curso-image'));
                 }
+                echo '<h3>' . get_the_title() . '</h3>';
+
+                echo '</li>';
             }
+
             echo '</ul>';
             echo '</div>';
             wp_reset_postdata();
