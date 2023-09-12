@@ -10,6 +10,7 @@
     $cor_menu = get_theme_mod('cor_menu', '#add8e6');
     $cor_texto = get_theme_mod('cor_texto', '#add8e6');
     $cor_link = get_theme_mod('cor_link', '#add8e6');
+    $cor_botao = get_theme_mod('cor_botao', '#add8e6');
     $cor_footer = get_theme_mod('cor_footer', '#ffffff');
     $cor_footer_fundo = get_theme_mod('cor_footer_fundo', '#222222');
 	$cor_sidebar = get_theme_mod('cor_sidebar', '#222222');
@@ -26,6 +27,7 @@
     $cor_topico_dark = get_theme_mod('cor_topico_dark', '#add8e6');
     $cor_texto_dark = get_theme_mod('cor_texto_dark', '#111111');
     $cor_link_dark = get_theme_mod('cor_link_dark', '#add8e6');
+    $cor_botao_dark = get_theme_mod('cor_botao_dark', '#add8e6');
     $cor_footer_dark = get_theme_mod('cor_footer_dark', '#ffffff');
     $cor_footer_fundo_dark = get_theme_mod('cor_footer_fundo_dark', '#111111');
     $cor_sidebar_dark = get_theme_mod('cor_sidebar_dark', '#222222');
@@ -76,12 +78,21 @@
         color: <?php echo $cor_cabecalho; ?>;
     }
 
-    a:hover, .link .entry-title:hover, .item-link:hover, .myButton:hover{
+    a:not(.myButton):hover, .link .entry-title:hover, .item-link:hover{
         color: <?php echo $cor_link; ?>;
     }
 
     p:not(.entry-title) {
         color: <?php echo $cor_texto; ?>;
+    }
+
+    button, .myButton{
+        color: <?php echo $cor_texto; ?>;
+        background-color: <?php echo $cor_botao; ?>;
+    }
+
+    button:hover, .myButton:hover{
+        background-color: <?php echo $cor_link; ?>;
     }
 
 	.sidebar p{
@@ -146,8 +157,17 @@
         color: <?php echo $cor_texto;?>;
     }
 
-    .dark-mode a:hover, .dark-mode .link .entry-title:hover, .dark-mode .item-link:hover, .dark-mode .myButton:hover{
+    .dark-mode a:hover, .dark-mode .link .entry-title:hover, .dark-mode .item-link:hover{
         color: <?php echo $cor_link_dark; ?>;
+    }
+
+    .dark-mode button, .myButton{
+        color: <?php echo $cor_texto_dark; ?>;
+        background-color: <?php echo $cor_botao_dark; ?>;
+    }
+
+    .dark-mode button:hover, .myButton:hover{
+        background-color: <?php echo $cor_link_dark; ?>;
     }
 
 

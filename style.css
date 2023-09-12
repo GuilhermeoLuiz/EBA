@@ -4,7 +4,7 @@
 	Description: Tema em desenvolvimento para a Escola de Belas Artes
 	Version: 1.0
 	Tags: two-columns, education
-*/
+ */
 
 
  .curso-section {
@@ -18,14 +18,10 @@
 .curso-item {
 	width: 180px;
 	height: 240px;
-	background-color: lightgreen;
+	background-color: gray;
 	display: inline-block;
 	text-align: center;
     margin-right: 40px; 
-	overflow: hidden;
-}
-
-.img-box{
 	overflow: hidden;
 }
 
@@ -33,7 +29,7 @@
 	height: 180px;
 	width: 180px;
 	max-width: 100%;
-	transition: transform 1s;
+	transition: transform 0.3s;
 }
 
 .curso-item img:hover{
@@ -318,8 +314,12 @@ a:not(.event-title, .texto, .sidebar) {
 	transform: scale(1.2);
 }
 
-a, .myButton{
+a:not(.myButton){
 	color: blue;
+}
+
+.sidebar a{
+	background-color: initial;
 }
 
 .lupa{

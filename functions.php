@@ -164,13 +164,23 @@ function EBA_customize_register( $wp_customize ) {
         'section' => 'colors',
     ) ) );
 
-    // Cor do link
+    // Cor do Link
     $wp_customize->add_setting( 'cor_link', array(
         'default'   => '#222222',
         'transport' => 'refresh',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_link', array(
         'label'   => __( 'Cor do Link', 'EBA' ),
+        'section' => 'colors',
+    ) ) );
+    
+    // Cor do Botao
+    $wp_customize->add_setting( 'cor_botao', array(
+        'default'   => '#222222',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_botao', array(
+        'label'   => __( 'Cor do Botao', 'EBA' ),
         'section' => 'colors',
     ) ) );
 
@@ -331,6 +341,16 @@ function EBA_customize_register_dark($wp_customize) {
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_link_dark', array(
         'label'   => __( 'Cor do Link(Dark Mode)', 'EBA' ),
+        'section' => 'Dark-Mode',
+    ) ) );
+    
+    // Cor do Botao
+    $wp_customize->add_setting( 'cor_botao_dark', array(
+        'default'   => '#222222',
+        'transport' => 'refresh',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_botao_dark', array(
+        'label'   => __( 'Cor do Botao(Dark Mode)', 'EBA' ),
         'section' => 'Dark-Mode',
     ) ) );
 
@@ -544,7 +564,7 @@ function display_events() {
             echo '<p>' . $dia_com_dois_digitos . ' ' . $nome_mes_em_portugues . '</p>';
 	}
 
-	echo '<a class="link-mais-eventos" href="' . esc_url( home_url( '/index.php/eventos/' ) ).'">Mais eventos</a>';
+	echo '<a class="link-mais-eventos" href="' . esc_url( home_url( '/index.php/eventos/' ) ).'"> <button> Mais eventos </button> </a>';
     } else {
         echo '<div>Não há eventos futuros disponíveis.</div><br>';
     }
@@ -661,7 +681,7 @@ function display_posts() {
 		}
             }
                 ?>
-                <p><a href="<?php echo get_category_link($category->term_id); ?>" class="link-mais-post">Mais posts <?php echo $category->name;?></a></p>
+                <p><a href="<?php echo get_category_link($category->term_id); ?>" class="link-mais-post"> <button> Mais posts <?php echo $category->name;?> </button></a></p>
                 <?php
             wp_reset_postdata();
         } else {
@@ -850,12 +870,13 @@ function display_services() {
             
             echo '</li>';
         }
-            ?>
-            <p><a href="<?php echo esc_url(home_url('/index.php/servicos/')); ?>" class="link-mais-servicos">Mais serviços</a></p>
-            <?php
+    
         echo '</ul>';
         echo '</div>';
         wp_reset_postdata();
+        ?>
+        <p><a href="<?php echo esc_url(home_url('/index.php/servicos/')); ?>" class="link-mais-servicos"><button>Mais serviços </button></a></p>
+        <?php    
     } else {
         echo '<p>Nenhum serviço disponível.</p>';
     }
@@ -952,11 +973,10 @@ function display_cursos() {
                 $query->the_post();
                 echo '<li class="curso-item">';
                 
-                echo '<div class="img-box">';
+
                 if (has_post_thumbnail()) {
                     the_post_thumbnail('thumbnail', array('class' => 'curso-image'));
                 }
-                echo '</div>';
                 echo '<h3>' . get_the_title() . '</h3>';
 
                 echo '</li>';
