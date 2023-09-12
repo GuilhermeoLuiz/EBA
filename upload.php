@@ -19,7 +19,7 @@ if (file_exists($target_file)) {
 }
 
 // Verificar o tamanho máximo do arquivo
-$maxFileSize = 50 * 1024 * 1024; // 50 MB
+$maxFileSize = 1024 * 1024 * 1024; // 50 MB
 if ($_FILES["fileToUpload"]["size"] > $maxFileSize) {
     echo "Desculpe, o arquivo é muito grande.";
     $uploadOk = 0;
@@ -38,6 +38,6 @@ if ($uploadOk == 0) {
         echo "Desculpe, houve um erro ao enviar o arquivo.";
     }
 }
-//header("Location: /");
+header("Location: /");
 ?>
 <link rel="stylesheet" type="text/css" href="styleupload.css">

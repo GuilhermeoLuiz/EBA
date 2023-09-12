@@ -7,6 +7,20 @@
  */
 
 
+ .curso-section {
+    display: inline-block; /* Faz com que os cursos fiquem na mesma linha */
+}
+
+.curso-list {
+    list-style-type: none; /* Remove a estilização padrão da lista */
+}
+
+.curso-item {
+	display: inline-block;
+    margin-right: 100px; /* Adiciona um espaço entre os cursos */
+}
+
+
 h2, h1:not(.title, .titulo){
 	justify-content: center;
 	align-items: center;
