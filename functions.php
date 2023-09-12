@@ -436,7 +436,7 @@ function lc_create_post_type() {
         'labels' => $labels,
         'has_archive' => true,
         'public' => true,
-        'supports' => array('title', 'editor', 'excerpt', 'custom-fields', 'thumbnail', 'page-attributes'),
+        'supports' => array('title', 'editor', 'custom-fields', 'page-attributes'),
         'taxonomies' => array('post_tag', 'category'),
         'exclude_from_search' => false,
         'capability_type' => 'post',
@@ -516,26 +516,34 @@ function display_events() {
             $query->the_post();
             $event_permalink = get_permalink(); // Obter o link para o evento
             echo '<a href="' . esc_url(get_permalink()) . '" class="link"><h3 class="entry-title">' . (get_the_title() ? esc_html(get_the_title()) : 'Sem título') . '</h3></a>';
-            // Exibir nome do autor
-            echo '<p>Autor: ' . get_the_author() . '</p>';
 
-            // Exibir a data do evento
+
             $event_date = get_post_meta(get_the_ID(), 'event_date', true);
-            $formatted_event_date = !empty($event_date) ? date('d/m/Y', strtotime($event_date)) : '';
-            echo '<p>Data do evento: ' . $formatted_event_date . '</p>';
 
-            // Exibir a imagem destacada (thumbnail) do evento
-            if (has_post_thumbnail()) {
-                echo '<div class="event-thumbnail">';
-                the_post_thumbnail('medium'); // Pode ajustar o tamanho conforme necessário
-                echo '</div>';
-            }
+            // Array para mapear os nomes dos meses em inglês para português
+            $meses_em_portugues = array(
+                'January' => 'Jan',
+                'February' => 'Fev',
+                'March' => 'Mar',
+                'April' => 'Abr',
+                'May' => 'Mai',
+                'June' => 'Jun',
+                'July' => 'Jul',
+                'August' => 'Ago',
+                'September' => 'Set',
+                'October' => 'Out',
+                'November' => 'Nov',
+                'December' => 'Dez'
+            );
 
-            // Exibir o resumo do evento
-            echo '<div class="event-summary">';
-            the_excerpt();
-            echo '</div>';
+            // Formate a data para exibir o dia com dois dígitos e o nome do mês em português
+            $timestamp = strtotime($event_date);
+            $dia_com_dois_digitos = date('d', $timestamp);
+            $nome_mes_em_portugues = $meses_em_portugues[date('F', $timestamp)];
+
+            echo '<p>' . $dia_com_dois_digitos . ' ' . $nome_mes_em_portugues . '</p>';
 	}
+
 	echo '<a class="link-mais-eventos" href="' . esc_url( home_url( '/index.php/eventos/' ) ).'">Mais eventos</a>';
     } else {
         echo '<div>Não há eventos futuros disponíveis.</div><br>';
@@ -922,7 +930,7 @@ function display_cursos() {
     );
 
     foreach ($tipos_cursos as $tipo => $tipo_display) {
-        echo '<br><h2 class="titulo_cursos">' . $tipo_display . '</h2><br>';
+        echo '<h2 class="titulo_cursos">' . $tipo_display . '</h2><br>';
         $args = array(
             'post_type' => 'curso',
             'posts_per_page' => -1,
@@ -939,7 +947,6 @@ function display_cursos() {
         if ($query->have_posts()) {
             echo '<div class="curso-section">';
             echo '<ul class="curso-list">';
-
             while ($query->have_posts()) {
                 $query->the_post();
                 echo '<li class="curso-item">';
@@ -948,10 +955,7 @@ function display_cursos() {
                 if (has_post_thumbnail()) {
                     the_post_thumbnail('thumbnail', array('class' => 'curso-image'));
                 }
-
-                echo '</li>';
             }
-
             echo '</ul>';
             echo '</div>';
             wp_reset_postdata();
@@ -960,7 +964,6 @@ function display_cursos() {
         }
     }
 }
-
 
 // Exibir Cursos por Tipo e com conteúdo
 function display_cursos2() {
