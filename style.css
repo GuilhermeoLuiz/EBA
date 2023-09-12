@@ -25,11 +25,15 @@
 	overflow: hidden;
 }
 
+.img-box{
+	overflow: hidden;
+}
+
 .curso-item img{
 	height: 180px;
 	width: 180px;
 	max-width: 100%;
-	transition: transform 0.3s;
+	transition: transform 1s;
 }
 
 .curso-item img:hover{

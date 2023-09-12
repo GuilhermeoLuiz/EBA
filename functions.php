@@ -952,10 +952,11 @@ function display_cursos() {
                 $query->the_post();
                 echo '<li class="curso-item">';
                 
-
+                echo '<div class="img-box">';
                 if (has_post_thumbnail()) {
                     the_post_thumbnail('thumbnail', array('class' => 'curso-image'));
                 }
+                echo '</div>';
                 echo '<h3>' . get_the_title() . '</h3>';
 
                 echo '</li>';
