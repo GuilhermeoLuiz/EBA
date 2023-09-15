@@ -388,8 +388,8 @@ a:not(.myButton){
 
 .mes{
 	display: inline-block;
-	vertical-align: initial;
-	margin-left: 0;
+vertical-align: initial;
+margin-left: 0;
 }
 
 
@@ -423,13 +423,6 @@ a:not(.myButton){
 
 	.menu-principal{
 		left: -650px;
-	}
-
-	#s{
-		max-width: 50%;
-	}
-	#searchsubmit {
-		font-size: 0.6rem;		
 	}
 
 }

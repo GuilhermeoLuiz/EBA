@@ -133,8 +133,11 @@
 
 	.dark-mode header {
 		background-color: <?php echo $cor_cabecalho_fundo_dark; ?>;
-		color: <?php echo $cor_cabecalho_dark; ?>;
 	}
+
+    .dark-mode .texto{
+        color: <?php echo $cor_cabecalho_dark?>; 
+    }
 
 	.dark-mode footer {
 		background-color: <?php echo $cor_footer_fundo_dark; ?>;

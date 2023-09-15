@@ -69,11 +69,12 @@ function custom_redirect_404() {
 }
 add_action( 'template_redirect', 'custom_redirect_404' );
 
+
 function EBA_customize_register( $wp_customize ) {
     
-    //Configurações e controles para as cores personalizadas
+    // Configurações e controles para as cores personalizadas
     
-    //Cor de Fundo
+    // Cor do Fundo
     $wp_customize->add_setting( 'EBA_background_color', array(
         'default'           => '#ffffff',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -84,23 +85,23 @@ function EBA_customize_register( $wp_customize ) {
         'settings' => 'EBA_background_color',
     )));
 
-     // Cor do Cabeçalho(Texto)
-     $wp_customize->add_setting('cor_cabecalho', array(
+    // Cor do Cabeçalho(Texto) - Modo Claro
+    $wp_customize->add_setting('cor_cabecalho', array(
         'default'   => '#ffffff',
         'transport' => 'refresh',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_cabecalho', array(
-        'label'   => __( 'Cor do Cabeçalho(Texto)', 'EBA' ),
+        'label'   => __( 'Cor do Cabeçalho (Texto) - Modo Claro', 'EBA' ),
         'section' => 'colors',
     ) ) );
 
-    // Cor do Cabeçalho(Texto)
+    // Cor do Cabeçalho(Fundo) - Modo Claro
     $wp_customize->add_setting('cor_cabecalho_fundo', array(
         'default'   => '#ffffff',
         'transport' => 'refresh',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_cabecalho_fundo', array(
-        'label'   => __( 'Cor do Cabeçalho(Fundo)', 'EBA' ),
+        'label'   => __( 'Cor do Cabeçalho (Fundo) - Modo Claro', 'EBA' ),
         'section' => 'colors',
     ) ) );
 
@@ -243,24 +244,23 @@ function EBA_customize_register_dark($wp_customize) {
         'priority' => 30,
     ));
 
-    $wp_customize->add_setting('cor_fundo_dark', array(
-        'default' => '#111111',
-        'sanitize_callback' => 'sanitize_hex_color',
-    ));
-
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_fundo_dark', array(
-        'label' => __('Cor de Fundo (Dark Mode)', 'EBA'),
-        'section' => 'Dark-Mode',
-        'settings' => 'EBA_background_color_dark',
-    )));
-
+    // Cor do Cabeçalho(Texto) - Modo Escuro
     $wp_customize->add_setting('cor_cabecalho_dark', array(
         'default' => '#dd0000',
-        'sanitize_callback' => 'sanitize_hex_color',
+        'transport' => 'refresh',
     ));
-
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_cabecalho_dark', array(
-        'label' => __('Cor do Cabeçalho (Dark Mode)', 'EBA'),
+        'label' => __('Cor do Cabeçalho (Texto) - Modo Escuro', 'EBA'),
+        'section' => 'Dark-Mode',
+    )));
+
+    // Cor do Cabeçalho(Fundo) - Modo Escuro
+    $wp_customize->add_setting('cor_cabecalho_fundo_dark', array(
+        'default' => '#ffffff',
+        'transport' => 'refresh',
+    ));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'cor_cabecalho_fundo_dark', array(
+        'label' => __('Cor de Fundo do Cabeçalho (Modo Escuro)', 'EBA'),
         'section' => 'Dark-Mode',
     )));
 
