@@ -531,11 +531,12 @@ function display_events() {
     $query = new WP_Query($args);
     $event_counter = 0; // Inicializar o contador de eventos
 
+    echo '<div class="event-block">';
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
             $event_permalink = get_permalink(); // Obter o link para o evento
-            echo '<a href=""><div class="bloco-eventos"><h3 class="entry-title">' . (get_the_title() ? esc_html(get_the_title()) : 'Sem título') . '</h3></a>';
+            echo '<a href="' . get_permalink() .'"><div class="bloco-eventos"><h3 class="entry-title">' . (get_the_title() ? esc_html(get_the_title()) : 'Sem título') . '</h3>';
 
 
             $event_date = get_post_meta(get_the_ID(), 'event_date', true);
@@ -545,8 +546,9 @@ function display_events() {
             $dia_com_dois_digitos = date('d', $timestamp);
             $nome_mes_em_portugues = date_i18n('F', $timestamp);
 
-            echo '<p class="circle">' . $dia_com_dois_digitos . '</p><p class="mes">' . $nome_mes_em_portugues . '</p></div>';
+            echo '<p class="circle">' . $dia_com_dois_digitos . '</p><p class="mes">' . $nome_mes_em_portugues . '</p></div></a>';
 	}
+    echo '</div>';
 
 	echo '<a class="link-mais-eventos" href="' . esc_url( home_url( '/index.php/eventos/' ) ).'"> <button> Mais eventos </button> </a>';
     } else {

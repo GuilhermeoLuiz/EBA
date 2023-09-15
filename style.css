@@ -390,6 +390,15 @@ margin-left: 0;
 }
 
 
+.event-block{
+	margin: 0 auto;
+	width: 95%;
+	float: center;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+}
+
 @media (max-width: 768px) {
 	main{
 		max-width: 100%;
