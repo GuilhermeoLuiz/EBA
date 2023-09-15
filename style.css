@@ -379,6 +379,17 @@ a:not(.myButton){
 	display: block;
 }
 
+.bloco-eventos:hover{
+	transform: scale(1.1);
+}
+
+.mes{
+	display: inline-block;
+vertical-align: initial;
+margin-left: 0;
+}
+
+
 @media (max-width: 768px) {
 	main{
 		max-width: 100%;
