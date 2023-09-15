@@ -30,6 +30,10 @@
 	display: inline-block;
 }
 
+.link-mais-eventos{
+	display: block;
+}
+
 .bloco-eventos:hover{
 	transform: scale(1.1);
 }
