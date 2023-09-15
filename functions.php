@@ -515,7 +515,7 @@ function display_events() {
 
     $args = array(
         'post_type' => 'event',
-        'posts_per_page' => 5,
+        'posts_per_page' => 8,
         'meta_key' => 'event_date', // Campo personalizado para a data de acontecimento
         'orderby' => 'meta_value', // Ordenar pela meta_value (data de acontecimento)
         'order' => 'ASC', // Ordem ascendente
@@ -535,7 +535,7 @@ function display_events() {
         while ($query->have_posts()) {
             $query->the_post();
             $event_permalink = get_permalink(); // Obter o link para o evento
-            echo '<a href="' . esc_url(get_permalink()) . '" class="link"><h3 class="entry-title">' . (get_the_title() ? esc_html(get_the_title()) : 'Sem título') . '</h3></a>';
+            echo '<div class="bloco-eventos"><a href="' . esc_url(get_permalink()) . '" class="link"><h3 class="entry-title">' . (get_the_title() ? esc_html(get_the_title()) : 'Sem título') . '</h3></a>';
 
 
             $event_date = get_post_meta(get_the_ID(), 'event_date', true);
@@ -559,9 +559,9 @@ function display_events() {
             // Formate a data para exibir o dia com dois dígitos e o nome do mês em português
             $timestamp = strtotime($event_date);
             $dia_com_dois_digitos = date('d', $timestamp);
-            $nome_mes_em_portugues = $meses_em_portugues[date('F', $timestamp)];
+            $nome_mes_em_portugues = date_i18n('F', $timestamp);
 
-            echo '<p>' . $dia_com_dois_digitos . ' ' . $nome_mes_em_portugues . '</p>';
+            echo '<p class="circle">' . $dia_com_dois_digitos . '</p><p class="mes">' . $nome_mes_em_portugues . '</p></div>';
 	}
 
 	echo '<a class="link-mais-eventos" href="' . esc_url( home_url( '/index.php/eventos/' ) ).'"> <button> Mais eventos </button> </a>';
@@ -973,11 +973,12 @@ function display_cursos() {
                 $query->the_post();
                 echo '<li class="curso-item">';
                 
-
+                echo '<a href="' . get_permalink() . '">';
                 if (has_post_thumbnail()) {
                     the_post_thumbnail('thumbnail', array('class' => 'curso-image'));
                 }
                 echo '<h3>' . get_the_title() . '</h3>';
+               echo '</a>';
 
                 echo '</li>';
             }
