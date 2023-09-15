@@ -515,7 +515,7 @@ function display_events() {
 
     $args = array(
         'post_type' => 'event',
-        'posts_per_page' => 8,
+        'posts_per_page' => 9,
         'meta_key' => 'event_date', // Campo personalizado para a data de acontecimento
         'orderby' => 'meta_value', // Ordenar pela meta_value (data de acontecimento)
         'order' => 'ASC', // Ordem ascendente
