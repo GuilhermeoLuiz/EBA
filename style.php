@@ -82,7 +82,7 @@
         color: <?php echo $cor_link; ?>;
     }
 
-    p:not(.entry-title) {
+    p:not(.entry-title, .circle) {
         color: <?php echo $cor_texto; ?>;
     }
 
