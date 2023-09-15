@@ -82,7 +82,7 @@
         color: <?php echo $cor_link; ?>;
     }
 
-    p:not(.entry-title, .circle) {
+    p:not(.entry-title) {
         color: <?php echo $cor_texto; ?>;
     }
 
@@ -161,12 +161,12 @@
         color: <?php echo $cor_link_dark; ?>;
     }
 
-    .dark-mode button, .myButton{
+    .dark-mode button, .dark-mode .myButton{
         color: <?php echo $cor_texto_dark; ?>;
         background-color: <?php echo $cor_botao_dark; ?>;
     }
 
-    .dark-mode button:hover, .myButton:hover{
+    .dark-mode button:hover, .dark-mode .myButton:hover{
         background-color: <?php echo $cor_link_dark; ?>;
     }
 

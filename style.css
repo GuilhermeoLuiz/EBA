@@ -7,17 +7,6 @@
  */
 
 
-
-.bloco-eventos:hover{
-	transform: scale(1.1);
-}
-
-.mes{
-	display: inline-block;
-    vertical-align: initial;
-    margin-left: 0; 
-}
-
  .curso-section {
     display: inline-block; /* Faz com que os cursos fiquem na mesma linha */
 }
@@ -192,25 +181,15 @@ main {
 	max-width: 170px;
 }
 
-button, input[type="submit"]:not(.myButton) {
+button {
   display: inline-block;
   padding: 5px 10px;
-  background-color: #4CAF50;
-  color: white;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   border: none;
   cursor: pointer;
   border-radius: 4px;
-}
-
-button:active, input[type="submit"]:not(.myButton){
-  background-color: #45a049;
-}
-
-button:hover, input[type="submit"]:not(.myButton) {
-  background-color: #45a049;
 }
 
 .dark {
@@ -245,9 +224,6 @@ header{
 	float:bottom;
 }
 
-.voltar-ao-topo:hover {
-	background-color: #0056b3;
-}
 
 .dark-mode main{
 	background-color: gray;
@@ -373,34 +349,6 @@ a:not(.myButton){
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
-}
-
-.circle {
-	background-color: green;
-	color: yellow;
-	font-size: 1.5rem;
-	border-radius: 1000px;
-	width: 50px;
-	height: 50px;
-	float: left;
-	margin: 10px;
-	justify-content: center;
-	text-align: center;
-	align-items: center;
-	display: flex;
-}
-
-.bloco-eventos{
-	text-align: center;
-	width: 250px;
-	height: 140px;
-	box-shadow:  5px 5px 15px rgba(0, 0, 0, 0.5);
-	margin: 10px;
-	display: inline-block;
-}
-
-.link-mais-eventos{
-	display: block;
 }
 
 @media (max-width: 768px) {
