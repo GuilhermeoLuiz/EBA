@@ -201,8 +201,11 @@ button {
 	transform: scale(1.2);
 }
 
-.header-image{
-	text-align: center;	
+.header-image img{
+	display: block;
+    margin: 0 auto;
+    width: 60%;
+    height: auto;
 }
 
 header{
@@ -408,6 +411,7 @@ margin-left: 0;
 	}
 
 	header{
+		font-size: 0.6rem;
 		max-width: 100%;
 	}
 
