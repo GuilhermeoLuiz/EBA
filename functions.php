@@ -535,26 +535,10 @@ function display_events() {
         while ($query->have_posts()) {
             $query->the_post();
             $event_permalink = get_permalink(); // Obter o link para o evento
-            echo '<div class="bloco-eventos"><a href="' . esc_url(get_permalink()) . '" class="link"><h3 class="entry-title">' . (get_the_title() ? esc_html(get_the_title()) : 'Sem título') . '</h3></a>';
+            echo '<a href=""><div class="bloco-eventos"><h3 class="entry-title">' . (get_the_title() ? esc_html(get_the_title()) : 'Sem título') . '</h3></a>';
 
 
             $event_date = get_post_meta(get_the_ID(), 'event_date', true);
-
-            // Array para mapear os nomes dos meses em inglês para português
-            $meses_em_portugues = array(
-                'January' => 'Jan',
-                'February' => 'Fev',
-                'March' => 'Mar',
-                'April' => 'Abr',
-                'May' => 'Mai',
-                'June' => 'Jun',
-                'July' => 'Jul',
-                'August' => 'Ago',
-                'September' => 'Set',
-                'October' => 'Out',
-                'November' => 'Nov',
-                'December' => 'Dez'
-            );
 
             // Formate a data para exibir o dia com dois dígitos e o nome do mês em português
             $timestamp = strtotime($event_date);

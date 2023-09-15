@@ -14,7 +14,7 @@ darkModeToggle.addEventListener('click', function() {
     } else {
         document.body.classList.add('dark-mode');
         localStorage.setItem('darkModeEnabled', true);
-        darkModeToggle.textContent = "Clear";
+        darkModeToggle.textContent = "Light";
         document.getElementById("me").style.backgroundColor = "black";
     }
 });
