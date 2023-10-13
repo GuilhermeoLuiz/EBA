@@ -1,16 +1,16 @@
 <?php
-    $cor_fundo = get_theme_mod('EBA_background_color', '#add8e6');
-    $cor_cabecalho = get_theme_mod('cor_cabecalho', '#111111');
-	$cor_cabecalho_fundo = get_theme_mod('cor_cabecalho_fundo', '#111111');
-    $cor_titulo = get_theme_mod('cor_titulo', '#add8e6');
-    $cor_titulo_fundo = get_theme_mod('cor_titulo_fundo', '#add8e6');
-    $cor_subtitulo = get_theme_mod('cor_subtitulo', '#11d700');
-	$cor_subtitulo_fundo = get_theme_mod('cor_subtitulo_fundo', '#11d700');
+    $cor_fundo = get_theme_mod('EBA_background_color', '#d1d1d1');
+    $cor_cabecalho = get_theme_mod('cor_cabecalho', '#ffffff');
+	$cor_cabecalho_fundo = get_theme_mod('cor_cabecalho_fundo', '#fc3a3a');
+    $cor_titulo = get_theme_mod('cor_titulo', '#ffffff');
+    $cor_titulo_fundo = get_theme_mod('cor_titulo_fundo', '#00aa99');
+    $cor_subtitulo = get_theme_mod('cor_subtitulo', '#f9dc00');
+	$cor_subtitulo_fundo = get_theme_mod('cor_subtitulo_fundo', '#0038e0');
     $cor_topico = get_theme_mod('cor_topico', '#add8e6');
     $cor_menu = get_theme_mod('cor_menu', '#add8e6');
-    $cor_texto = get_theme_mod('cor_texto', '#add8e6');
+    $cor_texto = get_theme_mod('cor_texto', '#222222');
     $cor_link = get_theme_mod('cor_link', '#add8e6');
-    $cor_botao = get_theme_mod('cor_botao', '#add8e6');
+    $cor_botao = get_theme_mod('cor_botao', '#ffa33a');
     $cor_footer = get_theme_mod('cor_footer', '#ffffff');
     $cor_footer_fundo = get_theme_mod('cor_footer_fundo', '#222222');
 	$cor_sidebar = get_theme_mod('cor_sidebar', '#222222');

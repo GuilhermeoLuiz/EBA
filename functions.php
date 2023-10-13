@@ -76,7 +76,7 @@ function EBA_customize_register( $wp_customize ) {
     
     // Cor do Fundo
     $wp_customize->add_setting( 'EBA_background_color', array(
-        'default'           => '#ffffff',
+        'default'           => '#d1d1d1',
         'sanitize_callback' => 'sanitize_hex_color',
     ));
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'EBA_background_color', array(
@@ -97,7 +97,7 @@ function EBA_customize_register( $wp_customize ) {
 
     // Cor do Cabeçalho(Fundo) - Modo Claro
     $wp_customize->add_setting('cor_cabecalho_fundo', array(
-        'default'   => '#ffffff',
+        'default'   => '#fc3a3a',
         'transport' => 'refresh',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_cabecalho_fundo', array(
@@ -117,7 +117,7 @@ function EBA_customize_register( $wp_customize ) {
         
     // Cor do Título(Fundo)
     $wp_customize->add_setting( 'cor_titulo_fundo', array(
-        'default'   => '#11d700',
+        'default'   => '#00aa99',
         'transport' => 'refresh',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_titulo_fundo', array(
@@ -127,7 +127,7 @@ function EBA_customize_register( $wp_customize ) {
 
     // Cor do Subtítulo(Texto)
     $wp_customize->add_setting( 'cor_subtitulo', array(
-        'default'   => '#11d700',
+        'default'   => '#f9dc00',
         'transport' => 'refresh',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo', array(
@@ -137,7 +137,7 @@ function EBA_customize_register( $wp_customize ) {
 
     // Cor do Subtítulo(Fundo)
     $wp_customize->add_setting( 'cor_subtitulo_fundo', array(
-        'default'   => '#11d700',
+        'default'   => '#0038e0',
         'transport' => 'refresh',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_subtitulo_fundo', array(
@@ -177,7 +177,7 @@ function EBA_customize_register( $wp_customize ) {
     
     // Cor do Botao
     $wp_customize->add_setting( 'cor_botao', array(
-        'default'   => '#222222',
+        'default'   => '#ffa33a',
         'transport' => 'refresh',
     ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cor_botao', array(
